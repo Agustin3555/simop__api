@@ -11,6 +11,11 @@ export class DireccionesController {
     return this.direccionesService.getAll()
   }
 
+  @Get('/for-connect')
+  getForConnect() {
+    return this.direccionesService.getForConnect()
+  }
+
   @Post()
   create(@Body() createDto: CreateDto) {
     return this.direccionesService.create(createDto)

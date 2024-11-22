@@ -4,15 +4,20 @@ import { CreateDto } from './dto/create.dto'
 
 @Controller('departamentos')
 export class DepartamentosController {
-  constructor(private readonly departamentos: DepartamentosService) {}
+  constructor(private readonly departamentosServices: DepartamentosService) {}
 
   @Get()
   getAll() {
-    return this.departamentos.getAll()
+    return this.departamentosServices.getAll()
+  }
+
+  @Get('/for-connect')
+  getForConnect() {
+    return this.departamentosServices.getForConnect()
   }
 
   @Post()
   create(@Body() createDto: CreateDto) {
-    return this.departamentos.create(createDto)
+    return this.departamentosServices.create(createDto)
   }
 }

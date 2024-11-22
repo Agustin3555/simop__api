@@ -11,6 +11,11 @@ export class SubSecretariasController {
     return this.subSecretariasService.getAll()
   }
 
+  @Get('/for-connect')
+  getForConnect() {
+    return this.subSecretariasService.getForConnect()
+  }
+
   @Post()
   create(@Body() createDto: CreateDto) {
     return this.subSecretariasService.create(createDto)

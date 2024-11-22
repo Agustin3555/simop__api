@@ -6,17 +6,25 @@ import { CreateDto } from './dto/create.dto'
 export class DepartamentosService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async getAll() {
+    const { prisma } = this
+
+    return await prisma.departamento.findMany()
+  }
+
+  async getForConnect() {
+    const { prisma } = this
+
+    return await prisma.departamento.findMany({
+      select: { id: true, nombre: true },
+    })
+  }
+
   async create(createDto: CreateDto) {
     const { prisma } = this
 
     return await prisma.departamento.create({
       data: createDto,
     })
-  }
-
-  async getAll() {
-    const { prisma } = this
-
-    return await prisma.departamento.findMany()
   }
 }
