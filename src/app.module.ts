@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common'
+import { APP_INTERCEPTOR } from '@nestjs/core'
+import { ConfigModule } from '@nestjs/config'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { ConfigModule } from '@nestjs/config'
 import envConfig from './config/envConfig'
 import { SubSecretariasModule } from './sub-secretarias/sub-secretarias.module'
 import { DireccionesModule } from './direcciones/direcciones.module'
 import { DepartamentosModule } from './departamentos/departamentos.module'
+import { NullToUndefinedInterceptor } from './common/interceptors'
 
 @Module({
   imports: [
@@ -15,6 +17,12 @@ import { DepartamentosModule } from './departamentos/departamentos.module'
     DepartamentosModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: NullToUndefinedInterceptor,
+    },
+  ],
 })
 export class AppModule {}

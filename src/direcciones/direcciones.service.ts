@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '@/prisma.service'
+import { Prisma } from '@prisma/client'
 import { CreateDto } from './dto/create.dto'
+import { omitFields } from '@/common/helpers'
 
 @Injectable()
 export class DireccionesService {
@@ -9,7 +11,14 @@ export class DireccionesService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.direccion.findMany()
+    return await prisma.direccion.findMany({
+      select: {
+        ...omitFields(Prisma.DireccionScalarFieldEnum, ['subSecretariaId']),
+        subSecretaria: {
+          select: { id: true, nombre: true },
+        },
+      },
+    })
   }
 
   async getForConnect() {
