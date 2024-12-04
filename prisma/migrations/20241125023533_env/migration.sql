@@ -1,3 +1,9 @@
+-- DropForeignKey
+ALTER TABLE `Departamento` DROP FOREIGN KEY `Departamento_direccionId_fkey`;
+
+-- DropForeignKey
+ALTER TABLE `Direccion` DROP FOREIGN KEY `Direccion_subSecretariaId_fkey`;
+
 -- DropIndex
 DROP INDEX `Departamento_direccionId_fkey` ON `departamento`;
 

@@ -8,4 +8,8 @@ export class CreateDto {
   @Min(1)
   @IsOptional()
   direccionId?: number
+  @IsInt()
+  @Min(1)
+  @IsOptional()
+  provinciaId?: number
 }

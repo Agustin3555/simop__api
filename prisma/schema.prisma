@@ -45,11 +45,134 @@ model Departamento {
   id          Int       @id @default(autoincrement())
   nombre      String
 
+  provinciaId Int? // Clave foránea hacia Provincia
   direccionId Int?
 
   creado      DateTime  @default(now())
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
+  provincia   Provincia?  @relation(fields: [provinciaId], references: [id]) // Relación con Provincia
   direccion   Direccion?  @relation(fields: [direccionId], references: [id])
+}
+
+model Pais {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+  provincias  Provincia[]
+}
+
+model Provincia {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  paisId      Int?
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+  pais         Pais?          @relation(fields: [paisId], references: [id])
+  departamentos Departamento[] 
+}
+
+model TipoEstadoObra {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+}
+model TipoFinanciamiento {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+}
+model TipoModificacionObra {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+}
+model TipoParalizacionObra {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+}
+
+model TipoTematicaObra {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+}
+
+model TipoRepresentanteEmpresaObra {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+}
+model TipoTramite {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+}
+model TipoInspector {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+}
+
+model TipoProfesion {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
 }
