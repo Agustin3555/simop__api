@@ -3,7 +3,7 @@ import { PrismaService } from '@/prisma.service'
 import { CreateDto } from './dto/create.dto'
 
 @Injectable()
-export class TipoProfesionesObrasService {
+export class TiposProfesionesService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getAll() {

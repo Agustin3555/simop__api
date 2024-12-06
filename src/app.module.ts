@@ -17,7 +17,7 @@ import { TipoTramitesObrasModule } from './tipo-tramites/tipo-tramites.module'
 import { TipoRepresentantesObrasModule } from './tipo-representantes-empresas-obras/tipo-representantes-empresas-obras.module'
 import { TipoParalizacionesObrasModule } from './tipo-paralizaciones-obras/tipo-paralizaciones-obras.module'
 import { TipoInspectoresObrasModule } from './tipo-inspectores/tipo-inspectores.module'
-import { TipoProfesionesObrasModule } from './tipo-profesiones/tipo-profesiones.module'
+import { TiposProfesionesModule } from './tipos-profesiones/tipos-profesiones.module'
 import { TipoTematicasObrasModule } from './tipo-tematicas-obras/tipo-tematicas-obras.module'
 
 @Module({
@@ -35,7 +35,7 @@ import { TipoTematicasObrasModule } from './tipo-tematicas-obras/tipo-tematicas-
     TipoRepresentantesObrasModule,
     TipoParalizacionesObrasModule,
     TipoInspectoresObrasModule,
-    TipoProfesionesObrasModule,
+    TiposProfesionesModule,
     TipoTematicasObrasModule,
   ],
   controllers: [AppController],
