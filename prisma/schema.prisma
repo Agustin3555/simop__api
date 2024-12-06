@@ -164,15 +164,47 @@ model TipoInspector {
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
+
 }
 
 model TipoProfesion {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
-  nombre      String
+  nombre      String    
 
-  creado      DateTime  @default(now())
-  modificado  DateTime  @updatedAt
+  creado      DateTime   @default(now())
+  modificado  DateTime   @updatedAt
 
   // Relations ----------------------------------------------------------------
+  inspectores RelInspectorProfesion[]
+}
+
+model RelInspectorProfesion {
+  // Fields -------------------------------------------------------------------
+  id          Int           @id @default(autoincrement())
+  cuilInsp    Int           
+  profesionId Int           
+
+  creado      DateTime      @default(now())
+  modificado  DateTime      @updatedAt
+
+  // Relations ----------------------------------------------------------------
+  inspector   Inspector     @relation(fields: [cuilInsp], references: [id])
+  profesion   TipoProfesion @relation(fields: [profesionId], references: [id])
+
+  @@unique([cuilInsp, profesionId]) 
+}
+
+model Inspector {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String     
+  apellido    String    
+  cuil        String     
+
+  creado      DateTime   @default(now())
+  modificado  DateTime   @updatedAt
+
+  // Relations ----------------------------------------------------------------
+  profesiones RelInspectorProfesion[]
 }

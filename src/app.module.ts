@@ -8,19 +8,17 @@ import { SubSecretariasModule } from './sub-secretarias/sub-secretarias.module'
 import { DireccionesModule } from './direcciones/direcciones.module'
 import { DepartamentosModule } from './departamentos/departamentos.module'
 import { NullToUndefinedInterceptor } from './common/interceptors'
-import { CatsModule } from './cats/cats.module'
 import { PaisModule } from './pais/pais.module'
-import { ProvinciaModule } from './provincia/provincia.module'
-import { TipoEstadoObraModule } from './tipo-estado-obra/tipo-estado-obre.module'
-import { TipoFinanciamientoObraModule } from './tipo-financiamiento-obra/tipo-financiamiento-obra.module'
-import { TipoModificacionObraModule } from './tipo-modificacion-obra/dto/tipo-modificacion-obra.module'
-
-import { TipoTramiteObraModule } from './tipo-tramite/tipo-tramite.module'
-import { TipoRepresentanteObraModule } from './tipo-representante-empresa-obra/tipo-representante-empresa-obra.module'
-import { TipoParalizacionObraModule } from './tipo-paralizacion-obra/tipo-paralizacion-obra.module'
-import { TipoInspectorObraModule } from './tipo-inspector/tipo-inspector.module'
-import { TipoProfesionObraModule } from './tipo-profesion/tipo-profesion.module'
-import { TipoTematicaObraModule } from './tipo-tematica-obra/tipo-tematica-obra.module'
+import { ProvinciasModule } from './provincias/provincias.module'
+import { TipoEstadosObrasModule } from './tipo-estados-obras/tipo-estados-obras.module'
+import { TipoFinanciamientosObrasModule } from './tipo-financiamientos-obras/tipo-financiamientos-obras.module'
+import { TipoModificacionesObrasModule } from './tipo-modificaciones-obras/tipo-modificaciones-obras.module'
+import { TipoTramitesObrasModule } from './tipo-tramites/tipo-tramites.module'
+import { TipoRepresentantesObrasModule } from './tipo-representantes-empresas-obras/tipo-representantes-empresas-obras.module'
+import { TipoParalizacionesObrasModule } from './tipo-paralizaciones-obras/tipo-paralizaciones-obras.module'
+import { TipoInspectoresObrasModule } from './tipo-inspectores/tipo-inspectores.module'
+import { TipoProfesionesObrasModule } from './tipo-profesiones/tipo-profesiones.module'
+import { TipoTematicasObrasModule } from './tipo-tematicas-obras/tipo-tematicas-obras.module'
 
 @Module({
   imports: [
@@ -28,18 +26,17 @@ import { TipoTematicaObraModule } from './tipo-tematica-obra/tipo-tematica-obra.
     SubSecretariasModule,
     DireccionesModule,
     DepartamentosModule,
-    CatsModule,
     PaisModule,
-    ProvinciaModule,
-    TipoEstadoObraModule,
-    TipoFinanciamientoObraModule,
-    TipoModificacionObraModule,
-    TipoRepresentanteObraModule,
-    TipoParalizacionObraModule,
-    TipoTramiteObraModule,
-    TipoInspectorObraModule,
-    TipoProfesionObraModule,
-    TipoTematicaObraModule,
+    ProvinciasModule,
+    TipoEstadosObrasModule,
+    TipoFinanciamientosObrasModule,
+    TipoModificacionesObrasModule,
+    TipoTramitesObrasModule,
+    TipoRepresentantesObrasModule,
+    TipoParalizacionesObrasModule,
+    TipoInspectoresObrasModule,
+    TipoProfesionesObrasModule,
+    TipoTematicasObrasModule,
   ],
   controllers: [AppController],
   providers: [
