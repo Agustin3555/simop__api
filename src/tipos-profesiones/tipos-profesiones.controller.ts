@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common'
-import { TiposProfesionesService } from './tipo-profesiones.service'
+import { TiposProfesionesService } from './tipos-profesiones.service'
 import { CreateDto } from './dto/create.dto'
 
 @Controller('tipos-profesiones')
