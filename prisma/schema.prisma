@@ -45,14 +45,12 @@ model Departamento {
   id          Int       @id @default(autoincrement())
   nombre      String
 
-  provinciaId Int? // Clave foránea hacia Provincia
   direccionId Int?
 
   creado      DateTime  @default(now())
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
-  provincia   Provincia?  @relation(fields: [provinciaId], references: [id]) // Relación con Provincia
   direccion   Direccion?  @relation(fields: [direccionId], references: [id])
 }
 
@@ -79,8 +77,22 @@ model Provincia {
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
-  pais         Pais?          @relation(fields: [paisId], references: [id])
-  departamentos Departamento[] 
+  pais        Pais?       @relation(fields: [paisId], references: [id])
+  localidades Localidad[]
+}
+
+model Localidad {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  provinciaId Int?
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+  provincia   Provincia?  @relation(fields: [provinciaId], references: [id])
 }
 
 model TipoEstadoObra {
@@ -93,6 +105,7 @@ model TipoEstadoObra {
 
   // Relations ----------------------------------------------------------------
 }
+
 model TipoFinanciamiento {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
@@ -103,6 +116,7 @@ model TipoFinanciamiento {
 
   // Relations ----------------------------------------------------------------
 }
+
 model TipoModificacionObra {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
@@ -113,7 +127,19 @@ model TipoModificacionObra {
 
   // Relations ----------------------------------------------------------------
 }
+
 model TipoParalizacionObra {
+  // Fields -------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+}
+
+model TipoProgramaObra {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
   nombre      String
@@ -145,6 +171,7 @@ model TipoRepresentanteEmpresaObra {
 
   // Relations ----------------------------------------------------------------
 }
+
 model TipoTramite {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
@@ -155,6 +182,7 @@ model TipoTramite {
 
   // Relations ----------------------------------------------------------------
 }
+
 model TipoInspector {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
@@ -164,47 +192,45 @@ model TipoInspector {
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
-
 }
 
 model TipoProfesion {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
-  nombre      String    
+  nombre      String
 
   creado      DateTime   @default(now())
   modificado  DateTime   @updatedAt
 
   // Relations ----------------------------------------------------------------
-  inspectores RelInspectorProfesion[]
+  inspectores RelInspectorTipoProfesion[]
 }
 
-model RelInspectorProfesion {
+model RelInspectorTipoProfesion {
   // Fields -------------------------------------------------------------------
-  id          Int           @id @default(autoincrement())
-  cuilInsp    Int           
-  profesionId Int           
+  inspectorId     Int
+  tipoProfesionId Int
 
-  creado      DateTime      @default(now())
-  modificado  DateTime      @updatedAt
+  creado          DateTime  @default(now())
+  modificado      DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
-  inspector   Inspector     @relation(fields: [cuilInsp], references: [id])
-  profesion   TipoProfesion @relation(fields: [profesionId], references: [id])
+  @@unique([inspectorId, tipoProfesionId])
 
-  @@unique([cuilInsp, profesionId]) 
+  inspector     Inspector     @relation(fields: [inspectorId], references: [id])
+  tipoProfesion TipoProfesion @relation(fields: [tipoProfesionId], references: [id])
 }
 
 model Inspector {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
-  nombre      String     
-  apellido    String    
-  cuil        String     
+  cuil        String
+  apellido    String
+  nombre      String
 
-  creado      DateTime   @default(now())
-  modificado  DateTime   @updatedAt
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
-  profesiones RelInspectorProfesion[]
+  tiposProfesiones RelInspectorTipoProfesion[]
 }
