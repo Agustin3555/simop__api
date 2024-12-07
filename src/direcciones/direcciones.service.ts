@@ -13,7 +13,7 @@ export class DireccionesService {
 
     return await prisma.direccion.findMany({
       select: {
-        ...omitFields(Prisma.DireccionScalarFieldEnum, ['subSecretariaId']),
+        ...omitFields(Prisma.DireccionScalarFieldEnum, 'subSecretariaId'),
         subSecretaria: {
           select: { id: true, nombre: true },
         },

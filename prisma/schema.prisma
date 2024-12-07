@@ -224,7 +224,7 @@ model RelInspectorTipoProfesion {
 model Inspector {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
-  cuil        String
+  cuil        Int
   apellido    String
   nombre      String
 

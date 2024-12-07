@@ -13,7 +13,7 @@ export class DepartamentosService {
 
     return await prisma.departamento.findMany({
       select: {
-        ...omitFields(Prisma.DepartamentoScalarFieldEnum, ['direccionId']),
+        ...omitFields(Prisma.DepartamentoScalarFieldEnum, 'direccionId'),
         direccion: {
           select: { id: true, nombre: true },
         },

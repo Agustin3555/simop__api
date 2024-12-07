@@ -1,8 +1,18 @@
-import { IsString } from 'class-validator'
+import { IsArray, IsInt, IsOptional, IsString, Min } from 'class-validator'
 
 export class CreateDto {
+  @IsInt()
+  cuil: number
+
+  @IsString()
+  apellido: string
+
   @IsString()
   nombre: string
-  apellido: string
-  cuil: string
+
+  @IsArray()
+  @IsInt({ each: true })
+  @Min(1, { each: true })
+  @IsOptional()
+  tiposProfesiones?: number[]
 }
