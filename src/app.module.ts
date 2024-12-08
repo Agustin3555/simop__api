@@ -20,6 +20,7 @@ import { TiposProfesionesModule } from './tipos-profesiones/tipos-profesiones.mo
 import { TipoTematicasObrasModule } from './tipo-tematicas-obras/tipo-tematicas-obras.module'
 import { TiposInspectoresModule } from './tipos-inspectores/tipos-inspectores.module'
 import { InspectoresModule } from './inspectores/inspectores.module'
+import { TiposProgramasObrasModule } from './tipos-programas-obras/tipos-programas-obras.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { InspectoresModule } from './inspectores/inspectores.module'
     TipoTematicasObrasModule,
     TiposInspectoresModule,
     InspectoresModule,
+    TiposProgramasObrasModule,
   ],
   controllers: [AppController],
   providers: [
