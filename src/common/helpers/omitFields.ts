@@ -1,6 +1,6 @@
 export const omitFields = <T extends Record<string, any>>(
   modelFields: T,
-  omitKeys: (keyof T)[],
+  ...omitKeys: (keyof T)[]
 ) =>
   Object.values(modelFields).reduce(
     (acc, key) => {

@@ -9,13 +9,13 @@ export class TipoRepresentantesEmpresasObrasService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.tipoRepresentanteEmpresaObra.findMany()
+    return await prisma.tipoRepresentante.findMany()
   }
 
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.tipoRepresentanteEmpresaObra.findMany({
+    return await prisma.tipoRepresentante.findMany({
       select: { id: true, nombre: true },
     })
   }
@@ -23,7 +23,7 @@ export class TipoRepresentantesEmpresasObrasService {
   async create(createDto: CreateDto) {
     const { prisma } = this
 
-    return await prisma.tipoRepresentanteEmpresaObra.create({
+    return await prisma.tipoRepresentante.create({
       data: createDto,
     })
   }

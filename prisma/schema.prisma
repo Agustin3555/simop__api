@@ -63,7 +63,10 @@ model Pais {
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
-  provincias  Provincia[]
+  provincias      Provincia[]
+
+  empresas        Empresa[]
+  representantes  Representante[]
 }
 
 model Provincia {
@@ -77,8 +80,11 @@ model Provincia {
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
-  pais        Pais?       @relation(fields: [paisId], references: [id])
-  localidades Localidad[]
+  pais            Pais?       @relation(fields: [paisId], references: [id])
+  localidades     Localidad[]
+
+  empresas        Empresa[]
+  representantes  Representante[]
 }
 
 model Localidad {
@@ -92,7 +98,10 @@ model Localidad {
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
-  provincia   Provincia?  @relation(fields: [provinciaId], references: [id])
+  provincia       Provincia?  @relation(fields: [provinciaId], references: [id])
+
+  empresas        Empresa[]
+  representantes  Representante[]
 }
 
 model TipoEstadoObra {
@@ -161,7 +170,7 @@ model TipoTematicaObra {
   // Relations ----------------------------------------------------------------
 }
 
-model TipoRepresentanteEmpresaObra {
+model TipoRepresentante {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
   nombre      String
@@ -224,7 +233,7 @@ model RelInspectorTipoProfesion {
 model Inspector {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
-  cuil        String
+  cuil        Int
   apellido    String
   nombre      String
 
@@ -233,4 +242,69 @@ model Inspector {
 
   // Relations ----------------------------------------------------------------
   tiposProfesiones RelInspectorTipoProfesion[]
+}
+
+model Empresa {
+  // Fields -------------------------------------------------------------------
+  id              Int       @id @default(autoincrement())
+  cuit            Int
+  nombre          String
+  direccion       String
+  numeroContacto  Int
+  email           String
+
+  paisId          Int?
+  provinciaId     Int?
+  localidadId     Int?
+
+  creado          DateTime  @default(now())
+  modificado      DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+  pais            Pais?       @relation(fields: [paisId], references: [id])
+  provincia       Provincia?  @relation(fields: [provinciaId], references: [id])
+  localidad       Localidad?  @relation(fields: [localidadId], references: [id])
+
+  representantes  RelEmpresaRepresentante[]
+}
+
+model Representante {
+  // Fields -------------------------------------------------------------------
+  id                  Int       @id @default(autoincrement())
+  cuit                Int
+  apellido            String
+  nombre              String
+  direccion           String
+  numeroMatricula     String
+  vigencia            Boolean
+
+  paisId              Int?
+  provinciaId         Int?
+  localidadId         Int?
+  tipoRepresentanteId Int?
+
+  creado              DateTime  @default(now())
+  modificado          DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+  pais              Pais?       @relation(fields: [paisId], references: [id])
+  provincia         Provincia?  @relation(fields: [provinciaId], references: [id])
+  localidad         Localidad?  @relation(fields: [localidadId], references: [id])
+
+  empresas  RelEmpresaRepresentante[]
+}
+
+model RelEmpresaRepresentante {
+  // Fields -------------------------------------------------------------------
+  empresaId       Int
+  representanteId Int
+
+  creado          DateTime  @default(now())
+  modificado      DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+  @@unique([empresaId, representanteId])
+
+  empresa       Empresa       @relation(fields: [empresaId], references: [id])
+  representante Representante @relation(fields: [representanteId], references: [id])
 }
