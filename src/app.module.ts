@@ -10,17 +10,19 @@ import { DireccionesModule } from './direcciones/direcciones.module'
 import { DepartamentosModule } from './departamentos/departamentos.module'
 import { PaisModule } from './pais/pais.module'
 import { ProvinciasModule } from './provincias/provincias.module'
-import { TipoEstadosObrasModule } from './tipo-estados-obras/tipo-estados-obras.module'
-import { TipoFinanciamientosObrasModule } from './tipo-financiamientos-obras/tipo-financiamientos-obras.module'
-import { TipoModificacionesObrasModule } from './tipo-modificaciones-obras/tipo-modificaciones-obras.module'
-import { TipoParalizacionesObrasModule } from './tipo-paralizaciones-obras/tipo-paralizaciones-obras.module'
-import { TipoRepresentantesObrasModule } from './tipo-representantes-empresas-obras/tipo-representantes-empresas-obras.module'
-import { TipoTramitesObrasModule } from './tipo-tramites/tipo-tramites.module'
+import { TipoEstadosObrasModule } from './tipos-estados-obras/tipo-estados-obras.module'
+import { TipoFinanciamientosObrasModule } from './tipos-financiamientos-obras/tipo-financiamientos-obras.module'
+import { TipoModificacionesObrasModule } from './tipos-modificaciones-obras/tipo-modificaciones-obras.module'
+import { TipoParalizacionesObrasModule } from './tipos-paralizaciones-obras/tipo-paralizaciones-obras.module'
+import { TipoRepresentantesObrasModule } from './tipos-representantes-empresas-obras/tipo-representantes-empresas-obras.module'
+import { TipoTramitesObrasModule } from './tipos-tramites/tipo-tramites.module'
 import { TiposProfesionesModule } from './tipos-profesiones/tipos-profesiones.module'
-import { TipoTematicasObrasModule } from './tipo-tematicas-obras/tipo-tematicas-obras.module'
+import { TipoTematicasObrasModule } from './tipos-tematicas-obras/tipo-tematicas-obras.module'
 import { TiposInspectoresModule } from './tipos-inspectores/tipos-inspectores.module'
 import { InspectoresModule } from './inspectores/inspectores.module'
-import { TiposProgramasObrasModule } from './tipos-programas-obras/tipos-programas-obras.module';
+import { TiposProgramasObrasModule } from './tipos-programas-obras/tipos-programas-obras.module'
+import { RepresentatesEmpresasModule } from './representates-empresas/representates-empresas.module'
+import { RelEmpresasRepresentantesModule } from './rel-empresas-representantes/rel-empresas-representantes.module'
 
 @Module({
   imports: [
@@ -41,6 +43,8 @@ import { TiposProgramasObrasModule } from './tipos-programas-obras/tipos-program
     TiposInspectoresModule,
     InspectoresModule,
     TiposProgramasObrasModule,
+    RepresentatesEmpresasModule,
+    RelEmpresasRepresentantesModule,
   ],
   controllers: [AppController],
   providers: [
