@@ -9,13 +9,13 @@ export class TipoTematicasObrasService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.tipoTematicaObra.findMany()
+    return await prisma.tipoTematica.findMany()
   }
 
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.tipoTematicaObra.findMany({
+    return await prisma.tipoTematica.findMany({
       select: { id: true, nombre: true },
     })
   }
@@ -23,7 +23,7 @@ export class TipoTematicasObrasService {
   async create(createDto: CreateDto) {
     const { prisma } = this
 
-    return await prisma.tipoTematicaObra.create({
+    return await prisma.tipoTematica.create({
       data: createDto,
     })
   }

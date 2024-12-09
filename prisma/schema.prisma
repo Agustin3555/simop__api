@@ -67,6 +67,7 @@ model Pais {
 
   empresas        Empresa[]
   representantes  Representante[]
+  obras           Obra[]
 }
 
 model Provincia {
@@ -85,6 +86,7 @@ model Provincia {
 
   empresas        Empresa[]
   representantes  Representante[]
+  obras           Obra[]
 }
 
 model Localidad {
@@ -102,9 +104,10 @@ model Localidad {
 
   empresas        Empresa[]
   representantes  Representante[]
+  obras           Obra[]
 }
 
-model TipoEstadoObra {
+model TipoEstado {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
   nombre      String
@@ -113,6 +116,7 @@ model TipoEstadoObra {
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
+  obras Obra[]
 }
 
 model TipoFinanciamiento {
@@ -124,6 +128,7 @@ model TipoFinanciamiento {
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
+  obras Obra[]
 }
 
 model TipoModificacionObra {
@@ -159,7 +164,7 @@ model TipoProgramaObra {
   // Relations ----------------------------------------------------------------
 }
 
-model TipoTematicaObra {
+model TipoTematica {
   // Fields -------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
   nombre      String
@@ -168,6 +173,7 @@ model TipoTematicaObra {
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
+  obras Obra[]
 }
 
 model TipoRepresentante {
@@ -179,6 +185,7 @@ model TipoRepresentante {
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
+  representantes  Representante[]
 }
 
 model TipoTramite {
@@ -201,6 +208,7 @@ model TipoInspector {
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
+  obrasInspectores  RelObraInspector[]
 }
 
 model TipoProfesion {
@@ -241,7 +249,8 @@ model Inspector {
   modificado  DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
-  tiposProfesiones RelInspectorTipoProfesion[]
+  tiposProfesiones  RelInspectorTipoProfesion[]
+  obras             RelObraInspector[]
 }
 
 model Empresa {
@@ -266,6 +275,7 @@ model Empresa {
   localidad       Localidad?  @relation(fields: [localidadId], references: [id])
 
   representantes  RelEmpresaRepresentante[]
+  obras           Obra[]
 }
 
 model Representante {
@@ -287,11 +297,13 @@ model Representante {
   modificado          DateTime  @updatedAt
 
   // Relations ----------------------------------------------------------------
-  pais              Pais?       @relation(fields: [paisId], references: [id])
-  provincia         Provincia?  @relation(fields: [provinciaId], references: [id])
-  localidad         Localidad?  @relation(fields: [localidadId], references: [id])
+  pais              Pais?               @relation(fields: [paisId], references: [id])
+  provincia         Provincia?          @relation(fields: [provinciaId], references: [id])
+  localidad         Localidad?          @relation(fields: [localidadId], references: [id])
+  tipoRepresentante TipoRepresentante?  @relation(fields: [tipoRepresentanteId], references: [id])
 
   empresas  RelEmpresaRepresentante[]
+  obras     RelObraRepresentante[]
 }
 
 model RelEmpresaRepresentante {
@@ -306,5 +318,78 @@ model RelEmpresaRepresentante {
   @@unique([empresaId, representanteId])
 
   empresa       Empresa       @relation(fields: [empresaId], references: [id])
+  representante Representante @relation(fields: [representanteId], references: [id])
+}
+
+model Obra {
+  // Fields -------------------------------------------------------------------
+  id                    Int       @id @default(autoincrement())
+  nombre                String
+  numeroResolucion      Int
+  anioResolucion        Int
+  numeroContratacion    Int
+  anioContratacion      Int
+  montoContratacion     Int
+  numeroExpediente      Int
+  nomenclaturaCatastral String
+  plazoMeses            Int
+  plazoDias             Int
+  fechaInicio           DateTime? @db.Date
+  fechaFin              DateTime? @db.Date
+  observaciones         String?   @db.Text
+
+  paisId                Int?
+  provinciaId           Int?
+  localidadId           Int?
+  tipoFinanciamientoId  Int?
+  tipoTematicaId        Int?
+  tipoEstadoId          Int?
+  empresaId             Int?
+
+  creado                DateTime  @default(now())
+  modificado            DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+  pais                Pais?               @relation(fields: [paisId], references: [id])
+  provincia           Provincia?          @relation(fields: [provinciaId], references: [id])
+  localidad           Localidad?          @relation(fields: [localidadId], references: [id])
+  tipoFinanciamiento  TipoFinanciamiento? @relation(fields: [tipoFinanciamientoId], references: [id])
+  tipoTematica        TipoTematica?       @relation(fields: [tipoTematicaId], references: [id])
+  tipoEstado          TipoEstado?         @relation(fields: [tipoEstadoId], references: [id])
+  empresa             Empresa?            @relation(fields: [empresaId], references: [id])
+
+  inspectores         RelObraInspector[]
+  representantes      RelObraRepresentante[]
+}
+
+model RelObraInspector {
+  // Fields -------------------------------------------------------------------
+  obraId          Int
+  inspectorId     Int
+  tipoInspectorId Int?
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+  @@unique([obraId, inspectorId])
+
+  obra          Obra            @relation(fields: [obraId], references: [id])
+  inspector     Inspector       @relation(fields: [inspectorId], references: [id])
+  tipoInspector TipoInspector?  @relation(fields: [tipoInspectorId], references: [id])
+}
+
+model RelObraRepresentante {
+  // Fields -------------------------------------------------------------------
+  obraId          Int
+  representanteId Int
+
+  creado          DateTime  @default(now())
+  modificado      DateTime  @updatedAt
+
+  // Relations ----------------------------------------------------------------
+  @@unique([obraId, representanteId])
+
+  obra          Obra          @relation(fields: [obraId], references: [id])
   representante Representante @relation(fields: [representanteId], references: [id])
 }
