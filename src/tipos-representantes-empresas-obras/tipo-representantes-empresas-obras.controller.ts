@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post } from '@nestjs/common'
 import { TipoRepresentantesEmpresasObrasService } from './tipo-representantes-empresas-obras.service'
 import { CreateDto } from './dto/create.dto'
 
-@Controller('tipo-representantes-empresas-obras')
+@Controller('tipos-representantes-empresas-obras')
 export class TipoRepresentanteObraObraController {
   constructor(
     private readonly tipoRepresentatesEmpresasObras: TipoRepresentantesEmpresasObrasService,

@@ -8,7 +8,11 @@ export class ProvinciasService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.provincia.findMany()
+    return await prisma.provincia.findMany({
+      include: {
+        pais: true,
+      },
+    })
   }
 
   async getForConnect() {

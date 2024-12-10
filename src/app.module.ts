@@ -23,6 +23,11 @@ import { InspectoresModule } from './inspectores/inspectores.module'
 import { TiposProgramasObrasModule } from './tipos-programas-obras/tipos-programas-obras.module'
 import { RepresentatesEmpresasModule } from './representates-empresas/representates-empresas.module'
 import { RelEmpresasRepresentantesModule } from './rel-empresas-representantes/rel-empresas-representantes.module'
+import { ObrasModule } from './obras/obras.module'
+import { LocalidadesModule } from './localidades/localidades.module'
+import { RelObraInspectorModule } from './rel-obras-inspectores/rel-obras-inspectores.module'
+
+import { RelObrasRepresentantesModule } from './rel-obras-representantes/rel-obras-representantes.module'
 
 @Module({
   imports: [
@@ -45,6 +50,11 @@ import { RelEmpresasRepresentantesModule } from './rel-empresas-representantes/r
     TiposProgramasObrasModule,
     RepresentatesEmpresasModule,
     RelEmpresasRepresentantesModule,
+    ObrasModule,
+    LocalidadesModule,
+    RelObraInspectorModule,
+
+    RelObrasRepresentantesModule,
   ],
   controllers: [AppController],
   providers: [
