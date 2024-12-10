@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '@/prisma.service'
+import { Prisma } from '@prisma/client'
 import { CreateDto } from './dto/create.dto'
+import { omitFields } from '@/common/helpers'
+
 @Injectable()
 export class ProvinciasService {
   constructor(private readonly prisma: PrismaService) {}
@@ -9,8 +12,11 @@ export class ProvinciasService {
     const { prisma } = this
 
     return await prisma.provincia.findMany({
-      include: {
-        pais: true,
+      select: {
+        ...omitFields(Prisma.ProvinciaScalarFieldEnum, 'paisId'),
+        pais: {
+          select: { id: true, nombre: true },
+        },
       },
     })
   }
