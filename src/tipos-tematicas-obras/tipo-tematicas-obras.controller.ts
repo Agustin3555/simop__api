@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post } from '@nestjs/common'
 import { TipoTematicasObrasService } from './tipo-tematicas-obras.service'
 import { CreateDto } from './dto/create.dto'
 
-@Controller('tipo-tematicas-obras')
+@Controller('tipos-tematicas-obras')
 export class TipoTematicasObrasController {
   constructor(
     private readonly tipoTematicasObrasService: TipoTematicasObrasService,

@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common'
-import { CreateDto } from './dto/create.dto'
 import { PrismaService } from '@/prisma.service'
+import { Prisma } from '@prisma/client'
+import { CreateDto } from './dto/create.dto'
+import { omitFields } from '@/common/helpers'
 
 @Injectable()
 export class RepresentatesEmpresasService {
@@ -9,7 +11,25 @@ export class RepresentatesEmpresasService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.representante.findMany()
+    return await prisma.representante.findMany({
+      select: {
+        ...omitFields(
+          Prisma.RepresentanteScalarFieldEnum,
+          'paisId',
+          'provinciaId',
+          'localidadId',
+        ),
+        pais: {
+          select: { id: true, nombre: true },
+        },
+        provincia: {
+          select: { id: true, nombre: true },
+        },
+        localidad: {
+          select: { id: true, nombre: true },
+        },
+      },
+    })
   }
 
   async getForConnect() {
