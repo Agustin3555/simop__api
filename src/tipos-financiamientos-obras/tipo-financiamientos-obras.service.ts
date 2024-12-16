@@ -9,13 +9,13 @@ export class TipoFinanciamientosObrasService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.tipoFinanciamiento.findMany()
+    return await prisma.tipoFinanciamientoObra.findMany()
   }
 
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.tipoFinanciamiento.findMany({
+    return await prisma.tipoFinanciamientoObra.findMany({
       select: { id: true, nombre: true },
     })
   }
@@ -23,7 +23,7 @@ export class TipoFinanciamientosObrasService {
   async create(createDto: CreateDto) {
     const { prisma } = this
 
-    return await prisma.tipoFinanciamiento.create({
+    return await prisma.tipoFinanciamientoObra.create({
       data: createDto,
     })
   }

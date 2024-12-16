@@ -2,8 +2,11 @@ import { IsInt } from 'class-validator'
 
 export class CreateDto {
   @IsInt()
-  obraId: number
+  obraNumero: number
 
   @IsInt()
   representanteId: number
+
+  @IsInt()
+  tipoRepresentanteId: number
 }

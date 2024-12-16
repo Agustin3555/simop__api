@@ -9,13 +9,13 @@ export class TipoEstadosObrasService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.tipoEstado.findMany()
+    return await prisma.tipoEstadoObra.findMany()
   }
 
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.tipoEstado.findMany({
+    return await prisma.tipoEstadoObra.findMany({
       select: { id: true, nombre: true },
     })
   }
@@ -23,7 +23,7 @@ export class TipoEstadosObrasService {
   async create(createDto: CreateDto) {
     const { prisma } = this
 
-    return await prisma.tipoEstado.create({
+    return await prisma.tipoEstadoObra.create({
       data: createDto,
     })
   }

@@ -18,6 +18,7 @@ export class RepresentatesEmpresasService {
           'paisId',
           'provinciaId',
           'localidadId',
+          'tipoRepresentanteId',
         ),
         pais: {
           select: { id: true, nombre: true },
@@ -26,6 +27,9 @@ export class RepresentatesEmpresasService {
           select: { id: true, nombre: true },
         },
         localidad: {
+          select: { id: true, nombre: true },
+        },
+        tipoRepresentante: {
           select: { id: true, nombre: true },
         },
       },

@@ -5,6 +5,7 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { APP_INTERCEPTOR } from '@nestjs/core'
 import { NullToUndefinedInterceptor } from './common/interceptors'
+
 import { SubSecretariasModule } from './sub-secretarias/sub-secretarias.module'
 import { DireccionesModule } from './direcciones/direcciones.module'
 import { DepartamentosModule } from './departamentos/departamentos.module'
@@ -26,8 +27,8 @@ import { RelEmpresasRepresentantesModule } from './rel-empresas-representantes/r
 import { ObrasModule } from './obras/obras.module'
 import { LocalidadesModule } from './localidades/localidades.module'
 import { RelObraInspectorModule } from './rel-obras-inspectores/rel-obras-inspectores.module'
-
 import { RelObrasRepresentantesModule } from './rel-obras-representantes/rel-obras-representantes.module'
+import { TiposContratacionesObraModule } from './tipos-contrataciones-obra/tipos-contrataciones-obra.module'
 
 @Module({
   imports: [
@@ -53,8 +54,8 @@ import { RelObrasRepresentantesModule } from './rel-obras-representantes/rel-obr
     ObrasModule,
     LocalidadesModule,
     RelObraInspectorModule,
-
     RelObrasRepresentantesModule,
+    TiposContratacionesObraModule,
   ],
   controllers: [AppController],
   providers: [

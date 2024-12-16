@@ -15,7 +15,7 @@ export class RelObrasRepresentantesService {
       select: {
         ...omitFields(
           Prisma.RelObraRepresentanteScalarFieldEnum,
-          'obraId',
+          'obraNumero',
           'representanteId',
         ),
         obra: true,
@@ -28,7 +28,7 @@ export class RelObrasRepresentantesService {
     const { prisma } = this
 
     return await prisma.relObraRepresentante.findMany({
-      select: { obraId: true, representanteId: true },
+      select: { obraNumero: true, representanteId: true },
     })
   }
 

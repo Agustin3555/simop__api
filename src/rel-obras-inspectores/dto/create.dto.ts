@@ -1,13 +1,15 @@
-import { IsInt, IsOptional } from 'class-validator'
+import { IsInt } from 'class-validator'
 
 export class CreateDto {
   @IsInt()
-  obraId: number
+  obraNumero: number
 
   @IsInt()
   inspectorId: number
 
-  @IsOptional()
   @IsInt()
-  tipoInspectorId?: number
+  tipoInspectorId: number
+
+  @IsInt()
+  tipoProfesionId: number
 }

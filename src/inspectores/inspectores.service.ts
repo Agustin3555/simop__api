@@ -17,10 +17,7 @@ export class InspectoresService {
         tiposProfesiones: {
           select: {
             tipoProfesion: {
-              select: {
-                id: true,
-                nombre: true,
-              },
+              select: { id: true, nombre: true },
             },
           },
         },

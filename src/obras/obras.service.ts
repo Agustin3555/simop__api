@@ -15,55 +15,34 @@ export class ObrasService {
       select: {
         ...omitFields(
           Prisma.ObraScalarFieldEnum,
-          'paisId',
-          'provinciaId',
-          'tipoEstadoId',
-          'tipoFinanciamientoId',
-          'tipoTematicaId',
           'empresaId',
+          'tipoContratacionObraId',
+          'tipoFinanciamientoObraId',
+          'tipoProgramaObraId',
+          'tipoTematicaObraId',
+          'tipoEstadoObraId',
           'localidadId',
         ),
-        localidad: {
-          select: {
-            id: true,
-            nombre: true,
-          },
-        },
         empresa: {
-          select: {
-            id: true,
-            nombre: true,
-          },
+          select: { id: true, nombre: true },
         },
-        tipoFinanciamiento: {
-          select: {
-            id: true,
-            nombre: true,
-          },
+        tipoContratacionObra: {
+          select: { id: true, nombre: true },
         },
-        tipoTematica: {
-          select: {
-            id: true,
-            nombre: true,
-          },
+        tipoFinanciamientoObra: {
+          select: { id: true, nombre: true },
         },
-        tipoEstado: {
-          select: {
-            id: true,
-            nombre: true,
-          },
+        tipoProgramaObra: {
+          select: { id: true, nombre: true },
         },
-        pais: {
-          select: {
-            id: true,
-            nombre: true,
-          },
+        tipoTematicaObra: {
+          select: { id: true, nombre: true },
         },
-        provincia: {
-          select: {
-            id: true,
-            nombre: true,
-          },
+        tipoEstadoObra: {
+          select: { id: true, nombre: true },
+        },
+        localidad: {
+          select: { id: true, nombre: true },
         },
       },
     })
@@ -73,17 +52,7 @@ export class ObrasService {
     const { prisma } = this
 
     return await prisma.obra.findMany({
-      select: {
-        id: true,
-        nombre: true,
-        empresaId: true,
-        localidadId: true,
-        tipoFinanciamientoId: true,
-        tipoTematicaId: true,
-        tipoEstadoId: true,
-        paisId: true,
-        provinciaId: true,
-      },
+      select: { numero: true, nombre: true },
     })
   }
 

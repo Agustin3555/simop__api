@@ -9,13 +9,13 @@ export class TipoParalizacionesObrasService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.tipoParalizacionObra.findMany()
+    return await prisma.tipoParalizacion.findMany()
   }
 
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.tipoParalizacionObra.findMany({
+    return await prisma.tipoParalizacion.findMany({
       select: { id: true, nombre: true },
     })
   }
@@ -23,7 +23,7 @@ export class TipoParalizacionesObrasService {
   async create(createDto: CreateDto) {
     const { prisma } = this
 
-    return await prisma.tipoParalizacionObra.create({
+    return await prisma.tipoParalizacion.create({
       data: createDto,
     })
   }

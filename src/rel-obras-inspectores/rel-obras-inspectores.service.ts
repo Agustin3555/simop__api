@@ -15,7 +15,7 @@ export class RelObrasInspectoresService {
       select: {
         ...omitFields(
           Prisma.RelObraInspectorScalarFieldEnum,
-          'obraId',
+          'obraNumero',
           'inspectorId',
           'tipoInspectorId',
         ),
@@ -31,7 +31,7 @@ export class RelObrasInspectoresService {
 
     return await prisma.relObraInspector.findMany({
       select: {
-        obraId: true,
+        obraNumero: true,
         inspectorId: true,
         tipoInspectorId: true,
       },

@@ -1,73 +1,138 @@
-import { IsDateString, IsInt, IsOptional, IsString } from 'class-validator'
+import {
+  IsBoolean,
+  IsDateString,
+  IsInt,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator'
 
 export class CreateDto {
+  @IsNumber()
+  numero: number
+
   @IsString()
   nombre: string
 
   @IsInt()
-  numeroResolucion: number
+  @IsOptional()
+  numeroExpediente?: number
 
   @IsInt()
-  anioResolucion: number
+  @IsOptional()
+  numeroResolucion?: number
 
   @IsInt()
-  numeroContratacion: number
+  @IsOptional()
+  anioResolucion?: number
 
   @IsInt()
-  anioContratacion: number
+  @IsOptional()
+  numeroContratacion?: number
 
   @IsInt()
-  montoContratacion: number
+  @IsOptional()
+  anioContratacion?: number
+
+  @IsNumber()
+  @IsOptional()
+  montoContratacion?: number
+
+  @IsDateString()
+  @IsOptional()
+  fechaInicio?: string
+
+  @IsDateString()
+  @IsOptional()
+  fechaFin?: string
 
   @IsInt()
-  numeroExpediente: number
+  @IsOptional()
+  plazoMeses?: number
+
+  @IsInt()
+  @IsOptional()
+  plazoDias?: number
 
   @IsString()
-  nomenclaturaCatastral: string
-
-  @IsInt()
-  plazoMeses: number
-
-  @IsInt()
-  plazoDias: number
-
   @IsOptional()
-  @IsDateString()
-  fechaInicio?: Date
+  direccion?: string
 
-  @IsOptional()
-  @IsDateString()
-  fechaFin?: Date
-
-  @IsOptional()
   @IsString()
+  @IsOptional()
+  lugar?: string
+
+  @IsString()
+  @IsOptional()
+  nomenclaturaCatastral?: string
+
+  @IsString()
+  @IsOptional()
   observaciones?: string
 
-  @IsOptional()
-  @IsInt()
-  paisId?: number
+  @IsBoolean()
+  obraNueva: boolean
 
+  @IsNumber()
   @IsOptional()
-  @IsInt()
-  provinciaId?: number
+  porcentajeObraNueva?: number
 
+  @IsNumber()
   @IsOptional()
-  @IsInt()
-  localidadId?: number
+  metrosCuadradosObraNueva?: number
 
+  @IsNumber()
   @IsOptional()
-  @IsInt()
-  tipoFinanciamientoId?: number
+  metrosLinealesObraNueva?: number
 
+  @IsString()
   @IsOptional()
-  @IsInt()
-  tipoTematicaId?: number
+  observacionesObraNueva?: string
 
-  @IsOptional()
-  @IsInt()
-  tipoEstadoId?: number
+  @IsBoolean()
+  obraRefaccionada: boolean
 
+  @IsNumber()
   @IsOptional()
+  porcentajeObraRefaccionada?: number
+
+  @IsNumber()
+  @IsOptional()
+  metrosCuadradosObraRefaccionada?: number
+
+  @IsNumber()
+  @IsOptional()
+  metrosLinealesObraRefaccionada?: number
+
+  @IsString()
+  @IsOptional()
+  observacionesObraRefaccionada?: string
+
   @IsInt()
+  @IsOptional()
   empresaId?: number
+
+  @IsInt()
+  @IsOptional()
+  tipoContratacionObraId?: number
+
+  @IsInt()
+  @IsOptional()
+  tipoFinanciamientoObraId?: number
+
+  @IsInt()
+  @IsOptional()
+  tipoProgramaObraId?: number
+
+  @IsInt()
+  @IsOptional()
+  tipoTematicaObraId?: number
+
+  @IsInt()
+  @IsOptional()
+  tipoEstadoObraId?: number
+
+  @IsInt()
+  @IsOptional()
+  localidadId?: number
 }
