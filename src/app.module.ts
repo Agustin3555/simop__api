@@ -29,6 +29,7 @@ import { LocalidadesModule } from './localidades/localidades.module'
 import { RelObraInspectorModule } from './rel-obras-inspectores/rel-obras-inspectores.module'
 import { RelObrasRepresentantesModule } from './rel-obras-representantes/rel-obras-representantes.module'
 import { TiposContratacionesObraModule } from './tipos-contrataciones-obra/tipos-contrataciones-obra.module'
+import { EmpresasModule } from './empresas/empresas.module'
 
 @Module({
   imports: [
@@ -56,6 +57,7 @@ import { TiposContratacionesObraModule } from './tipos-contrataciones-obra/tipos
     RelObraInspectorModule,
     RelObrasRepresentantesModule,
     TiposContratacionesObraModule,
+    EmpresasModule,
   ],
   controllers: [AppController],
   providers: [

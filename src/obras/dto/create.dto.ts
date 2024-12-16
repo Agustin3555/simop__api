@@ -40,11 +40,11 @@ export class CreateDto {
 
   @IsDateString()
   @IsOptional()
-  fechaInicio?: string
+  fechaInicio?: Date
 
   @IsDateString()
   @IsOptional()
-  fechaFin?: string
+  fechaFin?: Date
 
   @IsInt()
   @IsOptional()
