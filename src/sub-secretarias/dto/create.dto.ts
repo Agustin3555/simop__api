@@ -1,6 +1,10 @@
-import { IsString } from 'class-validator'
+import { IsInt, IsString, Min } from 'class-validator'
 
 export class CreateDto {
   @IsString()
   nombre: string
+
+  @IsInt()
+  @Min(1)
+  provinciaId: number
 }

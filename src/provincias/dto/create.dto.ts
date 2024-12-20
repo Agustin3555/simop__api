@@ -1,4 +1,4 @@
-import { IsInt, IsOptional, IsString, Min } from 'class-validator'
+import { IsInt, IsString, Min } from 'class-validator'
 
 export class CreateDto {
   @IsString()
@@ -6,6 +6,5 @@ export class CreateDto {
 
   @IsInt()
   @Min(1)
-  @IsOptional()
-  paisId?: number
+  paisId: number
 }
