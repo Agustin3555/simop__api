@@ -30,6 +30,9 @@ import { RelObraInspectorModule } from './rel-obras-inspectores/rel-obras-inspec
 import { RelObrasRepresentantesModule } from './rel-obras-representantes/rel-obras-representantes.module'
 import { TiposContratacionesObraModule } from './tipos-contrataciones-obra/tipos-contrataciones-obra.module'
 import { EmpresasModule } from './empresas/empresas.module'
+import { FojaMedicionesModule } from './foja-mediciones/foja-mediciones.module';
+import { CertificacionesModule } from './certificaciones/certificaciones.module';
+import { PagosCertificacionesModule } from './pagos-certificaciones/pagos-certificaciones.module';
 
 @Module({
   imports: [
@@ -58,6 +61,9 @@ import { EmpresasModule } from './empresas/empresas.module'
     RelObrasRepresentantesModule,
     TiposContratacionesObraModule,
     EmpresasModule,
+    FojaMedicionesModule,
+    CertificacionesModule,
+    PagosCertificacionesModule,
   ],
   controllers: [AppController],
   providers: [
