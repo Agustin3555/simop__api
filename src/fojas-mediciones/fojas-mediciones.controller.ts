@@ -1,11 +1,11 @@
 import { Controller } from '@nestjs/common'
-import { CertificacionesService } from './certificaciones.service'
+import { FojasMedicionesService } from './fojas-mediciones.service'
 import { CreateDto } from './dto/create.dto'
 import { Body, Get, Post } from '@nestjs/common'
 
-@Controller('certificaciones')
-export class CertificacionesController {
-  constructor(private readonly service: CertificacionesService) {}
+@Controller('fojas-mediciones')
+export class FojasMedicionesController {
+  constructor(private readonly service: FojasMedicionesService) {}
 
   @Get()
   getAll() {

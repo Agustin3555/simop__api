@@ -1,27 +1,27 @@
-import { IsInt, IsOptional, IsString, IsDate } from 'class-validator'
+import {
+  IsInt,
+  IsOptional,
+  IsString,
+  IsNumber,
+  IsDateString,
+} from 'class-validator'
 
 export class CreateDto {
-  @IsInt()
-  id: number
+  @IsNumber()
+  ordenPago: number
 
+  @IsOptional()
+  @IsDateString()
+  fecha?: string
+
+  @IsOptional()
+  @IsNumber()
+  monto?: number
+
+  @IsOptional()
   @IsString()
-  @IsOptional()
-  numeroExpediente?: string
-
-  @IsDate()
-  @IsOptional()
-  fecha?: Date
-
-  @IsString()
-  @IsOptional()
   observaciones?: string
 
   @IsInt()
   fojaMedicionId: number
-
-  @IsDate()
-  creado: Date
-
-  @IsDate()
-  modificado: Date
 }

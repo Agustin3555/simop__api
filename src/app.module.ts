@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import envConfig from './config/envConfig'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { APP_INTERCEPTOR } from '@nestjs/core'
@@ -15,28 +14,28 @@ import { TipoEstadosObrasModule } from './tipos-estados-obras/tipo-estados-obras
 import { TipoFinanciamientosObrasModule } from './tipos-financiamientos-obras/tipo-financiamientos-obras.module'
 import { TipoModificacionesObrasModule } from './tipos-modificaciones-obras/tipo-modificaciones-obras.module'
 import { TipoParalizacionesObrasModule } from './tipos-paralizaciones-obras/tipo-paralizaciones-obras.module'
-import { TipoRepresentantesObrasModule } from './tipos-representantes-empresas-obras/tipo-representantes-empresas-obras.module'
+import { TiposRepresentantesModule } from './tipos-representantes/tipos-representantes.module'
 import { TipoTramitesObrasModule } from './tipos-tramites/tipo-tramites.module'
 import { TiposProfesionesModule } from './tipos-profesiones/tipos-profesiones.module'
 import { TipoTematicasObrasModule } from './tipos-tematicas-obras/tipo-tematicas-obras.module'
 import { TiposInspectoresModule } from './tipos-inspectores/tipos-inspectores.module'
 import { InspectoresModule } from './inspectores/inspectores.module'
 import { TiposProgramasObrasModule } from './tipos-programas-obras/tipos-programas-obras.module'
-import { RepresentatesEmpresasModule } from './representates-empresas/representates-empresas.module'
-import { RelEmpresasRepresentantesModule } from './rel-empresas-representantes/rel-empresas-representantes.module'
+import { RepresentantesEmpresasModule } from './representantes-empresas/representantes-empresas.module'
+import { RepresentantesModule } from './representantes/representantes.module'
 import { ObrasModule } from './obras/obras.module'
 import { LocalidadesModule } from './localidades/localidades.module'
-import { RelObraInspectorModule } from './rel-obras-inspectores/rel-obras-inspectores.module'
-import { RelObrasRepresentantesModule } from './rel-obras-representantes/rel-obras-representantes.module'
+import { RelObraInspectorModule } from './inspectores-obras/inspectores-obras.module'
+import { RepresentantesObrasModule } from './representantes-obras/representantes-obras.module'
 import { TiposContratacionesObraModule } from './tipos-contrataciones-obra/tipos-contrataciones-obra.module'
 import { EmpresasModule } from './empresas/empresas.module'
-import { FojaMedicionesModule } from './foja-mediciones/foja-mediciones.module';
-import { CertificacionesModule } from './certificaciones/certificaciones.module';
-import { PagosCertificacionesModule } from './pagos-certificaciones/pagos-certificaciones.module';
+import { FojasMedicionesModule } from './fojas-mediciones/fojas-mediciones.module'
+import { CertificacionesModule } from './certificaciones/certificaciones.module'
+import { PagosCertificacionesModule } from './pagos-certificaciones/pagos-certificaciones.module'
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, load: [envConfig] }),
+    ConfigModule.forRoot({ isGlobal: true }),
     SubSecretariasModule,
     DireccionesModule,
     DepartamentosModule,
@@ -46,22 +45,22 @@ import { PagosCertificacionesModule } from './pagos-certificaciones/pagos-certif
     TipoFinanciamientosObrasModule,
     TipoModificacionesObrasModule,
     TipoParalizacionesObrasModule,
-    TipoRepresentantesObrasModule,
+    TiposRepresentantesModule,
     TipoTramitesObrasModule,
     TiposProfesionesModule,
     TipoTematicasObrasModule,
     TiposInspectoresModule,
     InspectoresModule,
     TiposProgramasObrasModule,
-    RepresentatesEmpresasModule,
-    RelEmpresasRepresentantesModule,
+    RepresentantesEmpresasModule,
+    RepresentantesModule,
     ObrasModule,
     LocalidadesModule,
     RelObraInspectorModule,
-    RelObrasRepresentantesModule,
+    RepresentantesObrasModule,
     TiposContratacionesObraModule,
     EmpresasModule,
-    FojaMedicionesModule,
+    FojasMedicionesModule,
     CertificacionesModule,
     PagosCertificacionesModule,
   ],

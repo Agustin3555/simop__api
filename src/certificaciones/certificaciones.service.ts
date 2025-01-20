@@ -16,7 +16,7 @@ export class CertificacionesService {
     const { prisma } = this
 
     return await prisma.certificacion.findMany({
-      select: { id: true, numeroExpediente: true },
+      select: { id: true, ordenPago: true },
     })
   }
 

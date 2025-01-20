@@ -1,24 +1,23 @@
-import { IsInt, IsOptional, IsString, IsDecimal, IsDate } from 'class-validator'
+import {
+  IsInt,
+  IsOptional,
+  IsString,
+  IsDecimal,
+  IsDateString,
+  IsNumber,
+} from 'class-validator'
 
 export class CreateDto {
-  @IsInt()
-  id: number
+  @IsNumber()
+  numero: number
 
   @IsOptional()
-  @IsString()
-  numeroExpediente?: string
-
-  @IsOptional()
-  @IsString()
-  numeroResolucion?: string
+  @IsDateString()
+  fecha?: string
 
   @IsOptional()
   @IsDecimal()
   monto?: number
-
-  @IsOptional()
-  @IsDate()
-  fecha?: Date
 
   @IsOptional()
   @IsString()
@@ -26,10 +25,4 @@ export class CreateDto {
 
   @IsInt()
   certificacionId: number
-
-  @IsDate()
-  creado: Date
-
-  @IsDate()
-  modificado: Date
 }

@@ -127,7 +127,20 @@ model TipoProfesion {
 
   // Relations --------------------------------------------------------------------------------------------------
   inspectores       RelInspectorTipoProfesion[]
-  obrasInspectores  RelObraInspector[]
+  inspectoresObras  InspectorObra[]
+}
+
+model TipoRepresentante {
+  // Fields -----------------------------------------------------------------------------------------------------
+  id          Int       @id @default(autoincrement())
+  nombre      String    @unique
+
+  creado      DateTime  @default(now())
+  modificado  DateTime  @updatedAt
+
+  // Relations --------------------------------------------------------------------------------------------------
+  representantesEmpresas  RepresentanteEmpresa[]
+  representantesObras     RepresentanteObra[]
 }
 
 model TipoModificacion {
@@ -188,24 +201,22 @@ model Empresa {
   provincia       Provincia?  @relation(fields: [provinciaId], references: [id])
   localidad       Localidad?  @relation(fields: [localidadId], references: [id])
 
-  representantes  RelEmpresaRepresentante[]
-  obras           Obra[]
+  representantesEmpresas  RepresentanteEmpresa[]
+  obras                   Obra[]
 }
 
 model Representante {
   // Fields -----------------------------------------------------------------------------------------------------
   id                  Int       @id @default(autoincrement())
-  cuit                Int?      @unique
+  cuil                Int?      @unique
   apellido            String
   nombre              String?
   direccion           String?
   numeroMatricula     String?   @unique
-  vigencia            Boolean   @default(false)
 
   paisId              Int?
   provinciaId         Int?
   localidadId         Int?
-  tipoRepresentanteId Int?
 
   creado              DateTime  @default(now())
   modificado          DateTime  @updatedAt
@@ -214,38 +225,29 @@ model Representante {
   pais              Pais?               @relation(fields: [paisId], references: [id])
   provincia         Provincia?          @relation(fields: [provinciaId], references: [id])
   localidad         Localidad?          @relation(fields: [localidadId], references: [id])
-  tipoRepresentante TipoRepresentante?  @relation(fields: [tipoRepresentanteId], references: [id])
 
-  empresas  RelEmpresaRepresentante[]
-  obras     RelObraRepresentante[]
+  empresas RepresentanteEmpresa[]
+  obras    RepresentanteObra[]
 }
 
-model TipoRepresentante {
+model RepresentanteEmpresa {
   // Fields -----------------------------------------------------------------------------------------------------
-  id          Int       @id @default(autoincrement())
-  nombre      String    @unique
+  id                  Int       @id @default(autoincrement())
+  vigencia            Boolean   @default(true)
 
-  creado      DateTime  @default(now())
-  modificado  DateTime  @updatedAt
+  empresaId           Int
+  representanteId     Int
+  tipoRepresentanteId Int
+
+  creado              DateTime  @default(now())
+  modificado          DateTime  @updatedAt
+
+  @@unique([empresaId, representanteId, tipoRepresentanteId])
 
   // Relations --------------------------------------------------------------------------------------------------
-  representantes      Representante[]
-  obrasRepresentantes RelObraRepresentante[]
-}
-
-model RelEmpresaRepresentante {
-  // Fields -----------------------------------------------------------------------------------------------------
-  empresaId       Int
-  representanteId Int
-
-  creado          DateTime  @default(now())
-  modificado      DateTime  @updatedAt
-
-  @@id([empresaId, representanteId])
-
-  // Relations --------------------------------------------------------------------------------------------------
-  empresa       Empresa       @relation(fields: [empresaId], references: [id])
-  representante Representante @relation(fields: [representanteId], references: [id])
+  empresa           Empresa           @relation(fields: [empresaId], references: [id])
+  representante     Representante     @relation(fields: [representanteId], references: [id])
+  tipoRepresentante TipoRepresentante @relation(fields: [tipoRepresentanteId], references: [id])
 }
 
 
@@ -263,9 +265,9 @@ model Inspector {
   modificado  DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
-  tiposProfesiones  RelInspectorTipoProfesion[]
-  obras             RelObraInspector[]
-  fojasMedicion     FojaMedicion[]
+  profesiones   RelInspectorTipoProfesion[]
+  obras         InspectorObra[]
+  fojasMedicion FojaMedicion[]
 }
 
 model RelInspectorTipoProfesion {
@@ -292,7 +294,7 @@ model TipoInspector {
   modificado  DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
-  obrasInspectores  RelObraInspector[]
+  inspectoresObras  InspectorObra[]
 }
 
 
@@ -361,7 +363,8 @@ model TipoEstadoObra {
 
 model Obra {
   // Fields -----------------------------------------------------------------------------------------------------
-  numero                          Int       @id
+  id                              Int       @id @default(autoincrement())
+  numero                          Int       @unique
   nombre                          String    @unique
   numeroExpediente                String?   @unique
   numeroResolucion                String?   @unique
@@ -408,14 +411,15 @@ model Obra {
   tipoEstadoObra          TipoEstadoObra?         @relation(fields: [tipoEstadoObraId], references: [id])
   localidad               Localidad?              @relation(fields: [localidadId], references: [id])
 
-  inspectores     RelObraInspector[]
-  representantes  RelObraRepresentante[]
+  representantes  RepresentanteObra[]
+  inspectores     InspectorObra[]
   fojasMedicion   FojaMedicion[]
 }
 
-model RelObraInspector {
+model InspectorObra {
   // Fields -----------------------------------------------------------------------------------------------------
-  obraNumero      Int
+  id              Int       @id @default(autoincrement())
+  obraId          Int
   inspectorId     Int
   tipoInspectorId Int
   tipoProfesionId Int
@@ -423,28 +427,31 @@ model RelObraInspector {
   creado          DateTime  @default(now())
   modificado      DateTime  @updatedAt
 
-  @@id([obraNumero, inspectorId])
+  @@unique([obraId, inspectorId, tipoInspectorId, tipoProfesionId])
 
   // Relations --------------------------------------------------------------------------------------------------
-  obra          Obra          @relation(fields: [obraNumero], references: [numero])
+  obra          Obra          @relation(fields: [obraId], references: [numero])
   inspector     Inspector     @relation(fields: [inspectorId], references: [id])
   tipoInspector TipoInspector @relation(fields: [tipoInspectorId], references: [id])
   tipoProfesion TipoProfesion @relation(fields: [tipoProfesionId], references: [id])
 }
 
-model RelObraRepresentante {
+model RepresentanteObra {
   // Fields -----------------------------------------------------------------------------------------------------
-  obraNumero          Int
+  id                  Int       @id @default(autoincrement())
+  vigencia            Boolean   @default(true)
+
+  obraId              Int
   representanteId     Int
   tipoRepresentanteId Int
 
   creado              DateTime  @default(now())
   modificado          DateTime  @updatedAt
 
-  @@id([obraNumero, representanteId])
+  @@unique([obraId, representanteId, tipoRepresentanteId])
 
   // Relations --------------------------------------------------------------------------------------------------
-  obra              Obra              @relation(fields: [obraNumero], references: [numero])
+  obra              Obra              @relation(fields: [obraId], references: [numero])
   representante     Representante     @relation(fields: [representanteId], references: [id])
   tipoRepresentante TipoRepresentante @relation(fields: [tipoRepresentanteId], references: [id])
 }
@@ -458,16 +465,16 @@ model FojaMedicion {
   fecha             DateTime? @db.Date
   observaciones     String?   @db.Text
 
-  obraNumero        Int
+  obraId            Int
   inspectorId       Int
 
   creado            DateTime  @default(now())
   modificado        DateTime  @updatedAt
 
-  @@unique([obraNumero, numero])
+  @@unique([obraId, numero])
 
   // Relations --------------------------------------------------------------------------------------------------
-  obra      Obra      @relation(fields: [obraNumero], references: [numero])
+  obra      Obra      @relation(fields: [obraId], references: [numero])
   inspector Inspector @relation(fields: [inspectorId], references: [id])
 
   certificacion Certificacion?
@@ -475,15 +482,16 @@ model FojaMedicion {
 
 model Certificacion {
   // Fields -----------------------------------------------------------------------------------------------------
-  id                Int       @id @default(autoincrement())
-  numeroExpediente  String?   @unique
-  fecha             DateTime? @db.Date
-  observaciones     String?   @db.Text
+  id              Int       @id @default(autoincrement())
+  ordenPago       Int       @unique
+  fecha           DateTime? @db.Date
+  monto           Decimal?
+  observaciones   String?   @db.Text
 
-  fojaMedicionId    Int       @unique
+  fojaMedicionId  Int       @unique
 
-  creado            DateTime  @default(now())
-  modificado        DateTime  @updatedAt
+  creado          DateTime  @default(now())
+  modificado      DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
   fojaMedicion  FojaMedicion  @relation(fields: [fojaMedicionId], references: [id])
@@ -494,10 +502,9 @@ model Certificacion {
 model PagoCertificacion {
   // Fields -----------------------------------------------------------------------------------------------------
   id                Int       @id @default(autoincrement())
-  numeroExpediente  String?   @unique
-  numeroResolucion  String?   @unique
-  monto             Decimal?
+  numero            Int
   fecha             DateTime? @db.Date
+  monto             Decimal?
   observaciones     String?   @db.Text
 
   certificacionId   Int

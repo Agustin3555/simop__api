@@ -1,7 +1,8 @@
 import { Controller } from '@nestjs/common'
 import { LocalidadesService } from './localidades.service'
 import { Get, Post, Body } from '@nestjs/common'
-import { CreateDto } from '@/sub-secretarias/dto/create.dto'
+import { CreateDto } from './dto/create.dto'
+
 @Controller('localidades')
 export class LocalidadesController {
   constructor(private readonly localidadesService: LocalidadesService) {}

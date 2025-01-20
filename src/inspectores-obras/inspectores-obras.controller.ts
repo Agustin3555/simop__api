@@ -1,20 +1,15 @@
 import { Controller } from '@nestjs/common'
-import { CertificacionesService } from './certificaciones.service'
+import { InspectoresObrasService } from './inspectores-obras.service'
 import { CreateDto } from './dto/create.dto'
 import { Body, Get, Post } from '@nestjs/common'
 
-@Controller('certificaciones')
-export class CertificacionesController {
-  constructor(private readonly service: CertificacionesService) {}
+@Controller('inspectores-obras')
+export class InspectoresObrasController {
+  constructor(private readonly service: InspectoresObrasService) {}
 
   @Get()
   getAll() {
     return this.service.getAll()
-  }
-
-  @Get('/for-connect')
-  getForConnect() {
-    return this.service.getForConnect()
   }
 
   @Post()

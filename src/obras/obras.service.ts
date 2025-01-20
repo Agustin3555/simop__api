@@ -11,7 +11,7 @@ export class ObrasService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.obra.findMany({
+    const a = await prisma.obra.findMany({
       select: {
         ...omitFields(
           Prisma.ObraScalarFieldEnum,
@@ -46,6 +46,8 @@ export class ObrasService {
         },
       },
     })
+
+    return a.map(({ numero, ...rest }) => ({ id: numero, numero, ...rest }))
   }
 
   async getForConnect() {

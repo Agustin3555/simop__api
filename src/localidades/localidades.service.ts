@@ -1,8 +1,8 @@
 import { omitFields } from '@/common/helpers'
 import { PrismaService } from '@/prisma.service'
-import { CreateDto } from '@/sub-secretarias/dto/create.dto'
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
+import { CreateDto } from './dto/create.dto'
 
 @Injectable()
 export class LocalidadesService {

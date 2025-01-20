@@ -11,7 +11,7 @@ export class InspectoresService {
   async getAll() {
     const { prisma } = this
 
-    const inspectors = await prisma.inspector.findMany({
+    const inspectores = await prisma.inspector.findMany({
       select: {
         ...omitFields(Prisma.InspectorScalarFieldEnum),
         tiposProfesiones: {
@@ -24,7 +24,7 @@ export class InspectoresService {
       },
     })
 
-    return inspectors.map(({ tiposProfesiones, ...rest }) => ({
+    return inspectores.map(({ tiposProfesiones, ...rest }) => ({
       tiposProfesiones: tiposProfesiones.map(
         ({ tipoProfesion }: any) => tipoProfesion,
       ),
@@ -45,8 +45,10 @@ export class InspectoresService {
 
     return await prisma.inspector.create({
       data: {
-        tiposProfesiones: {
-          create: tiposProfesiones.map(id => ({ tipoProfesionId: id })),
+        profesiones: {
+          createMany: {
+            data: tiposProfesiones.map(id => ({ tipoProfesionId: id })),
+          },
         },
         ...rest,
       },
