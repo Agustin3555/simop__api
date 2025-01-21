@@ -7,7 +7,7 @@
     }
   ],
   "functions": {
-    "src/.ts": {
+    "*.ts": {
       "includeFiles": ["node_modules/.prisma/**/", "prisma/schema.prisma"]
     }
   },
