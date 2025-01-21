@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post } from '@nestjs/common'
 import { PaisService } from './pais.service'
 import { CreateDto } from './dto/create.dto'
 
-@Controller('pais')
+@Controller('paises')
 export class PaisController {
   constructor(private readonly paisService: PaisService) {}
 
