@@ -20,7 +20,7 @@ datasource db {
 model SubSecretaria {
   // Fields -----------------------------------------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
-  nombre      String
+  nombre      String    @unique
 
   creado      DateTime  @default(now())
   modificado  DateTime  @updatedAt
@@ -32,7 +32,7 @@ model SubSecretaria {
 model Direccion {
   // Fields -----------------------------------------------------------------------------------------------------
   id              Int       @id @default(autoincrement())
-  nombre          String
+  nombre          String    @unique
 
   subSecretariaId Int
 
@@ -40,7 +40,7 @@ model Direccion {
   modificado      DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
-  subSecretaria SubSecretaria @relation(fields: [subSecretariaId], references: [id])
+  subSecretaria SubSecretaria @relation(fields: [subSecretariaId], references: [id], onDelete: Cascade)
 
   departamentos Departamento[]
 }
@@ -48,7 +48,7 @@ model Direccion {
 model Departamento {
   // Fields -----------------------------------------------------------------------------------------------------
   id          Int       @id @default(autoincrement())
-  nombre      String
+  nombre      String    @unique
 
   direccionId Int
 
@@ -56,7 +56,7 @@ model Departamento {
   modificado  DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
-  direccion Direccion @relation(fields: [direccionId], references: [id])
+  direccion Direccion @relation(fields: [direccionId], references: [id], onDelete: Cascade)
 }
 
 
@@ -88,7 +88,7 @@ model Provincia {
   modificado  DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
-  pais  Pais  @relation(fields: [paisId], references: [id])
+  pais  Pais  @relation(fields: [paisId], references: [id], onDelete: Cascade)
 
   localidades     Localidad[]
   empresas        Empresa[]
@@ -106,7 +106,7 @@ model Localidad {
   modificado  DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
-  provincia Provincia @relation(fields: [provinciaId], references: [id])
+  provincia Provincia @relation(fields: [provinciaId], references: [id], onDelete: Cascade)
 
   empresas        Empresa[]
   representantes  Representante[]
@@ -197,9 +197,9 @@ model Empresa {
   modificado      DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
-  pais            Pais?       @relation(fields: [paisId], references: [id])
-  provincia       Provincia?  @relation(fields: [provinciaId], references: [id])
-  localidad       Localidad?  @relation(fields: [localidadId], references: [id])
+  pais            Pais?       @relation(fields: [paisId], references: [id], onDelete: Cascade)
+  provincia       Provincia?  @relation(fields: [provinciaId], references: [id], onDelete: Cascade)
+  localidad       Localidad?  @relation(fields: [localidadId], references: [id], onDelete: Cascade)
 
   representantesEmpresas  RepresentanteEmpresa[]
   obras                   Obra[]
@@ -222,9 +222,9 @@ model Representante {
   modificado          DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
-  pais              Pais?               @relation(fields: [paisId], references: [id])
-  provincia         Provincia?          @relation(fields: [provinciaId], references: [id])
-  localidad         Localidad?          @relation(fields: [localidadId], references: [id])
+  pais              Pais?               @relation(fields: [paisId], references: [id], onDelete: Cascade)
+  provincia         Provincia?          @relation(fields: [provinciaId], references: [id], onDelete: Cascade)
+  localidad         Localidad?          @relation(fields: [localidadId], references: [id], onDelete: Cascade)
 
   empresas RepresentanteEmpresa[]
   obras    RepresentanteObra[]
@@ -245,9 +245,9 @@ model RepresentanteEmpresa {
   @@unique([empresaId, representanteId, tipoRepresentanteId])
 
   // Relations --------------------------------------------------------------------------------------------------
-  empresa           Empresa           @relation(fields: [empresaId], references: [id])
-  representante     Representante     @relation(fields: [representanteId], references: [id])
-  tipoRepresentante TipoRepresentante @relation(fields: [tipoRepresentanteId], references: [id])
+  empresa           Empresa           @relation(fields: [empresaId], references: [id], onDelete: Cascade)
+  representante     Representante     @relation(fields: [representanteId], references: [id], onDelete: Cascade)
+  tipoRepresentante TipoRepresentante @relation(fields: [tipoRepresentanteId], references: [id], onDelete: Cascade)
 }
 
 
@@ -281,8 +281,8 @@ model RelInspectorTipoProfesion {
   @@id([inspectorId, tipoProfesionId])
 
   // Relations --------------------------------------------------------------------------------------------------
-  inspector     Inspector     @relation(fields: [inspectorId], references: [id])
-  tipoProfesion TipoProfesion @relation(fields: [tipoProfesionId], references: [id])
+  inspector     Inspector     @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
+  tipoProfesion TipoProfesion @relation(fields: [tipoProfesionId], references: [id], onDelete: Cascade)
 }
 
 model TipoInspector {
@@ -377,15 +377,15 @@ model Obra {
   plazoMeses                      Int?
   plazoDias                       Int?
   direccion                       String?
-  lugar                           String?
+  lugar                           String?   @db.Text
   nomenclaturaCatastral           String?
   observaciones                   String?   @db.Text
-  obraNueva                       Boolean
+  obraNueva                       Boolean   @default(true)
   porcentajeObraNueva             Float?
   metrosCuadradosObraNueva        Int?
   metrosLinealesObraNueva         Int?
   observacionesObraNueva          String?   @db.Text
-  obraRefaccionada                Boolean
+  obraRefaccionada                Boolean   @default(false)
   porcentajeObraRefaccionada      Float?
   metrosCuadradosObraRefaccionada Int?
   metrosLinealesObraRefaccionada  Int?
@@ -403,13 +403,13 @@ model Obra {
   modificado                      DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
-  empresa                 Empresa?                @relation(fields: [empresaId], references: [id])
-  tipoContratacionObra    TipoContratacionObra?   @relation(fields: [tipoContratacionObraId], references: [id])
-  tipoFinanciamientoObra  TipoFinanciamientoObra? @relation(fields: [tipoFinanciamientoObraId], references: [id])
-  tipoProgramaObra        TipoProgramaObra?       @relation(fields: [tipoProgramaObraId], references: [id])
-  tipoTematicaObra        TipoTematicaObra?       @relation(fields: [tipoTematicaObraId], references: [id])
-  tipoEstadoObra          TipoEstadoObra?         @relation(fields: [tipoEstadoObraId], references: [id])
-  localidad               Localidad?              @relation(fields: [localidadId], references: [id])
+  empresa                 Empresa?                @relation(fields: [empresaId], references: [id], onDelete: Cascade)
+  tipoContratacionObra    TipoContratacionObra?   @relation(fields: [tipoContratacionObraId], references: [id], onDelete: Cascade)
+  tipoFinanciamientoObra  TipoFinanciamientoObra? @relation(fields: [tipoFinanciamientoObraId], references: [id], onDelete: Cascade)
+  tipoProgramaObra        TipoProgramaObra?       @relation(fields: [tipoProgramaObraId], references: [id], onDelete: Cascade)
+  tipoTematicaObra        TipoTematicaObra?       @relation(fields: [tipoTematicaObraId], references: [id], onDelete: Cascade)
+  tipoEstadoObra          TipoEstadoObra?         @relation(fields: [tipoEstadoObraId], references: [id], onDelete: Cascade)
+  localidad               Localidad?              @relation(fields: [localidadId], references: [id], onDelete: Cascade)
 
   representantes  RepresentanteObra[]
   inspectores     InspectorObra[]
@@ -430,10 +430,10 @@ model InspectorObra {
   @@unique([obraId, inspectorId, tipoInspectorId, tipoProfesionId])
 
   // Relations --------------------------------------------------------------------------------------------------
-  obra          Obra          @relation(fields: [obraId], references: [numero])
-  inspector     Inspector     @relation(fields: [inspectorId], references: [id])
-  tipoInspector TipoInspector @relation(fields: [tipoInspectorId], references: [id])
-  tipoProfesion TipoProfesion @relation(fields: [tipoProfesionId], references: [id])
+  obra          Obra          @relation(fields: [obraId], references: [id], onDelete: Cascade)
+  inspector     Inspector     @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
+  tipoInspector TipoInspector @relation(fields: [tipoInspectorId], references: [id], onDelete: Cascade)
+  tipoProfesion TipoProfesion @relation(fields: [tipoProfesionId], references: [id], onDelete: Cascade)
 }
 
 model RepresentanteObra {
@@ -451,9 +451,9 @@ model RepresentanteObra {
   @@unique([obraId, representanteId, tipoRepresentanteId])
 
   // Relations --------------------------------------------------------------------------------------------------
-  obra              Obra              @relation(fields: [obraId], references: [numero])
-  representante     Representante     @relation(fields: [representanteId], references: [id])
-  tipoRepresentante TipoRepresentante @relation(fields: [tipoRepresentanteId], references: [id])
+  obra              Obra              @relation(fields: [obraId], references: [id], onDelete: Cascade)
+  representante     Representante     @relation(fields: [representanteId], references: [id], onDelete: Cascade)
+  tipoRepresentante TipoRepresentante @relation(fields: [tipoRepresentanteId], references: [id], onDelete: Cascade)
 }
 
 model FojaMedicion {
@@ -474,8 +474,8 @@ model FojaMedicion {
   @@unique([obraId, numero])
 
   // Relations --------------------------------------------------------------------------------------------------
-  obra      Obra      @relation(fields: [obraId], references: [numero])
-  inspector Inspector @relation(fields: [inspectorId], references: [id])
+  obra      Obra      @relation(fields: [obraId], references: [id], onDelete: Cascade)
+  inspector Inspector @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
 
   certificacion Certificacion?
 }
@@ -494,7 +494,7 @@ model Certificacion {
   modificado      DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
-  fojaMedicion  FojaMedicion  @relation(fields: [fojaMedicionId], references: [id])
+  fojaMedicion  FojaMedicion  @relation(fields: [fojaMedicionId], references: [id], onDelete: Cascade)
 
   pagosCertificacion PagoCertificacion[]
 }
@@ -513,5 +513,5 @@ model PagoCertificacion {
   modificado        DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
-  certificacion Certificacion @relation(fields: [certificacionId], references: [id])
+  certificacion Certificacion @relation(fields: [certificacionId], references: [id], onDelete: Cascade)
 }
