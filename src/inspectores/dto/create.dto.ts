@@ -2,9 +2,11 @@ import { IsArray, IsInt, IsOptional, IsString, Min } from 'class-validator'
 
 export class CreateDto {
   @IsInt()
+  @IsOptional()
   cuil: number
 
   @IsString()
+  @IsOptional()
   apellido: string
 
   @IsString()

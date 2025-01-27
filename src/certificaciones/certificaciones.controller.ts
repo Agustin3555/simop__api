@@ -12,7 +12,7 @@ export class CertificacionesController {
     return this.service.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.service.getForConnect()
   }

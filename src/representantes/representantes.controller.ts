@@ -12,7 +12,7 @@ export class RepresentantesController {
     return this.relEmpresasServices.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.relEmpresasServices.getForConnect()
   }

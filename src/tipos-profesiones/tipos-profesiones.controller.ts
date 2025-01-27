@@ -13,7 +13,7 @@ export class TiposProfesionesController {
     return this.tiposProfesionesService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.tiposProfesionesService.getForConnect()
   }

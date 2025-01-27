@@ -1,17 +1,17 @@
 import { Body, Controller, Get, Post } from '@nestjs/common'
-import { PaisService } from './pais.service'
+import { PaisesService } from './paises.service'
 import { CreateDto } from './dto/create.dto'
 
 @Controller('paises')
-export class PaisController {
-  constructor(private readonly paisService: PaisService) {}
+export class PaisesController {
+  constructor(private readonly paisService: PaisesService) {}
 
   @Get()
   getAll() {
     return this.paisService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.paisService.getForConnect()
   }

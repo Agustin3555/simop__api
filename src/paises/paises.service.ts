@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common'
 import { PrismaService } from '@/prisma.service'
 import { CreateDto } from './dto/create.dto'
 
+
 @Injectable()
-export class PaisService {
+export class PaisesService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getAll() {
@@ -13,11 +14,11 @@ export class PaisService {
   }
 
   async getForConnect() {
-    const { prisma } = this
-
+    const { prisma } = this;
+  
     return await prisma.pais.findMany({
-      select: { id: true, nombre: true },
-    })
+      select: { id: true, nombre: true }, 
+    }); 
   }
 
   async create(createDto: CreateDto) {

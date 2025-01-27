@@ -13,7 +13,7 @@ export class TipoFinanciamientosObrasController {
     return this.tipoFinanciamientosObrasService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.tipoFinanciamientosObrasService.getForConnect()
   }

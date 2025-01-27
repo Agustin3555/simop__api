@@ -11,7 +11,7 @@ export class InspectoresController {
     return this.inspectoresService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.inspectoresService.getForConnect()
   }

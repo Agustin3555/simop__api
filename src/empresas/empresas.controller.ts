@@ -12,7 +12,7 @@ export class EmpresasController {
     return this.empresasService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.empresasService.getForConnect()
   }

@@ -13,7 +13,7 @@ export class TipoModificacionesObrasController {
     return this.tipoModificacionesObrasService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.tipoModificacionesObrasService.getForConnect()
   }

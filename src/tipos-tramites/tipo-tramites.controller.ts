@@ -11,7 +11,7 @@ export class TipoTramitesObrasController {
     return this.tipoTramites.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.tipoTramites.getForConnect()
   }

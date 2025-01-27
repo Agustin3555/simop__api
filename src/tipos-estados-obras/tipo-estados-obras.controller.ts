@@ -13,7 +13,7 @@ export class TipoEstadosObrasController {
     return this.tipoEstadosObrasService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.tipoEstadosObrasService.getForConnect()
   }

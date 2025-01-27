@@ -13,7 +13,7 @@ export class TipoTematicasObrasController {
     return this.tipoTematicasObrasService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.tipoTematicasObrasService.getForConnect()
   }

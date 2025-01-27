@@ -11,7 +11,7 @@ export class DireccionesController {
     return this.direccionesService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.direccionesService.getForConnect()
   }

@@ -8,7 +8,7 @@ import { NullToUndefinedInterceptor } from './common/interceptors'
 import { SubSecretariasModule } from './sub-secretarias/sub-secretarias.module'
 import { DireccionesModule } from './direcciones/direcciones.module'
 import { DepartamentosModule } from './departamentos/departamentos.module'
-import { PaisModule } from './pais/pais.module'
+import { PaisesModule } from './paises/paises.module'
 import { ProvinciasModule } from './provincias/provincias.module'
 import { TipoEstadosObrasModule } from './tipos-estados-obras/tipo-estados-obras.module'
 import { TipoFinanciamientosObrasModule } from './tipos-financiamientos-obras/tipo-financiamientos-obras.module'
@@ -39,7 +39,7 @@ import { PagosCertificacionesModule } from './pagos-certificaciones/pagos-certif
     SubSecretariasModule,
     DireccionesModule,
     DepartamentosModule,
-    PaisModule,
+    PaisesModule,
     ProvinciasModule,
     TipoEstadosObrasModule,
     TipoFinanciamientosObrasModule,

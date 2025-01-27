@@ -12,7 +12,7 @@ export class LocalidadesController {
     return this.localidadesService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.localidadesService.getForConnect()
   }

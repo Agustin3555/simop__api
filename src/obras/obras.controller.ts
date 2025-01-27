@@ -11,7 +11,7 @@ export class ObrasController {
     return this.obrasService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.obrasService.getForConnect()
   }

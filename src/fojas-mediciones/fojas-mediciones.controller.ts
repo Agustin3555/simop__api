@@ -12,7 +12,7 @@ export class FojasMedicionesController {
     return this.service.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.service.getForConnect()
   }

@@ -13,7 +13,7 @@ export class PagosCertificacionesController {
     return this.pagoCertificacionesService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.pagoCertificacionesService.getForConnect()
   }

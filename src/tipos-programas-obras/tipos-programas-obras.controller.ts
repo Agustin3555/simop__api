@@ -14,7 +14,7 @@ export class TiposProgramasObrasController {
     return this.tipoProgramasObras.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.tipoProgramasObras.getForConnect()
   }

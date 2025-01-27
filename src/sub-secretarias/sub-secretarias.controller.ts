@@ -11,7 +11,7 @@ export class SubSecretariasController {
     return this.subSecretariasService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.subSecretariasService.getForConnect()
   }

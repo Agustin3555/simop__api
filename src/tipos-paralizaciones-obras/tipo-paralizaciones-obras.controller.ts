@@ -13,7 +13,7 @@ export class TipoParalizacionesObrasController {
     return this.tipoParalizacionesObrasService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.tipoParalizacionesObrasService.getForConnect()
   }

@@ -13,7 +13,7 @@ export class TiposContratacionesObraController {
     return this.tiposContratacionesObraService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.tiposContratacionesObraService.getForConnect()
   }

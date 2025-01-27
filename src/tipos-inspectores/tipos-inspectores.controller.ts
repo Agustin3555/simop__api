@@ -13,7 +13,7 @@ export class TiposInspectoresController {
     return this.tiposInspectoresService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.tiposInspectoresService.getForConnect()
   }

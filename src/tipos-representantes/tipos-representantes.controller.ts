@@ -13,7 +13,7 @@ export class TiposRepresentantesController {
     return this.tiposRepresentantes.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.tiposRepresentantes.getForConnect()
   }

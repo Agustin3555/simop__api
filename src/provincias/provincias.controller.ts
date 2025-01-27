@@ -11,7 +11,7 @@ export class ProvinciasController {
     return this.provinciasService.getAll()
   }
 
-  @Get('/for-connect')
+  @Get('for-connect')
   getForConnect() {
     return this.provinciasService.getForConnect()
   }
