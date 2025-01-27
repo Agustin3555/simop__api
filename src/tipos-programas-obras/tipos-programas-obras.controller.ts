@@ -2,6 +2,7 @@ import { Controller } from '@nestjs/common'
 import { Get, Post, Body } from '@nestjs/common'
 import { TiposProgramasObrasService } from './tipos-programas-obras.service'
 import { CreateDto } from './dto/create.dto'
+import { DeleteManyDto } from '@/common/dto'
 
 @Controller('tipos-programas-obra')
 export class TiposProgramasObrasController {
@@ -22,5 +23,10 @@ export class TiposProgramasObrasController {
   @Post()
   create(@Body() createDto: CreateDto) {
     return this.tipoProgramasObras.create(createDto)
+  }
+
+  @Post('delete-many')
+  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return this.tipoProgramasObras.deleteMany(deleteManyDto)
   }
 }
