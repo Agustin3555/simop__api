@@ -3,6 +3,7 @@ import { PrismaService } from '@/prisma.service'
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 import { CreateDto } from './dto/create.dto'
+import { DeleteManyDto } from '@/common/dto'
 
 @Injectable()
 export class LocalidadesService {
@@ -39,4 +40,15 @@ export class LocalidadesService {
       data: createDto,
     })
   }
+  async deleteMany(deleteManyDto: DeleteManyDto) {
+      const { prisma } = this
+  
+      return await prisma.$transaction([
+        prisma.localidad.deleteMany({
+          where: {
+            id: { in: deleteManyDto.ids },
+          },
+        }),
+      ])
+    }
 }

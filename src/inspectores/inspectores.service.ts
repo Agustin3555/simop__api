@@ -3,6 +3,7 @@ import { PrismaService } from '@/prisma.service'
 import { CreateDto } from './dto/create.dto'
 import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
+import { DeleteManyDto } from '@/common/dto'
 
 @Injectable()
 export class InspectoresService {
@@ -54,4 +55,15 @@ export class InspectoresService {
       },
     })
   }
+  async deleteMany(deleteManyDto: DeleteManyDto) {
+      const { prisma } = this
+  
+      return await prisma.$transaction([
+        prisma.inspector.deleteMany({
+          where: {
+            id: { in: deleteManyDto.ids },
+          },
+        }),
+      ])
+    }
 }
