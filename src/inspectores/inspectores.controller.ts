@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common'
 import { InspectoresService } from './inspectores.service'
 import { CreateDto } from './dto/create.dto'
+import { DeleteManyDto } from '@/common/dto'
 
 @Controller('inspectores')
 export class InspectoresController {
@@ -20,4 +21,8 @@ export class InspectoresController {
   create(@Body() createDto: CreateDto) {
     return this.inspectoresService.create(createDto)
   }
+  @Post('delete-many')
+    deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+      return this.inspectoresService.deleteMany(deleteManyDto)
+    }
 }
