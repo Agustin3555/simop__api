@@ -16,5 +16,5 @@ export class CreateDto {
   @IsInt({ each: true })
   @Min(1, { each: true })
   @IsOptional()
-  tiposProfesiones?: number[]
+  profesiones?: number[]
 }

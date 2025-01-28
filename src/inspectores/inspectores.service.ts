@@ -15,7 +15,7 @@ export class InspectoresService {
     const inspectores = await prisma.inspector.findMany({
       select: {
         ...omitFields(Prisma.InspectorScalarFieldEnum),
-        tiposProfesiones: {
+        profesiones: {
           select: {
             tipoProfesion: {
               select: { id: true, nombre: true },
@@ -25,10 +25,8 @@ export class InspectoresService {
       },
     })
 
-    return inspectores.map(({ tiposProfesiones, ...rest }) => ({
-      tiposProfesiones: tiposProfesiones.map(
-        ({ tipoProfesion }: any) => tipoProfesion,
-      ),
+    return inspectores.map(({ profesiones, ...rest }) => ({
+      profesiones: profesiones.map(({ tipoProfesion }: any) => tipoProfesion),
       ...rest,
     }))
   }
@@ -41,29 +39,30 @@ export class InspectoresService {
     })
   }
 
-  async create({ tiposProfesiones, ...rest }: CreateDto) {
+  async create({ profesiones, ...rest }: CreateDto) {
     const { prisma } = this
 
     return await prisma.inspector.create({
       data: {
         profesiones: {
           createMany: {
-            data: tiposProfesiones.map(id => ({ tipoProfesionId: id })),
+            data: profesiones.map(id => ({ tipoProfesionId: id })),
           },
         },
         ...rest,
       },
     })
   }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
-      const { prisma } = this
-  
-      return await prisma.$transaction([
-        prisma.inspector.deleteMany({
-          where: {
-            id: { in: deleteManyDto.ids },
-          },
-        }),
-      ])
-    }
+    const { prisma } = this
+
+    return await prisma.$transaction([
+      prisma.inspector.deleteMany({
+        where: {
+          id: { in: deleteManyDto.ids },
+        },
+      }),
+    ])
+  }
 }

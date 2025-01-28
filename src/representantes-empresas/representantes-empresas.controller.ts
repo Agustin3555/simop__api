@@ -4,7 +4,7 @@ import { Get, Post, Body } from '@nestjs/common'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
 
-@Controller('representantes')
+@Controller('representantes-empresas')
 export class RepresentantesEmpresasController {
   constructor(
     private readonly representantesEmpresas: RepresentantesEmpresasService,
