@@ -6,6 +6,7 @@ import { omitFields } from '@/common/helpers'
 import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
 import { empresaSelectRef } from '@/empresas/dto/ref.dto'
 import { representanteSelectRef } from '@/representantes/dto/ref.dto'
+import { DeleteManyDto } from '@/common/dto'
 
 @Injectable()
 export class RepresentantesEmpresasService {
@@ -41,5 +42,17 @@ export class RepresentantesEmpresasService {
     return await prisma.representanteEmpresa.create({
       data: createDto,
     })
+  }
+
+  async deleteMany(deleteManyDto: DeleteManyDto) {
+    const { prisma } = this
+
+    return await prisma.$transaction([
+      prisma.representanteEmpresa.deleteMany({
+        where: {
+          id: { in: deleteManyDto.ids },
+        },
+      }),
+    ])
   }
 }

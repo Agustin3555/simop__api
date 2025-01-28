@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { PrismaService } from '@/prisma.service'
 import { CreateDto } from './dto/create.dto'
 import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
+import { DeleteManyDto } from '@/common/dto'
 
 @Injectable()
 export class TipoEstadosObrasService {
@@ -25,5 +26,17 @@ export class TipoEstadosObrasService {
     return await prisma.tipoEstadoObra.create({
       data: createDto,
     })
+  }
+
+  async deleteMany(deleteManyDto: DeleteManyDto) {
+    const { prisma } = this
+
+    return await prisma.$transaction([
+      prisma.tipoEstadoObra.deleteMany({
+        where: {
+          id: { in: deleteManyDto.ids },
+        },
+      }),
+    ])
   }
 }
