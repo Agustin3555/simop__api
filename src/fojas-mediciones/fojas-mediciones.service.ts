@@ -4,6 +4,9 @@ import { CreateDto } from './dto/create.dto'
 import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
 import { DeleteManyDto } from '@/common/dto'
+import { fojaMedicionSelectRef } from './dto/ref.dto'
+import { obraSelectRef } from '@/obras/dto/ref.dto'
+import { inspectorSelectRef } from '@/inspectores/dto/ref.dto'
 
 @Injectable()
 export class FojasMedicionesService {
@@ -20,10 +23,10 @@ export class FojasMedicionesService {
           'inspectorId',
         ),
         obra: {
-          select: { id: true, numero: true },
+          obraSelectRef
         },
         inspector: {
-          select: { id: true, apellido: true },
+          inspectorSelectRef
         },
       },
     })
@@ -32,9 +35,7 @@ export class FojasMedicionesService {
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.fojaMedicion.findMany({
-      select: { id: true, numeroExpediente: true },
-    })
+    return await prisma.fojaMedicion.findMany(fojaMedicionSelectRef)
   }
 
   async create(createDto: CreateDto) {

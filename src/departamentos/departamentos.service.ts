@@ -4,6 +4,8 @@ import { Prisma } from '@prisma/client'
 import { CreateDto } from './dto/create.dto'
 import { omitFields } from '@/common/helpers'
 import { DeleteManyDto } from '@/common/dto'
+import { departamentoSelectRef } from './dto/ref.dto'
+import { direccionSelectRef } from '@/direcciones/dto/ref.dto'
 
 @Injectable()
 export class DepartamentosService {
@@ -16,7 +18,7 @@ export class DepartamentosService {
       select: {
         ...omitFields(Prisma.DepartamentoScalarFieldEnum, 'direccionId'),
         direccion: {
-          select: { id: true, nombre: true },
+          direccionSelectRef
         },
       },
     })
@@ -25,9 +27,7 @@ export class DepartamentosService {
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.departamento.findMany({
-      select: { id: true, nombre: true },
-    })
+    return await prisma.departamento.findMany(departamentoSelectRef)
   }
 
   async create(createDto: CreateDto) {

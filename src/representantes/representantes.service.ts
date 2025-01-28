@@ -4,6 +4,9 @@ import { CreateDto } from './dto/create.dto'
 import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
 import { DeleteManyDto } from '@/common/dto'
+import { provinciaSelectRef } from '@/provincias/dto/ref.dto'
+import { paisSelectRef } from '@/paises/dto/ref.dto'
+import { localidadSelectRef } from '@/localidades/dto/ref.dto'
 
 @Injectable()
 export class RepresentantesService {
@@ -27,13 +30,13 @@ export class RepresentantesService {
           'localidadId',
         ),
         pais: {
-          select: { id: true, nombre: true },
+          paisSelectRef
         },
         provincia: {
-          select: { id: true, nombre: true },
+          provinciaSelectRef
         },
         localidad: {
-          select: { id: true, nombre: true },
+          localidadSelectRef
         },
       },
     })

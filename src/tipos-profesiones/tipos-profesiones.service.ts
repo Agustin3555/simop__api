@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '@/prisma.service'
 import { CreateDto } from './dto/create.dto'
+import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
 import { DeleteManyDto } from '@/common/dto'
 
 @Injectable()
@@ -16,9 +17,7 @@ export class TiposProfesionesService {
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.tipoProfesion.findMany({
-      select: { id: true, nombre: true },
-    })
+    return await prisma.tipoProfesion.findMany(tipoSelectRef)
   }
 
   async create(createDto: CreateDto) {

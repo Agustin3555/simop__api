@@ -4,6 +4,8 @@ import { Prisma } from '@prisma/client'
 import { CreateDto } from './dto/create.dto'
 import { omitFields } from '@/common/helpers'
 import { DeleteManyDto } from '@/common/dto'
+import { provinciaSelectRef } from './dto/ref.dto'
+import { paisSelectRef } from '@/paises/dto/ref.dto'
 
 @Injectable()
 export class ProvinciasService {
@@ -16,7 +18,7 @@ export class ProvinciasService {
       select: {
         ...omitFields(Prisma.ProvinciaScalarFieldEnum, 'paisId'),
         pais: {
-          select: { id: true, nombre: true },
+          paisSelectRef
         },
       },
     })
@@ -25,9 +27,7 @@ export class ProvinciasService {
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.provincia.findMany({
-      select: { id: true, nombre: true },
-    })
+    return await prisma.provincia.findMany(provinciaSelectRef)
   }
 
   async create(createDto: CreateDto) {
