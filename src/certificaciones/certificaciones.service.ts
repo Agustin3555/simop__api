@@ -2,6 +2,7 @@ import { PrismaService } from '@/prisma.service'
 import { Injectable } from '@nestjs/common'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
+import { certificacionSelectRef } from './dto/ref.dto'
 
 @Injectable()
 export class CertificacionesService {
@@ -16,9 +17,7 @@ export class CertificacionesService {
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.certificacion.findMany({
-      select: { id: true, ordenPago: true },
-    })
+    return await prisma.certificacion.findMany(certificacionSelectRef)
   }
 
   async create(createDto: CreateDto) {

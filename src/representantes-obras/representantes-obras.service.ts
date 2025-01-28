@@ -3,6 +3,9 @@ import { Injectable } from '@nestjs/common'
 import { CreateDto } from './dto/create.dto'
 import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
+import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
+import { obraSelectRef } from '@/obras/dto/ref.dto'
+import { representanteSelectRef } from '@/representantes/dto/ref.dto'
 
 @Injectable()
 export class RepresentantesObrasService {
@@ -20,13 +23,13 @@ export class RepresentantesObrasService {
           'tipoRepresentanteId',
         ),
         obra: {
-          select: { id: true, numero: true },
+          obraSelectRef
         },
         representante: {
-          select: { id: true, apellido: true },
+          representanteSelectRef
         },
         tipoRepresentante: {
-          select: { id: true, nombre: true },
+          tipoSelectRef
         },
       },
     })

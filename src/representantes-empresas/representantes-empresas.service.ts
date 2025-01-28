@@ -3,6 +3,9 @@ import { PrismaService } from '@/prisma.service'
 import { Prisma } from '@prisma/client'
 import { CreateDto } from './dto/create.dto'
 import { omitFields } from '@/common/helpers'
+import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
+import { empresaSelectRef } from '@/empresas/dto/ref.dto'
+import { representanteSelectRef } from '@/representantes/dto/ref.dto'
 
 @Injectable()
 export class RepresentantesEmpresasService {
@@ -20,13 +23,13 @@ export class RepresentantesEmpresasService {
           'tipoRepresentanteId',
         ),
         empresa: {
-          select: { id: true, nombre: true },
+          empresaSelectRef
         },
         representante: {
-          select: { id: true, apellido: true },
+         representanteSelectRef
         },
         tipoRepresentante: {
-          select: { id: true, nombre: true },
+          tipoSelectRef
         },
       },
     })

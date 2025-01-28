@@ -4,6 +4,9 @@ import { CreateDto } from './dto/create.dto'
 import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
 import { DeleteManyDto } from '@/common/dto'
+import { obraSelectRef } from '@/obras/dto/ref.dto'
+import { inspectorSelectRef } from '@/inspectores/dto/ref.dto'
+import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
 
 @Injectable()
 export class InspectoresObrasService {
@@ -22,16 +25,16 @@ export class InspectoresObrasService {
           'tipoProfesionId',
         ),
         obra: {
-          select: { id: true, numero: true },
+         obraSelectRef
         },
         inspector: {
-          select: { id: true, apellido: true },
+          inspectorSelectRef
         },
         tipoInspector: {
-          select: { id: true, nombre: true },
+          tipoSelectRef
         },
         tipoProfesion: {
-          select: { id: true, nombre: true },
+         tipoSelectRef
         },
       },
     })

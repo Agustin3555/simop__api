@@ -4,6 +4,10 @@ import { PrismaService } from '@/prisma.service'
 import { Prisma } from '@prisma/client'
 import { omitFields } from '@/common/helpers'
 import { DeleteManyDto } from '@/common/dto'
+import { empresaSelectRef } from './dto/ref.dto'
+import { paisSelectRef } from '@/paises/dto/ref.dto'
+import { provinciaSelectRef } from '@/provincias/dto/ref.dto'
+import { localidadSelectRef } from '@/localidades/dto/ref.dto'
 
 @Injectable()
 export class EmpresasService {
@@ -21,13 +25,13 @@ export class EmpresasService {
           'localidadId',
         ),
         pais: {
-          select: { id: true, nombre: true },
+          paisSelectRef
         },
         provincia: {
-          select: { id: true, nombre: true },
+          provinciaSelectRef
         },
         localidad: {
-          select: { id: true, nombre: true },
+          localidadSelectRef
         },
       },
     })
@@ -36,9 +40,7 @@ export class EmpresasService {
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.empresa.findMany({
-      select: { id: true, nombre: true },
-    })
+    return await prisma.empresa.findMany(empresaSelectRef)
   }
 
   async create(createDto: CreateDto) {

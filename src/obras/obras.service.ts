@@ -4,6 +4,10 @@ import { CreateDto } from './dto/create.dto'
 import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
 import { DeleteManyDto } from '@/common/dto'
+import { empresaSelectRef } from '@/empresas/dto/ref.dto'
+import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
+import { localidadSelectRef } from '@/localidades/dto/ref.dto'
+import { obraSelectRef } from './dto/ref.dto'
 
 @Injectable()
 export class ObrasService {
@@ -25,25 +29,25 @@ export class ObrasService {
           'localidadId',
         ),
         empresa: {
-          select: { id: true, nombre: true },
+          empresaSelectRef
         },
         tipoContratacionObra: {
-          select: { id: true, nombre: true },
+          tipoSelectRef
         },
         tipoFinanciamientoObra: {
-          select: { id: true, nombre: true },
+         tipoSelectRef
         },
         tipoProgramaObra: {
-          select: { id: true, nombre: true },
+         tipoSelectRef
         },
         tipoTematicaObra: {
-          select: { id: true, nombre: true },
+         tipoSelectRef
         },
         tipoEstadoObra: {
-          select: { id: true, nombre: true },
+         tipoSelectRef
         },
         localidad: {
-          select: { id: true, nombre: true },
+          localidadSelectRef
         },
       },
     })
@@ -54,9 +58,7 @@ export class ObrasService {
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.obra.findMany({
-      select: { numero: true, nombre: true },
-    })
+    return await prisma.obra.findMany(obraSelectRef)
   }
 
   async create(createDto: CreateDto) {
