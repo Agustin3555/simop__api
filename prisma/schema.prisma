@@ -482,16 +482,16 @@ model FojaMedicion {
 
 model Certificacion {
   // Fields -----------------------------------------------------------------------------------------------------
-  id              Int       @id @default(autoincrement())
-  ordenPago       Int       @unique
-  fecha           DateTime? @db.Date
-  monto           Decimal?
-  observaciones   String?   @db.Text
+  id                Int       @id @default(autoincrement())
+  numeroExpediente  String?   @unique
+  fecha             DateTime? @db.Date
+  monto             Decimal?
+  observaciones     String?   @db.Text
 
-  fojaMedicionId  Int?      @unique
+  fojaMedicionId    Int?      @unique
 
-  creado          DateTime  @default(now())
-  modificado      DateTime  @updatedAt
+  creado            DateTime  @default(now())
+  modificado        DateTime  @updatedAt
 
   // Relations --------------------------------------------------------------------------------------------------
   fojaMedicion  FojaMedicion? @relation(fields: [fojaMedicionId], references: [id], onDelete: SetNull)

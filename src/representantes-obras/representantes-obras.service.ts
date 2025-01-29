@@ -24,13 +24,13 @@ export class RepresentantesObrasService {
           'tipoRepresentanteId',
         ),
         obra: {
-          obraSelectRef
+          ...obraSelectRef,
         },
         representante: {
-          representanteSelectRef
+          ...representanteSelectRef,
         },
         tipoRepresentante: {
-          tipoSelectRef
+          ...tipoSelectRef,
         },
       },
     })

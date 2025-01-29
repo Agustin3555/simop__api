@@ -30,13 +30,13 @@ export class RepresentantesService {
           'localidadId',
         ),
         pais: {
-          paisSelectRef
+          ...paisSelectRef,
         },
         provincia: {
-          provinciaSelectRef
+          ...provinciaSelectRef,
         },
         localidad: {
-          localidadSelectRef
+          ...localidadSelectRef,
         },
       },
     })
@@ -50,14 +50,14 @@ export class RepresentantesService {
     })
   }
   async deleteMany(deleteManyDto: DeleteManyDto) {
-      const { prisma } = this
-  
-      return await prisma.$transaction([
-        prisma.representante.deleteMany({
-          where: {
-            id: { in: deleteManyDto.ids },
-          },
-        }),
-      ])
-    }
+    const { prisma } = this
+
+    return await prisma.$transaction([
+      prisma.representante.deleteMany({
+        where: {
+          id: { in: deleteManyDto.ids },
+        },
+      }),
+    ])
+  }
 }

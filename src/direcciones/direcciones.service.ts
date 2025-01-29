@@ -18,7 +18,7 @@ export class DireccionesService {
       select: {
         ...omitFields(Prisma.DireccionScalarFieldEnum, 'subSecretariaId'),
         subSecretaria: {
-          subSecretariaSelectRef
+          ...subSecretariaSelectRef,
         },
       },
     })
@@ -37,15 +37,15 @@ export class DireccionesService {
       data: createDto,
     })
   }
-   async deleteMany(deleteManyDto: DeleteManyDto) {
-      const { prisma } = this
-  
-      return await prisma.$transaction([
-        prisma.direccion.deleteMany({
-          where: {
-            id: { in: deleteManyDto.ids },
-          },
-        }),
-      ])
-    }
+  async deleteMany(deleteManyDto: DeleteManyDto) {
+    const { prisma } = this
+
+    return await prisma.$transaction([
+      prisma.direccion.deleteMany({
+        where: {
+          id: { in: deleteManyDto.ids },
+        },
+      }),
+    ])
+  }
 }

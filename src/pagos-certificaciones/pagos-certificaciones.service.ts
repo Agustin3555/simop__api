@@ -28,14 +28,14 @@ export class PagosCertificacionesService {
     })
   }
   async deleteMany(deleteManyDto: DeleteManyDto) {
-      const { prisma } = this
-  
-      return await prisma.$transaction([
-        prisma.pagoCertificacion.deleteMany({
-          where: {
-            id: { in: deleteManyDto.ids },
-          },
-        }),
-      ])
-    }
+    const { prisma } = this
+
+    return await prisma.$transaction([
+      prisma.pagoCertificacion.deleteMany({
+        where: {
+          id: { in: deleteManyDto.ids },
+        },
+      }),
+    ])
+  }
 }

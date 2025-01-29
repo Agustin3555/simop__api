@@ -25,16 +25,16 @@ export class InspectoresObrasService {
           'tipoProfesionId',
         ),
         obra: {
-         obraSelectRef
+          ...obraSelectRef,
         },
         inspector: {
-          inspectorSelectRef
+          ...inspectorSelectRef,
         },
         tipoInspector: {
-          tipoSelectRef
+          ...tipoSelectRef,
         },
         tipoProfesion: {
-         tipoSelectRef
+          ...tipoSelectRef,
         },
       },
     })
@@ -48,14 +48,14 @@ export class InspectoresObrasService {
     })
   }
   async deleteMany(deleteManyDto: DeleteManyDto) {
-      const { prisma } = this
-  
-      return await prisma.$transaction([
-        prisma.inspectorObra.deleteMany({
-          where: {
-            id: { in: deleteManyDto.ids },
-          },
-        }),
-      ])
-    }
+    const { prisma } = this
+
+    return await prisma.$transaction([
+      prisma.inspectorObra.deleteMany({
+        where: {
+          id: { in: deleteManyDto.ids },
+        },
+      }),
+    ])
+  }
 }

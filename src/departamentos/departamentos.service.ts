@@ -18,7 +18,7 @@ export class DepartamentosService {
       select: {
         ...omitFields(Prisma.DepartamentoScalarFieldEnum, 'direccionId'),
         direccion: {
-          direccionSelectRef
+          ...direccionSelectRef,
         },
       },
     })
@@ -37,15 +37,15 @@ export class DepartamentosService {
       data: createDto,
     })
   }
-   async deleteMany(deleteManyDto: DeleteManyDto) {
-      const { prisma } = this
-  
-      return await prisma.$transaction([
-        prisma.departamento.deleteMany({
-          where: {
-            id: { in: deleteManyDto.ids },
-          },
-        }),
-      ])
-    }
+  async deleteMany(deleteManyDto: DeleteManyDto) {
+    const { prisma } = this
+
+    return await prisma.$transaction([
+      prisma.departamento.deleteMany({
+        where: {
+          id: { in: deleteManyDto.ids },
+        },
+      }),
+    ])
+  }
 }

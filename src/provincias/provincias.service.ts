@@ -18,7 +18,7 @@ export class ProvinciasService {
       select: {
         ...omitFields(Prisma.ProvinciaScalarFieldEnum, 'paisId'),
         pais: {
-          paisSelectRef
+          ...paisSelectRef,
         },
       },
     })
@@ -38,14 +38,14 @@ export class ProvinciasService {
     })
   }
   async deleteMany(deleteManyDto: DeleteManyDto) {
-      const { prisma } = this
-  
-      return await prisma.$transaction([
-        prisma.provincia.deleteMany({
-          where: {
-            id: { in: deleteManyDto.ids },
-          },
-        }),
-      ])
-    }
+    const { prisma } = this
+
+    return await prisma.$transaction([
+      prisma.provincia.deleteMany({
+        where: {
+          id: { in: deleteManyDto.ids },
+        },
+      }),
+    ])
+  }
 }

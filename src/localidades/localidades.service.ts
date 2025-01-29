@@ -5,6 +5,7 @@ import { Prisma } from '@prisma/client'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
 import { localidadSelectRef } from './dto/ref.dto'
+import { provinciaSelectRef } from '@/provincias/dto/ref.dto'
 
 @Injectable()
 export class LocalidadesService {
@@ -17,10 +18,7 @@ export class LocalidadesService {
       select: {
         ...omitFields(Prisma.LocalidadScalarFieldEnum, 'provinciaId'),
         provincia: {
-          select: {
-            id: true,
-            nombre: true,
-          },
+          ...provinciaSelectRef,
         },
       },
     })
@@ -40,14 +38,14 @@ export class LocalidadesService {
     })
   }
   async deleteMany(deleteManyDto: DeleteManyDto) {
-      const { prisma } = this
-  
-      return await prisma.$transaction([
-        prisma.localidad.deleteMany({
-          where: {
-            id: { in: deleteManyDto.ids },
-          },
-        }),
-      ])
-    }
+    const { prisma } = this
+
+    return await prisma.$transaction([
+      prisma.localidad.deleteMany({
+        where: {
+          id: { in: deleteManyDto.ids },
+        },
+      }),
+    ])
+  }
 }

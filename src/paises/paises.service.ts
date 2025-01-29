@@ -4,7 +4,6 @@ import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
 import { paisSelectRef } from './dto/ref.dto'
 
-
 @Injectable()
 export class PaisesService {
   constructor(private readonly prisma: PrismaService) {}
@@ -16,9 +15,9 @@ export class PaisesService {
   }
 
   async getForConnect() {
-    const { prisma } = this;
-  
-    return await prisma.pais.findMany(paisSelectRef); 
+    const { prisma } = this
+
+    return await prisma.pais.findMany(paisSelectRef)
   }
 
   async create(createDto: CreateDto) {
@@ -29,14 +28,14 @@ export class PaisesService {
     })
   }
   async deleteMany(deleteManyDto: DeleteManyDto) {
-      const { prisma } = this
-  
-      return await prisma.$transaction([
-        prisma.pais.deleteMany({
-          where: {
-            id: { in: deleteManyDto.ids },
-          },
-        }),
-      ])
-    }
+    const { prisma } = this
+
+    return await prisma.$transaction([
+      prisma.pais.deleteMany({
+        where: {
+          id: { in: deleteManyDto.ids },
+        },
+      }),
+    ])
+  }
 }

@@ -24,13 +24,13 @@ export class RepresentantesEmpresasService {
           'tipoRepresentanteId',
         ),
         empresa: {
-          empresaSelectRef
+          ...empresaSelectRef,
         },
         representante: {
-         representanteSelectRef
+          ...representanteSelectRef,
         },
         tipoRepresentante: {
-          tipoSelectRef
+          ...tipoSelectRef,
         },
       },
     })

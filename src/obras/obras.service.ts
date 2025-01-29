@@ -29,25 +29,25 @@ export class ObrasService {
           'localidadId',
         ),
         empresa: {
-          empresaSelectRef
+          ...empresaSelectRef,
         },
         tipoContratacionObra: {
-          tipoSelectRef
+          ...tipoSelectRef,
         },
         tipoFinanciamientoObra: {
-         tipoSelectRef
+          ...tipoSelectRef,
         },
         tipoProgramaObra: {
-         tipoSelectRef
+          ...tipoSelectRef,
         },
         tipoTematicaObra: {
-         tipoSelectRef
+          ...tipoSelectRef,
         },
         tipoEstadoObra: {
-         tipoSelectRef
+          ...tipoSelectRef,
         },
         localidad: {
-          localidadSelectRef
+          ...localidadSelectRef,
         },
       },
     })
@@ -69,14 +69,14 @@ export class ObrasService {
     })
   }
   async deleteMany(deleteManyDto: DeleteManyDto) {
-      const { prisma } = this
-  
-      return await prisma.$transaction([
-        prisma.obra.deleteMany({
-          where: {
-            id: { in: deleteManyDto.ids },
-          },
-        }),
-      ])
-    }
+    const { prisma } = this
+
+    return await prisma.$transaction([
+      prisma.obra.deleteMany({
+        where: {
+          id: { in: deleteManyDto.ids },
+        },
+      }),
+    ])
+  }
 }
