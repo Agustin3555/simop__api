@@ -1,9 +1,8 @@
 import { IsInt, IsOptional, IsString } from 'class-validator'
 
 export class CreateDto {
-  @IsOptional()
-  @IsInt()
-  cuil?: number
+  @IsString()
+  cuil: string
 
   @IsString()
   apellido: string

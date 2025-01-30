@@ -1,9 +1,8 @@
 import { IsInt, IsString, IsOptional, IsEmail } from 'class-validator'
 
 export class CreateDto {
-  @IsOptional()
-  @IsInt()
-  cuit?: number
+  @IsString()
+  cuit: string
 
   @IsString()
   nombre: string
@@ -13,8 +12,8 @@ export class CreateDto {
   direccion?: string
 
   @IsOptional()
-  @IsInt()
-  numeroContacto?: number
+  @IsString()
+  numeroContacto?: string
 
   @IsOptional()
   @IsEmail()

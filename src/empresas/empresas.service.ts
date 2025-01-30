@@ -50,6 +50,7 @@ export class EmpresasService {
       data: createDto,
     })
   }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this
 

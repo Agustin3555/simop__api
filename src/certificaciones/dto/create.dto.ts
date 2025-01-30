@@ -7,16 +7,16 @@ import {
 } from 'class-validator'
 
 export class CreateDto {
-  @IsNumber()
-  ordenPago: number
-
-  @IsOptional()
-  @IsDateString()
-  fecha?: string
+  @IsString()
+  numeroExpediente: string
 
   @IsOptional()
   @IsNumber()
   monto?: number
+
+  @IsOptional()
+  @IsDateString()
+  fecha?: string
 
   @IsOptional()
   @IsString()

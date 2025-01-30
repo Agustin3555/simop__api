@@ -8,8 +8,8 @@ import {
 } from 'class-validator'
 
 export class CreateDto {
-  @IsNumber()
-  numero: number
+  @IsString()
+  numero: string
 
   @IsString()
   nombre: string
@@ -26,9 +26,9 @@ export class CreateDto {
   @IsOptional()
   anioResolucion?: number
 
-  @IsInt()
+  @IsString()
   @IsOptional()
-  numeroContratacion?: number
+  numeroContratacion?: string
 
   @IsInt()
   @IsOptional()

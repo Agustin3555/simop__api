@@ -12,9 +12,8 @@ export class CreateDto {
   @Min(1)
   numero: number
 
-  @IsOptional()
   @IsString()
-  numeroExpediente?: string
+  numeroExpediente: string
 
   @IsOptional()
   @IsNumber()

@@ -45,6 +45,7 @@ export class FojasMedicionesService {
       data: createDto,
     })
   }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this
 
