@@ -32,6 +32,14 @@ import { EmpresasModule } from './empresas/empresas.module'
 import { FojasMedicionesModule } from './fojas-mediciones/fojas-mediciones.module'
 import { CertificacionesModule } from './certificaciones/certificaciones.module'
 import { PagosCertificacionesModule } from './pagos-certificaciones/pagos-certificaciones.module'
+import { RedeterminacionesModule } from './redeterminaciones/redeterminaciones.module'
+import { TiposRedeterminacionesModule } from './tipos-redeterminaciones/tipos-redeterminaciones.module'
+import { TiposModificacionesModule } from './tipos-modificaciones/tipos-modificaciones.module'
+import { TiposRescisionesModule } from './tipos-rescisiones/tipos-rescisiones.module'
+import { TiposRecepcionesModule } from './tipos-recepciones/tipos-recepciones.module'
+import { TiposParalizacionesModule } from './tipos-paralizaciones/tipos-paralizaciones.module'
+import { AmpliacionesModule } from './ampliaciones/ampliaciones.module'
+import { ModificacionesModule } from './modificaciones/modificaciones.module'
 
 @Module({
   imports: [
@@ -63,6 +71,14 @@ import { PagosCertificacionesModule } from './pagos-certificaciones/pagos-certif
     FojasMedicionesModule,
     CertificacionesModule,
     PagosCertificacionesModule,
+    RedeterminacionesModule,
+    TiposRedeterminacionesModule,
+    TiposModificacionesModule,
+    TiposRescisionesModule,
+    TiposRecepcionesModule,
+    TiposParalizacionesModule,
+    AmpliacionesModule,
+    ModificacionesModule,
   ],
   controllers: [AppController],
   providers: [
