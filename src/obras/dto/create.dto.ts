@@ -34,9 +34,8 @@ export class CreateDto {
   @IsOptional()
   anioContratacion?: number
 
-  @IsNumber()
-  @IsOptional()
-  montoContratacion?: number
+  @IsString()
+  montoContratacion: string
 
   @IsDateString()
   @IsOptional()
