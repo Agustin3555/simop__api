@@ -40,6 +40,10 @@ import { TiposRecepcionesModule } from './tipos-recepciones/tipos-recepciones.mo
 import { TiposParalizacionesModule } from './tipos-paralizaciones/tipos-paralizaciones.module'
 import { AmpliacionesModule } from './ampliaciones/ampliaciones.module'
 import { ModificacionesModule } from './modificaciones/modificaciones.module'
+import { ParalizacionesModule } from './paralizaciones/paralizaciones.module'
+
+import { RescisionesModule } from './rescisiones/rescisiones.module'
+import { RecepcionesModule } from './recepciones/recepciones.module';
 
 @Module({
   imports: [
@@ -79,6 +83,9 @@ import { ModificacionesModule } from './modificaciones/modificaciones.module'
     TiposParalizacionesModule,
     AmpliacionesModule,
     ModificacionesModule,
+    ParalizacionesModule,
+    RescisionesModule,
+    RecepcionesModule,
   ],
   controllers: [AppController],
   providers: [
