@@ -8,21 +8,22 @@ export class PaisesController {
   constructor(private readonly paisService: PaisesService) {}
 
   @Get()
-  getAll() {
-    return this.paisService.getAll()
+  async getAll() {
+    return await this.paisService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.paisService.getForConnect()
+  async getForConnect() {
+    return await this.paisService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.paisService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.paisService.create(createDto)
   }
+
   @Post('delete-many')
-    deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-      return this.paisService.deleteMany(deleteManyDto)
-    }
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.paisService.deleteMany(deleteManyDto)
+  }
 }

@@ -10,22 +10,22 @@ export class TiposRescisionesController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.tiposRescisionesService.getAll()
+  async getAll() {
+    return await this.tiposRescisionesService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tiposRescisionesService.getForConnect()
+  async getForConnect() {
+    return await this.tiposRescisionesService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tiposRescisionesService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tiposRescisionesService.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tiposRescisionesService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tiposRescisionesService.deleteMany(deleteManyDto)
   }
 }

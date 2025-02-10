@@ -2,6 +2,7 @@ import { RedeterminacionesService } from './redeterminaciones.service'
 import { Body, Controller, Get, Post } from '@nestjs/common'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
+
 @Controller('redeterminaciones')
 export class RedeterminacionesController {
   constructor(
@@ -9,21 +10,22 @@ export class RedeterminacionesController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.redeterminacionesService.getAll()
+  async getAll() {
+    return await this.redeterminacionesService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.redeterminacionesService.getForConnect()
+  async getForConnect() {
+    return await this.redeterminacionesService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.redeterminacionesService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.redeterminacionesService.create(createDto)
   }
+
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.redeterminacionesService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.redeterminacionesService.deleteMany(deleteManyDto)
   }
 }

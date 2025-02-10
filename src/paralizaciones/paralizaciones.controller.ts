@@ -8,21 +8,22 @@ export class ParalizacionesController {
   constructor(private readonly paralizacionesService: ParalizacionesService) {}
 
   @Get()
-  getAll() {
-    return this.paralizacionesService.getAll()
+  async getAll() {
+    return await this.paralizacionesService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.paralizacionesService.getForConnect()
+  async getForConnect() {
+    return await this.paralizacionesService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.paralizacionesService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.paralizacionesService.create(createDto)
   }
+
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.paralizacionesService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.paralizacionesService.deleteMany(deleteManyDto)
   }
 }

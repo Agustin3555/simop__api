@@ -11,17 +11,17 @@ export class RepresentantesEmpresasController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.representantesEmpresas.getAll()
+  async getAll() {
+    return await this.representantesEmpresas.getAll()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.representantesEmpresas.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.representantesEmpresas.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.representantesEmpresas.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.representantesEmpresas.deleteMany(deleteManyDto)
   }
 }

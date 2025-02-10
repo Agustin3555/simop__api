@@ -8,21 +8,22 @@ export class ProvinciasController {
   constructor(private readonly provinciasService: ProvinciasService) {}
 
   @Get()
-  getAll() {
-    return this.provinciasService.getAll()
+  async getAll() {
+    return await this.provinciasService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.provinciasService.getForConnect()
+  async getForConnect() {
+    return await this.provinciasService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.provinciasService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.provinciasService.create(createDto)
   }
+
   @Post('delete-many')
-    deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-      return this.provinciasService.deleteMany(deleteManyDto)
-    }
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.provinciasService.deleteMany(deleteManyDto)
+  }
 }

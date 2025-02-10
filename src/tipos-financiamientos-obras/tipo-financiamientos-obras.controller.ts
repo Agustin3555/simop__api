@@ -10,22 +10,22 @@ export class TipoFinanciamientosObrasController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.tipoFinanciamientosObrasService.getAll()
+  async getAll() {
+    return await this.tipoFinanciamientosObrasService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tipoFinanciamientosObrasService.getForConnect()
+  async getForConnect() {
+    return await this.tipoFinanciamientosObrasService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tipoFinanciamientosObrasService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tipoFinanciamientosObrasService.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tipoFinanciamientosObrasService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tipoFinanciamientosObrasService.deleteMany(deleteManyDto)
   }
 }

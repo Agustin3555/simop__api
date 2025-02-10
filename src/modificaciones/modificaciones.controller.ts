@@ -8,21 +8,22 @@ export class ModificacionesController {
   constructor(private readonly modificacionesService: ModificacionesService) {}
 
   @Get()
-  getAll() {
-    return this.modificacionesService.getAll()
+  async getAll() {
+    return await this.modificacionesService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.modificacionesService.getForConnect()
+  async getForConnect() {
+    return await this.modificacionesService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.modificacionesService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.modificacionesService.create(createDto)
   }
+
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.modificacionesService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.modificacionesService.deleteMany(deleteManyDto)
   }
 }

@@ -3,26 +3,28 @@ import { ObrasService } from './obras.service'
 import { Get, Post, Body } from '@nestjs/common'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
+
 @Controller('obras')
 export class ObrasController {
   constructor(private readonly obrasService: ObrasService) {}
 
   @Get()
-  getAll() {
-    return this.obrasService.getAll()
+  async getAll() {
+    return await this.obrasService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.obrasService.getForConnect()
+  async getForConnect() {
+    return await this.obrasService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.obrasService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.obrasService.create(createDto)
   }
+
   @Post('delete-many')
-    deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-      return this.obrasService.deleteMany(deleteManyDto)
-    }
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.obrasService.deleteMany(deleteManyDto)
+  }
 }

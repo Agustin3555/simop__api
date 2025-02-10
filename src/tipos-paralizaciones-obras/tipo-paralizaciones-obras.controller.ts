@@ -10,22 +10,22 @@ export class TipoParalizacionesObrasController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.tipoParalizacionesObrasService.getAll()
+  async getAll() {
+    return await this.tipoParalizacionesObrasService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tipoParalizacionesObrasService.getForConnect()
+  async getForConnect() {
+    return await this.tipoParalizacionesObrasService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tipoParalizacionesObrasService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tipoParalizacionesObrasService.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tipoParalizacionesObrasService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tipoParalizacionesObrasService.deleteMany(deleteManyDto)
   }
 }

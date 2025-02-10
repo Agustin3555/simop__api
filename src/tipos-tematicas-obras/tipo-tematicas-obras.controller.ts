@@ -10,22 +10,22 @@ export class TipoTematicasObrasController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.tipoTematicasObrasService.getAll()
+  async getAll() {
+    return await this.tipoTematicasObrasService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tipoTematicasObrasService.getForConnect()
+  async getForConnect() {
+    return await this.tipoTematicasObrasService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tipoTematicasObrasService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tipoTematicasObrasService.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tipoTematicasObrasService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tipoTematicasObrasService.deleteMany(deleteManyDto)
   }
 }

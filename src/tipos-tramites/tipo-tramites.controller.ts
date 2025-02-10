@@ -8,22 +8,22 @@ export class TipoTramitesObrasController {
   constructor(private readonly tipoTramites: TipoTramitesObrasService) {}
 
   @Get()
-  getAll() {
-    return this.tipoTramites.getAll()
+  async getAll() {
+    return await this.tipoTramites.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tipoTramites.getForConnect()
+  async getForConnect() {
+    return await this.tipoTramites.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tipoTramites.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tipoTramites.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tipoTramites.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tipoTramites.deleteMany(deleteManyDto)
   }
 }

@@ -9,16 +9,17 @@ export class InspectoresObrasController {
   constructor(private readonly service: InspectoresObrasService) {}
 
   @Get()
-  getAll() {
-    return this.service.getAll()
+  async getAll() {
+    return await this.service.getAll()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.service.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.service.create(createDto)
   }
+
   @Post('delete-many')
-    deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-      return this.service.deleteMany(deleteManyDto)
-    }
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.service.deleteMany(deleteManyDto)
+  }
 }

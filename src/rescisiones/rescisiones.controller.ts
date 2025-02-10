@@ -8,21 +8,22 @@ export class RescisionesController {
   constructor(private readonly rescisionesService: RescisionesService) {}
 
   @Get()
-  getAll() {
-    return this.rescisionesService.getAll()
+  async getAll() {
+    return await this.rescisionesService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.rescisionesService.getForConnect()
+  async getForConnect() {
+    return await this.rescisionesService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.rescisionesService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.rescisionesService.create(createDto)
   }
+
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.rescisionesService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.rescisionesService.deleteMany(deleteManyDto)
   }
 }

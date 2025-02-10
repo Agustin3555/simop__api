@@ -10,22 +10,22 @@ export class TiposInspectoresController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.tiposInspectoresService.getAll()
+  async getAll() {
+    return await this.tiposInspectoresService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tiposInspectoresService.getForConnect()
+  async getForConnect() {
+    return await this.tiposInspectoresService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tiposInspectoresService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tiposInspectoresService.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tiposInspectoresService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tiposInspectoresService.deleteMany(deleteManyDto)
   }
 }

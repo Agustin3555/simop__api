@@ -8,21 +8,22 @@ export class RecepcionesController {
   constructor(private readonly recepcionesService: RecepcionesService) {}
 
   @Get()
-  getAll() {
-    return this.recepcionesService.getAll()
+  async getAll() {
+    return await this.recepcionesService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.recepcionesService.getForConnect()
+  async getForConnect() {
+    return await this.recepcionesService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.recepcionesService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.recepcionesService.create(createDto)
   }
+
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.recepcionesService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.recepcionesService.deleteMany(deleteManyDto)
   }
 }

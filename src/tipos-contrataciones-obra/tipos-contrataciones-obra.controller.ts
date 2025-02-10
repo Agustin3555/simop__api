@@ -10,22 +10,22 @@ export class TiposContratacionesObraController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.tiposContratacionesObraService.getAll()
+  async getAll() {
+    return await this.tiposContratacionesObraService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tiposContratacionesObraService.getForConnect()
+  async getForConnect() {
+    return await this.tiposContratacionesObraService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tiposContratacionesObraService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tiposContratacionesObraService.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tiposContratacionesObraService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tiposContratacionesObraService.deleteMany(deleteManyDto)
   }
 }

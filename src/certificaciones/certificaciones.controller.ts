@@ -9,21 +9,22 @@ export class CertificacionesController {
   constructor(private readonly service: CertificacionesService) {}
 
   @Get()
-  getAll() {
-    return this.service.getAll()
+  async getAll() {
+    return await this.service.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.service.getForConnect()
+  async getForConnect() {
+    return await this.service.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.service.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.service.create(createDto)
   }
-    @Post('delete-many')
-    deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-      return this.service.deleteMany(deleteManyDto)
-    }
+
+  @Post('delete-many')
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.service.deleteMany(deleteManyDto)
+  }
 }

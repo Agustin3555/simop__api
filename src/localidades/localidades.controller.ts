@@ -9,21 +9,22 @@ export class LocalidadesController {
   constructor(private readonly localidadesService: LocalidadesService) {}
 
   @Get()
-  getAll() {
-    return this.localidadesService.getAll()
+  async getAll() {
+    return await this.localidadesService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.localidadesService.getForConnect()
+  async getForConnect() {
+    return await this.localidadesService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.localidadesService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.localidadesService.create(createDto)
   }
+
   @Post('delete-many')
-    deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-      return this.localidadesService.deleteMany(deleteManyDto)
-    }
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.localidadesService.deleteMany(deleteManyDto)
+  }
 }

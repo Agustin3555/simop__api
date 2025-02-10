@@ -11,22 +11,22 @@ export class TiposProgramasObrasController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.tipoProgramasObras.getAll()
+  async getAll() {
+    return await this.tipoProgramasObras.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tipoProgramasObras.getForConnect()
+  async getForConnect() {
+    return await this.tipoProgramasObras.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tipoProgramasObras.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tipoProgramasObras.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tipoProgramasObras.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tipoProgramasObras.deleteMany(deleteManyDto)
   }
 }

@@ -8,21 +8,22 @@ export class DireccionesController {
   constructor(private readonly direccionesService: DireccionesService) {}
 
   @Get()
-  getAll() {
-    return this.direccionesService.getAll()
+  async getAll() {
+    return await this.direccionesService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.direccionesService.getForConnect()
+  async getForConnect() {
+    return await this.direccionesService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.direccionesService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.direccionesService.create(createDto)
   }
+
   @Post('delete-many')
-    deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-      return this.direccionesService.deleteMany(deleteManyDto)
-    }
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.direccionesService.deleteMany(deleteManyDto)
+  }
 }

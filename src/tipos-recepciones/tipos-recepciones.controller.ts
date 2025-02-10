@@ -10,22 +10,22 @@ export class TiposRecepcionesController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.tiposRecepcionesService.getAll()
+  async getAll() {
+    return await this.tiposRecepcionesService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tiposRecepcionesService.getForConnect()
+  async getForConnect() {
+    return await this.tiposRecepcionesService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tiposRecepcionesService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tiposRecepcionesService.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tiposRecepcionesService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tiposRecepcionesService.deleteMany(deleteManyDto)
   }
 }

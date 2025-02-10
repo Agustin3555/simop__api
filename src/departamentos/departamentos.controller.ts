@@ -8,21 +8,22 @@ export class DepartamentosController {
   constructor(private readonly departamentosServices: DepartamentosService) {}
 
   @Get()
-  getAll() {
-    return this.departamentosServices.getAll()
+  async getAll() {
+    return await this.departamentosServices.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.departamentosServices.getForConnect()
+  async getForConnect() {
+    return await this.departamentosServices.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.departamentosServices.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.departamentosServices.create(createDto)
   }
+
   @Post('delete-many')
-    deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-      return this.departamentosServices.deleteMany(deleteManyDto)
-    }
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.departamentosServices.deleteMany(deleteManyDto)
+  }
 }

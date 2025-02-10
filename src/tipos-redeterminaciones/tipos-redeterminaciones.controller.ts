@@ -10,22 +10,22 @@ export class TiposRedeterminacionesController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.tipoRedeterminaciones.getAll()
+  async getAll() {
+    return await this.tipoRedeterminaciones.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tipoRedeterminaciones.getForConnect()
+  async getForConnect() {
+    return await this.tipoRedeterminaciones.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tipoRedeterminaciones.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tipoRedeterminaciones.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tipoRedeterminaciones.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tipoRedeterminaciones.deleteMany(deleteManyDto)
   }
 }

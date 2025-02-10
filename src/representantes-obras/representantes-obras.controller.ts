@@ -11,17 +11,17 @@ export class RepresentantesObrasController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.representantesObrasServices.getAll()
+  async getAll() {
+    return await this.representantesObrasServices.getAll()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.representantesObrasServices.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.representantesObrasServices.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.representantesObrasServices.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.representantesObrasServices.deleteMany(deleteManyDto)
   }
 }

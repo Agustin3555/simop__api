@@ -10,22 +10,22 @@ export class TiposRepresentantesController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.tiposRepresentantes.getAll()
+  async getAll() {
+    return await this.tiposRepresentantes.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tiposRepresentantes.getForConnect()
+  async getForConnect() {
+    return await this.tiposRepresentantes.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tiposRepresentantes.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tiposRepresentantes.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tiposRepresentantes.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tiposRepresentantes.deleteMany(deleteManyDto)
   }
 }

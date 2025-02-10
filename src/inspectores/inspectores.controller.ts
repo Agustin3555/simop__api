@@ -8,21 +8,22 @@ export class InspectoresController {
   constructor(private readonly inspectoresService: InspectoresService) {}
 
   @Get()
-  getAll() {
-    return this.inspectoresService.getAll()
+  async getAll() {
+    return await this.inspectoresService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.inspectoresService.getForConnect()
+  async getForConnect() {
+    return await this.inspectoresService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.inspectoresService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.inspectoresService.create(createDto)
   }
+
   @Post('delete-many')
-    deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-      return this.inspectoresService.deleteMany(deleteManyDto)
-    }
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.inspectoresService.deleteMany(deleteManyDto)
+  }
 }

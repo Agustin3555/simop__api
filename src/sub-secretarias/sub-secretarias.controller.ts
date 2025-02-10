@@ -8,22 +8,22 @@ export class SubSecretariasController {
   constructor(private readonly subSecretariasService: SubSecretariasService) {}
 
   @Get()
-  getAll() {
-    return this.subSecretariasService.getAll()
+  async getAll() {
+    return await this.subSecretariasService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.subSecretariasService.getForConnect()
+  async getForConnect() {
+    return await this.subSecretariasService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.subSecretariasService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.subSecretariasService.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.subSecretariasService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.subSecretariasService.deleteMany(deleteManyDto)
   }
 }

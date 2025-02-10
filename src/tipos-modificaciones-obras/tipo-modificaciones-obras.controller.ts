@@ -10,22 +10,22 @@ export class TipoModificacionesObrasController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.tipoModificacionesObrasService.getAll()
+  async getAll() {
+    return await this.tipoModificacionesObrasService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tipoModificacionesObrasService.getForConnect()
+  async getForConnect() {
+    return await this.tipoModificacionesObrasService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tipoModificacionesObrasService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tipoModificacionesObrasService.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tipoModificacionesObrasService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tipoModificacionesObrasService.deleteMany(deleteManyDto)
   }
 }

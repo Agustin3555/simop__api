@@ -10,22 +10,22 @@ export class TiposProfesionesController {
   ) {}
 
   @Get()
-  getAll() {
-    return this.tiposProfesionesService.getAll()
+  async getAll() {
+    return await this.tiposProfesionesService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.tiposProfesionesService.getForConnect()
+  async getForConnect() {
+    return await this.tiposProfesionesService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.tiposProfesionesService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.tiposProfesionesService.create(createDto)
   }
 
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.tiposProfesionesService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.tiposProfesionesService.deleteMany(deleteManyDto)
   }
 }

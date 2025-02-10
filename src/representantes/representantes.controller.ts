@@ -9,21 +9,22 @@ export class RepresentantesController {
   constructor(private readonly relEmpresasServices: RepresentantesService) {}
 
   @Get()
-  getAll() {
-    return this.relEmpresasServices.getAll()
+  async getAll() {
+    return await this.relEmpresasServices.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.relEmpresasServices.getForConnect()
+  async getForConnect() {
+    return await this.relEmpresasServices.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.relEmpresasServices.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.relEmpresasServices.create(createDto)
   }
+
   @Post('delete-many')
-    deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-      return this.relEmpresasServices.deleteMany(deleteManyDto)
-    }
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.relEmpresasServices.deleteMany(deleteManyDto)
+  }
 }

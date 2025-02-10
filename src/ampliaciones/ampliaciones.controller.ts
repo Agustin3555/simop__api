@@ -8,21 +8,22 @@ export class AmpliacionesController {
   constructor(private readonly ampliacionesService: AmpliacionesService) {}
 
   @Get()
-  getAll() {
-    return this.ampliacionesService.getAll()
+  async getAll() {
+    return await this.ampliacionesService.getAll()
   }
 
   @Get('for-connect')
-  getForConnect() {
-    return this.ampliacionesService.getForConnect()
+  async getForConnect() {
+    return await this.ampliacionesService.getForConnect()
   }
 
   @Post()
-  create(@Body() createDto: CreateDto) {
-    return this.ampliacionesService.create(createDto)
+  async create(@Body() createDto: CreateDto) {
+    return await this.ampliacionesService.create(createDto)
   }
+
   @Post('delete-many')
-  deleteMany(@Body() deleteManyDto: DeleteManyDto) {
-    return this.ampliacionesService.deleteMany(deleteManyDto)
+  async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
+    return await this.ampliacionesService.deleteMany(deleteManyDto)
   }
 }
