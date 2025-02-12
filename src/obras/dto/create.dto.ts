@@ -14,11 +14,10 @@ export class CreateDto {
   @IsString()
   nombre: string
 
-  @IsInt()
-  @IsOptional()
-  numeroExpediente?: string
+  @IsString()
+  numeroExpediente: string
 
-  @IsInt()
+  @IsString()
   @IsOptional()
   numeroResolucion?: string
 
