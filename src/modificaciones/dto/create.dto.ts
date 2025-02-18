@@ -1,4 +1,10 @@
-import { IsInt, IsString, IsOptional, IsDecimal, IsDate } from 'class-validator'
+import {
+  IsInt,
+  IsString,
+  IsOptional,
+  IsDecimal,
+  IsDateString,
+} from 'class-validator'
 
 export class CreateDto {
   @IsString()
@@ -17,8 +23,8 @@ export class CreateDto {
   nuevoMontoObra?: number
 
   @IsOptional()
-  @IsDate()
-  fecha?: Date
+  @IsDateString()
+  fecha?: string
 
   @IsOptional()
   @IsString()

@@ -1,4 +1,4 @@
-import { IsInt, IsOptional, IsString, IsDate } from 'class-validator'
+import { IsInt, IsOptional, IsString, IsDateString } from 'class-validator'
 
 export class CreateDto {
   @IsInt()
@@ -19,13 +19,13 @@ export class CreateDto {
   @IsOptional()
   plazoMesesOtorgado?: number
 
-  @IsDate()
   @IsOptional()
-  nuevaFechaFinObra?: Date
+  @IsDateString()
+  nuevaFechaFinObra?: string
 
-  @IsDate()
   @IsOptional()
-  fecha: Date
+  @IsDateString()
+  fecha?: string
 
   @IsString()
   @IsOptional()

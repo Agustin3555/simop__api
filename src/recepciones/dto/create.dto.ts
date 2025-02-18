@@ -1,12 +1,12 @@
-import { IsInt, IsOptional, IsString, IsDate } from 'class-validator'
+import { IsDateString, IsInt, IsOptional, IsString } from 'class-validator'
 
 export class CreateDto {
   @IsInt()
   numeroActa: number
 
   @IsOptional()
-  @IsDate()
-  fecha?: Date
+  @IsDateString()
+  fecha?: string
 
   @IsOptional()
   @IsString()
