@@ -3,6 +3,9 @@ import { Injectable } from '@nestjs/common'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
 import { certificacionSelectRef } from './dto/ref.dto'
+import { omitFields } from '@/common/helpers'
+import { Prisma } from '@prisma/client'
+import { fojaMedicionSelectRef } from '@/fojas-mediciones/dto/ref.dto'
 
 @Injectable()
 export class CertificacionesService {
@@ -11,7 +14,14 @@ export class CertificacionesService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.certificacion.findMany()
+    return await prisma.certificacion.findMany({
+      select: {
+        ...omitFields(Prisma.CertificacionScalarFieldEnum, 'fojaMedicionId'),
+        fojaMedicion: {
+          ...fojaMedicionSelectRef,
+        },
+      },
+    })
   }
 
   async getForConnect() {

@@ -5,6 +5,7 @@ import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
+import { ampliacionesSelectRef } from './dto/ref.dto'
 
 @Injectable()
 export class AmpliacionesService {
@@ -26,7 +27,7 @@ export class AmpliacionesService {
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.ampliacion.findMany()
+    return await prisma.ampliacion.findMany(ampliacionesSelectRef)
   }
 
   async create(createDto: CreateDto) {

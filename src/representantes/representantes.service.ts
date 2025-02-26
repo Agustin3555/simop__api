@@ -7,18 +7,13 @@ import { DeleteManyDto } from '@/common/dto'
 import { provinciaSelectRef } from '@/provincias/dto/ref.dto'
 import { paisSelectRef } from '@/paises/dto/ref.dto'
 import { localidadSelectRef } from '@/localidades/dto/ref.dto'
+import { representanteSelectRef } from './dto/ref.dto'
 
 @Injectable()
 export class RepresentantesService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getAll() {
-    const { prisma } = this
-
-    return await prisma.representante.findMany()
-  }
-
-  async getForConnect() {
     const { prisma } = this
 
     return await prisma.representante.findMany({
@@ -40,6 +35,12 @@ export class RepresentantesService {
         },
       },
     })
+  }
+
+  async getForConnect() {
+    const { prisma } = this
+
+    return await prisma.representante.findMany(representanteSelectRef)
   }
 
   async create(createDto: CreateDto) {

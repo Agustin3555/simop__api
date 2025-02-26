@@ -6,6 +6,7 @@ import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
 import { certificacionSelectRef } from '@/certificaciones/dto/ref.dto'
 import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
+import { redeterminacionesSelectRef } from './dto/ref.dto'
 
 @Injectable()
 export class RedeterminacionesService {
@@ -34,7 +35,7 @@ export class RedeterminacionesService {
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.redeterminacion.findMany()
+    return await prisma.redeterminacion.findMany(redeterminacionesSelectRef)
   }
 
   async create(createDto: CreateDto) {
