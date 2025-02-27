@@ -10,40 +10,36 @@ import { DireccionesModule } from './direcciones/direcciones.module'
 import { DepartamentosModule } from './departamentos/departamentos.module'
 import { PaisesModule } from './paises/paises.module'
 import { ProvinciasModule } from './provincias/provincias.module'
-import { TipoEstadosObrasModule } from './tipos-estados-obras/tipo-estados-obras.module'
-import { TipoFinanciamientosObrasModule } from './tipos-financiamientos-obras/tipo-financiamientos-obras.module'
-import { TipoModificacionesObrasModule } from './tipos-modificaciones-obras/tipo-modificaciones-obras.module'
-import { TipoParalizacionesObrasModule } from './tipos-paralizaciones-obras/tipo-paralizaciones-obras.module'
-import { TiposRepresentantesModule } from './tipos-representantes/tipos-representantes.module'
-import { TipoTramitesObrasModule } from './tipos-tramites/tipo-tramites.module'
-import { TiposProfesionesModule } from './tipos-profesiones/tipos-profesiones.module'
-import { TipoTematicasObrasModule } from './tipos-tematicas-obras/tipo-tematicas-obras.module'
-import { TiposInspectoresModule } from './tipos-inspectores/tipos-inspectores.module'
-import { InspectoresModule } from './inspectores/inspectores.module'
-import { TiposProgramasObrasModule } from './tipos-programas-obras/tipos-programas-obras.module'
-import { RepresentantesEmpresasModule } from './representantes-empresas/representantes-empresas.module'
-import { RepresentantesModule } from './representantes/representantes.module'
-import { ObrasModule } from './obras/obras.module'
 import { LocalidadesModule } from './localidades/localidades.module'
-import { RelObraInspectorModule } from './inspectores-obras/inspectores-obras.module'
-import { RepresentantesObrasModule } from './representantes-obras/representantes-obras.module'
+import { TiposProfesionesModule } from './tipos-profesiones/tipos-profesiones.module'
+import { TiposInspectoresModule } from './tipos-inspectores/tipos-inspectores.module'
+import { TiposRepresentantesModule } from './tipos-representantes/tipos-representantes.module'
 import { TiposContratacionesObraModule } from './tipos-contrataciones-obra/tipos-contrataciones-obra.module'
+import { TiposFinanciamientosObrasModule } from './tipos-financiamientos-obras/tipo-financiamientos-obras.module'
+import { TiposProgramasObrasModule } from './tipos-programas-obras/tipos-programas-obras.module'
+import { TiposTematicasObrasModule } from './tipos-tematicas-obras/tipo-tematicas-obras.module'
+import { TiposEstadosObrasModule } from './tipos-estados-obras/tipo-estados-obras.module'
+import { TiposRedeterminacionesModule } from './tipos-redeterminaciones/tipos-redeterminaciones.module'
+import { TiposModificacionesModule } from './tipos-modificaciones/tipos-modificaciones.module'
+import { TiposParalizacionesModule } from './tipos-paralizaciones/tipos-paralizaciones.module'
+import { TiposRescisionesModule } from './tipos-rescisiones/tipos-rescisiones.module'
+import { TiposRecepcionesModule } from './tipos-recepciones/tipos-recepciones.module'
+import { InspectoresModule } from './inspectores/inspectores.module'
+import { RepresentantesModule } from './representantes/representantes.module'
 import { EmpresasModule } from './empresas/empresas.module'
+import { RepresentantesEmpresasModule } from './representantes-empresas/representantes-empresas.module'
+import { ObrasModule } from './obras/obras.module'
+import { RepresentantesObrasModule } from './representantes-obras/representantes-obras.module'
+import { InspectoresObrasModule } from './inspectores-obras/inspectores-obras.module'
 import { FojasMedicionesModule } from './fojas-mediciones/fojas-mediciones.module'
 import { CertificacionesModule } from './certificaciones/certificaciones.module'
 import { PagosCertificacionesModule } from './pagos-certificaciones/pagos-certificaciones.module'
 import { RedeterminacionesModule } from './redeterminaciones/redeterminaciones.module'
-import { TiposRedeterminacionesModule } from './tipos-redeterminaciones/tipos-redeterminaciones.module'
-import { TiposModificacionesModule } from './tipos-modificaciones/tipos-modificaciones.module'
-import { TiposRescisionesModule } from './tipos-rescisiones/tipos-rescisiones.module'
-import { TiposRecepcionesModule } from './tipos-recepciones/tipos-recepciones.module'
-import { TiposParalizacionesModule } from './tipos-paralizaciones/tipos-paralizaciones.module'
 import { AmpliacionesModule } from './ampliaciones/ampliaciones.module'
 import { ModificacionesModule } from './modificaciones/modificaciones.module'
 import { ParalizacionesModule } from './paralizaciones/paralizaciones.module'
-
 import { RescisionesModule } from './rescisiones/rescisiones.module'
-import { RecepcionesModule } from './recepciones/recepciones.module';
+import { RecepcionesModule } from './recepciones/recepciones.module'
 
 @Module({
   imports: [
@@ -53,34 +49,31 @@ import { RecepcionesModule } from './recepciones/recepciones.module';
     DepartamentosModule,
     PaisesModule,
     ProvinciasModule,
-    TipoEstadosObrasModule,
-    TipoFinanciamientosObrasModule,
-    TipoModificacionesObrasModule,
-    TipoParalizacionesObrasModule,
-    TiposRepresentantesModule,
-    TipoTramitesObrasModule,
-    TiposProfesionesModule,
-    TipoTematicasObrasModule,
-    TiposInspectoresModule,
-    InspectoresModule,
-    TiposProgramasObrasModule,
-    RepresentantesEmpresasModule,
-    RepresentantesModule,
-    ObrasModule,
     LocalidadesModule,
-    RelObraInspectorModule,
-    RepresentantesObrasModule,
+    TiposProfesionesModule,
+    TiposInspectoresModule,
+    TiposRepresentantesModule,
     TiposContratacionesObraModule,
+    TiposFinanciamientosObrasModule,
+    TiposProgramasObrasModule,
+    TiposTematicasObrasModule,
+    TiposEstadosObrasModule,
+    TiposRedeterminacionesModule,
+    TiposModificacionesModule,
+    TiposParalizacionesModule,
+    TiposRescisionesModule,
+    TiposRecepcionesModule,
+    InspectoresModule,
+    RepresentantesModule,
     EmpresasModule,
+    RepresentantesEmpresasModule,
+    ObrasModule,
+    RepresentantesObrasModule,
+    InspectoresObrasModule,
     FojasMedicionesModule,
     CertificacionesModule,
     PagosCertificacionesModule,
     RedeterminacionesModule,
-    TiposRedeterminacionesModule,
-    TiposModificacionesModule,
-    TiposRescisionesModule,
-    TiposRecepcionesModule,
-    TiposParalizacionesModule,
     AmpliacionesModule,
     ModificacionesModule,
     ParalizacionesModule,

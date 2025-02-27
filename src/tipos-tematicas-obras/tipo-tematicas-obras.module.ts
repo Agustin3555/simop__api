@@ -7,4 +7,4 @@ import { TipoTematicasObrasService } from './tipo-tematicas-obras.service'
   controllers: [TipoTematicasObrasController],
   providers: [TipoTematicasObrasService, PrismaService],
 })
-export class TipoTematicasObrasModule {}
+export class TiposTematicasObrasModule {}

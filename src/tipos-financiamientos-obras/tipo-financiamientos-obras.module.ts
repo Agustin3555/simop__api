@@ -7,4 +7,4 @@ import { TipoFinanciamientosObrasService } from './tipo-financiamientos-obras.se
   controllers: [TipoFinanciamientosObrasController],
   providers: [TipoFinanciamientosObrasService, PrismaService],
 })
-export class TipoFinanciamientosObrasModule {}
+export class TiposFinanciamientosObrasModule {}

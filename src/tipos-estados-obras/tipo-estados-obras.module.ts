@@ -7,4 +7,4 @@ import { TipoEstadosObrasService } from './tipo-estados-obras.service'
   controllers: [TipoEstadosObrasController],
   providers: [TipoEstadosObrasService, PrismaService],
 })
-export class TipoEstadosObrasModule {}
+export class TiposEstadosObrasModule {}
