@@ -12,6 +12,10 @@ export class CreateDto {
   numero: number
 
   @IsOptional()
+  @IsString()
+  ordenPago?: string
+
+  @IsOptional()
   @IsDateString()
   fecha?: string
 

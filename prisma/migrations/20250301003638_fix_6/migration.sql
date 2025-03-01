@@ -67,17 +67,6 @@ CREATE TABLE `Localidad` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `TipoTramite` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `nombre` VARCHAR(191) NOT NULL,
-    `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `modificado` DATETIME(3) NOT NULL,
-
-    UNIQUE INDEX `TipoTramite_nombre_key`(`nombre`),
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `TipoInspector` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nombre` VARCHAR(191) NOT NULL,
@@ -305,7 +294,7 @@ CREATE TABLE `Obra` (
     `numeroResolucion` VARCHAR(191) NULL,
     `anioResolucion` INTEGER NULL,
     `numeroContratacion` VARCHAR(191) NULL,
-    `anioContratacion` INTEGER NULL,
+    `fechaContratacion` DATE NULL,
     `montoContratacion` DECIMAL(65, 30) NULL,
     `fechaInicio` DATE NULL,
     `fechaFin` DATE NULL,
@@ -412,6 +401,7 @@ CREATE TABLE `Certificacion` (
 CREATE TABLE `PagoCertificacion` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `numero` INTEGER NOT NULL,
+    `ordenPago` VARCHAR(191) NULL,
     `monto` DECIMAL(65, 30) NULL,
     `fecha` DATE NULL,
     `observaciones` TEXT NULL,
@@ -419,6 +409,7 @@ CREATE TABLE `PagoCertificacion` (
     `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `modificado` DATETIME(3) NOT NULL,
 
+    UNIQUE INDEX `PagoCertificacion_ordenPago_key`(`ordenPago`),
     UNIQUE INDEX `PagoCertificacion_certificacionId_numero_key`(`certificacionId`, `numero`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -428,20 +419,18 @@ CREATE TABLE `Redeterminacion` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `numeroExpediente` VARCHAR(191) NOT NULL,
     `numeroResolucion` VARCHAR(191) NULL,
-    `numeroExpedienteCertificado` VARCHAR(191) NULL,
     `numeroExpedienteSolicitud` VARCHAR(191) NULL,
     `monto` DECIMAL(65, 30) NULL,
     `nuevoMontoObra` DECIMAL(65, 30) NULL,
     `fecha` DATE NULL,
     `observaciones` TEXT NULL,
-    `certificacionId` INTEGER NULL,
+    `obraId` INTEGER NULL,
     `tipoRedeterminacionId` INTEGER NULL,
     `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `modificado` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `Redeterminacion_numeroExpediente_key`(`numeroExpediente`),
     UNIQUE INDEX `Redeterminacion_numeroResolucion_key`(`numeroResolucion`),
-    UNIQUE INDEX `Redeterminacion_numeroExpedienteCertificado_key`(`numeroExpedienteCertificado`),
     UNIQUE INDEX `Redeterminacion_numeroExpedienteSolicitud_key`(`numeroExpedienteSolicitud`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -450,7 +439,7 @@ CREATE TABLE `Redeterminacion` (
 CREATE TABLE `Ampliacion` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `numero` INTEGER NOT NULL,
-    `numeroResolucion` VARCHAR(191) NOT NULL,
+    `numeroResolucion` VARCHAR(191) NULL,
     `numeroExpedienteSolicitud` VARCHAR(191) NULL,
     `plazoMesesSolicitado` INTEGER NULL,
     `plazoMesesOtorgado` INTEGER NULL,
@@ -533,6 +522,7 @@ CREATE TABLE `Recepcion` (
     `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `modificado` DATETIME(3) NOT NULL,
 
+    UNIQUE INDEX `Recepcion_numeroActa_key`(`numeroActa`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -636,7 +626,7 @@ ALTER TABLE `Certificacion` ADD CONSTRAINT `Certificacion_fojaMedicionId_fkey` F
 ALTER TABLE `PagoCertificacion` ADD CONSTRAINT `PagoCertificacion_certificacionId_fkey` FOREIGN KEY (`certificacionId`) REFERENCES `Certificacion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Redeterminacion` ADD CONSTRAINT `Redeterminacion_certificacionId_fkey` FOREIGN KEY (`certificacionId`) REFERENCES `Certificacion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `Redeterminacion` ADD CONSTRAINT `Redeterminacion_obraId_fkey` FOREIGN KEY (`obraId`) REFERENCES `Obra`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Redeterminacion` ADD CONSTRAINT `Redeterminacion_tipoRedeterminacionId_fkey` FOREIGN KEY (`tipoRedeterminacionId`) REFERENCES `TipoRedeterminacion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

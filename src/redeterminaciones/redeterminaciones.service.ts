@@ -4,9 +4,9 @@ import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
-import { certificacionSelectRef } from '@/certificaciones/dto/ref.dto'
 import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
 import { redeterminacionesSelectRef } from './dto/ref.dto'
+import { obraSelectRef } from '@/obras/dto/ref.dto'
 
 @Injectable()
 export class RedeterminacionesService {
@@ -19,11 +19,11 @@ export class RedeterminacionesService {
       select: {
         ...omitFields(
           Prisma.RedeterminacionScalarFieldEnum,
-          'certificacionId',
+          'obraId',
           'tipoRedeterminacionId',
         ),
-        certificacion: {
-          ...certificacionSelectRef,
+        obra: {
+          ...obraSelectRef,
         },
         tipoRedeterminacion: {
           ...tipoSelectRef,
@@ -45,6 +45,7 @@ export class RedeterminacionesService {
       data: createDto,
     })
   }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this
 

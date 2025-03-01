@@ -29,9 +29,9 @@ export class CreateDto {
   @IsOptional()
   numeroContratacion?: string
 
-  @IsInt()
+  @IsDateString()
   @IsOptional()
-  anioContratacion?: number
+  fechaContratacion?: string
 
   @IsString()
   montoContratacion: string

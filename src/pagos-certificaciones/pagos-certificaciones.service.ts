@@ -38,6 +38,7 @@ export class PagosCertificacionesService {
       data: createDto,
     })
   }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this
 

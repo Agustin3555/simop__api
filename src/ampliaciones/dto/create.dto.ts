@@ -5,7 +5,8 @@ export class CreateDto {
   numero: number
 
   @IsString()
-  numeroResolucion: string
+  @IsOptional()
+  numeroResolucion?: string
 
   @IsString()
   @IsOptional()

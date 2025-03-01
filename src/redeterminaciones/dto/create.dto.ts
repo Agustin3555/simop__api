@@ -16,10 +16,6 @@ export class CreateDto {
 
   @IsString()
   @IsOptional()
-  numeroExpedienteCertificado?: string
-
-  @IsString()
-  @IsOptional()
   numeroExpedienteSolicitud?: string
 
   @IsDecimal()
@@ -40,7 +36,7 @@ export class CreateDto {
 
   @IsInt()
   @IsOptional()
-  certificacionId?: number
+  obraId?: number
 
   @IsInt()
   @IsOptional()
