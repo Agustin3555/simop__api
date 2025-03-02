@@ -4,6 +4,7 @@ import { CreateDto } from './dto/create.dto'
 import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
 import { DeleteManyDto } from '@/common/dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class InspectoresService {
@@ -43,6 +44,22 @@ export class InspectoresService {
     const { prisma } = this
 
     return await prisma.inspector.create({
+      data: {
+        profesiones: {
+          createMany: {
+            data: profesiones.map(id => ({ tipoProfesionId: id })),
+          },
+        },
+        ...rest,
+      },
+    })
+  }
+
+  async updateOne(id: number, { profesiones, ...rest }: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.inspector.update({
+      where: { id },
       data: {
         profesiones: {
           createMany: {

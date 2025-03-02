@@ -5,7 +5,7 @@ import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
 import { DeleteManyDto } from '@/common/dto'
 import { empresaSelectRef } from '@/empresas/dto/ref.dto'
-import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
+import { tipoSelectRef } from '@/common/dto'
 import { localidadSelectRef } from '@/localidades/dto/ref.dto'
 import { obraSelectRef } from './dto/ref.dto'
 

@@ -1,4 +1,4 @@
-import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
+import { tipoSelectRef } from '@/common/dto'
 import { PrismaService } from '@/prisma.service'
 import { Injectable } from '@nestjs/common'
 import { CreateDto } from './dto/create.dto'

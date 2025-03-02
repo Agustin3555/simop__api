@@ -1,4 +1,4 @@
-import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
+import { tipoSelectRef } from '@/common/dto'
 import { omitFields } from '@/common/helpers'
 import { obraSelectRef } from '@/obras/dto/ref.dto'
 import { PrismaService } from '@/prisma.service'

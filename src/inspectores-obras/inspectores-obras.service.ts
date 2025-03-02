@@ -6,7 +6,7 @@ import { Prisma } from '@prisma/client'
 import { DeleteManyDto } from '@/common/dto'
 import { obraSelectRef } from '@/obras/dto/ref.dto'
 import { inspectorSelectRef } from '@/inspectores/dto/ref.dto'
-import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
+import { tipoSelectRef } from '@/common/dto'
 
 @Injectable()
 export class InspectoresObrasService {

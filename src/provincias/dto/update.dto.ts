@@ -1,8 +1,9 @@
 import { IsInt, IsOptional, IsString, Min } from 'class-validator'
 
-export class CreateDto {
+export class UpdateDto {
   @IsString()
-  nombre: string
+  @IsOptional()
+  nombre?: string
 
   @IsInt()
   @Min(1)

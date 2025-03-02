@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
-import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
+import { tipoSelectRef } from '@/common/dto'
 import { redeterminacionesSelectRef } from './dto/ref.dto'
 import { obraSelectRef } from '@/obras/dto/ref.dto'
 

@@ -6,6 +6,7 @@ import { omitFields } from '@/common/helpers'
 import { DeleteManyDto } from '@/common/dto'
 import { provinciaSelectRef } from './dto/ref.dto'
 import { paisSelectRef } from '@/paises/dto/ref.dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class ProvinciasService {
@@ -37,6 +38,13 @@ export class ProvinciasService {
       data: createDto,
     })
   }
+
+  async updateOne(id: number, data: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.provincia.update({ where: { id }, data })
+  }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this
 

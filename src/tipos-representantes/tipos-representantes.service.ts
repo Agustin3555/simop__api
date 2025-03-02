@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '@/prisma.service'
 import { CreateDto } from './dto/create.dto'
-import { tipoSelectRef } from '@/common/dto/tipoSelectRef.dto'
+import { tipoSelectRef } from '@/common/dto'
 import { DeleteManyDto } from '@/common/dto'
 
 @Injectable()
