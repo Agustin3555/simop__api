@@ -6,6 +6,7 @@ import { Prisma } from '@prisma/client'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
 import { ampliacionesSelectRef } from './dto/ref.dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class AmpliacionesService {
@@ -36,6 +37,11 @@ export class AmpliacionesService {
     return await prisma.ampliacion.create({
       data: createDto,
     })
+  }
+  async updateOne(id: number, data: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.ampliacion.update({ where: { id }, data })
   }
 
   async deleteMany(deleteManyDto: DeleteManyDto) {

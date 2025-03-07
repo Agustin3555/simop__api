@@ -7,6 +7,7 @@ import { DeleteManyDto } from '@/common/dto'
 import { obraSelectRef } from '@/obras/dto/ref.dto'
 import { inspectorSelectRef } from '@/inspectores/dto/ref.dto'
 import { tipoSelectRef } from '@/common/dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class InspectoresObrasService {
@@ -46,6 +47,12 @@ export class InspectoresObrasService {
     return await prisma.inspectorObra.create({
       data: createDto,
     })
+  }
+
+  async updateOne(id: number, data: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.inspectorObra.update({ where: { id }, data })
   }
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this

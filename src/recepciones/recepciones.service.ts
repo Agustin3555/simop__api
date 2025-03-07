@@ -7,6 +7,7 @@ import { Prisma } from '@prisma/client'
 import { recepcionSelectRef } from './dto/ref.dto'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class RecepcionesService {
@@ -44,6 +45,12 @@ export class RecepcionesService {
     return await prisma.recepcion.create({
       data: createDto,
     })
+  }
+
+  async updateOne(id: number, data: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.recepcion.update({ where: { id }, data })
   }
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this

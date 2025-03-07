@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common'
 import { TiposRecepcionesService } from './tipos-recepciones.service'
 import { CreateDto } from './dto/create.dto'
-import { DeleteManyDto } from '@/common/dto'
+import { DeleteManyDto, SearchByIdDto } from '@/common/dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Controller('tipos-recepciones')
 export class TiposRecepcionesController {
@@ -22,6 +23,11 @@ export class TiposRecepcionesController {
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.tiposRecepcionesService.create(createDto)
+  }
+
+  @Put(':id')
+  async updateOne(@Param() params: SearchByIdDto, @Body() data: UpdateDto) {
+    return await this.tiposRecepcionesService.updateOne(params.id, data)
   }
 
   @Post('delete-many')

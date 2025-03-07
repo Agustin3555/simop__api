@@ -7,6 +7,7 @@ import { DeleteManyDto } from '@/common/dto'
 import { tipoSelectRef } from '@/common/dto'
 import { redeterminacionesSelectRef } from './dto/ref.dto'
 import { obraSelectRef } from '@/obras/dto/ref.dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class RedeterminacionesService {
@@ -44,6 +45,12 @@ export class RedeterminacionesService {
     return await prisma.redeterminacion.create({
       data: createDto,
     })
+  }
+
+  async updateOne(id: number, data: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.redeterminacion.update({ where: { id }, data })
   }
 
   async deleteMany(deleteManyDto: DeleteManyDto) {

@@ -7,6 +7,7 @@ import { paralizacionSelectRef } from './dto/ref.dto'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
 import { obraSelectRef } from '@/obras/dto/ref.dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class ParalizacionesService {
@@ -45,6 +46,13 @@ export class ParalizacionesService {
       data: createDto,
     })
   }
+
+  async updateOne(id: number, data: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.paralizacion.update({ where: { id }, data })
+  }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this
 

@@ -3,6 +3,7 @@ import { PrismaService } from '@/prisma.service'
 import { Injectable } from '@nestjs/common'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class TiposRescisionesService {
@@ -26,6 +27,11 @@ export class TiposRescisionesService {
     return await prisma.tipoRescision.create({
       data: createDto,
     })
+  }
+  async updateOne(id: number, data: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.tipoRescision.update({ where: { id }, data })
   }
 
   async deleteMany(deleteManyDto: DeleteManyDto) {

@@ -3,6 +3,7 @@ import { PrismaService } from '@/prisma.service'
 import { CreateDto } from './dto/create.dto'
 import { tipoSelectRef } from '@/common/dto'
 import { DeleteManyDto } from '@/common/dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class TiposInspectoresService {
@@ -26,6 +27,11 @@ export class TiposInspectoresService {
     return await prisma.tipoInspector.create({
       data: createDto,
     })
+  }
+  async updateOne(id: number, data: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.tipoInspector.update({ where: { id }, data })
   }
 
   async deleteMany(deleteManyDto: DeleteManyDto) {

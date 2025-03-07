@@ -8,6 +8,7 @@ import { provinciaSelectRef } from '@/provincias/dto/ref.dto'
 import { paisSelectRef } from '@/paises/dto/ref.dto'
 import { localidadSelectRef } from '@/localidades/dto/ref.dto'
 import { representanteSelectRef } from './dto/ref.dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class RepresentantesService {
@@ -50,6 +51,13 @@ export class RepresentantesService {
       data: createDto,
     })
   }
+
+  async updateOne(id: number, data: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.representante.update({ where: { id }, data })
+  }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this
 

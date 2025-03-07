@@ -6,6 +6,7 @@ import { omitFields } from '@/common/helpers'
 import { DeleteManyDto } from '@/common/dto'
 import { direccionSelectRef } from './dto/ref.dto'
 import { subSecretariaSelectRef } from '@/sub-secretarias/dto/ref.dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class DireccionesService {
@@ -36,6 +37,11 @@ export class DireccionesService {
     return await prisma.direccion.create({
       data: createDto,
     })
+  }
+  async updateOne(id: number, data: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.direccion.update({ where: { id }, data })
   }
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this

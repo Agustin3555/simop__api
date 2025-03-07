@@ -7,6 +7,7 @@ import { DeleteManyDto } from '@/common/dto'
 import { fojaMedicionSelectRef } from './dto/ref.dto'
 import { obraSelectRef } from '@/obras/dto/ref.dto'
 import { inspectorSelectRef } from '@/inspectores/dto/ref.dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class FojasMedicionesService {
@@ -44,6 +45,11 @@ export class FojasMedicionesService {
     return await prisma.fojaMedicion.create({
       data: createDto,
     })
+  }
+  async updateOne(id: number, data: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.fojaMedicion.update({ where: { id }, data })
   }
 
   async deleteMany(deleteManyDto: DeleteManyDto) {

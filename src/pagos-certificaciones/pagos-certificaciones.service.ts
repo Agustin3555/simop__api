@@ -6,6 +6,7 @@ import { pagoCertificacionSelectRef } from './dto/ref.dto'
 import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
 import { certificacionSelectRef } from '@/certificaciones/dto/ref.dto'
+import { UpdateDto } from './dto/update.dto'
 
 @Injectable()
 export class PagosCertificacionesService {
@@ -37,6 +38,12 @@ export class PagosCertificacionesService {
     return await prisma.pagoCertificacion.create({
       data: createDto,
     })
+  }
+
+  async updateOne(id: number, data: UpdateDto) {
+    const { prisma } = this
+
+    return await prisma.pagoCertificacion.update({ where: { id }, data })
   }
 
   async deleteMany(deleteManyDto: DeleteManyDto) {
