@@ -7,39 +7,39 @@ import {
 } from 'class-validator'
 
 export class UpdateDto {
-  @IsOptional()
   @IsString()
+  @IsOptional()
   numeroExpediente?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   numeroResolucion?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   numeroExpedienteSolicitud?: string
 
-  @IsOptional()
   @IsDecimal()
+  @IsOptional()
   monto?: number
 
-  @IsOptional()
   @IsDecimal()
+  @IsOptional()
   nuevoMontoObra?: number
 
-  @IsOptional()
   @IsDateString()
+  @IsOptional()
   fecha?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   observaciones?: string
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   obraId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   tipoRedeterminacionId?: number
 }

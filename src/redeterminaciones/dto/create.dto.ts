@@ -26,8 +26,8 @@ export class CreateDto {
   @IsOptional()
   nuevoMontoObra?: number
 
-  @IsOptional()
   @IsDateString()
+  @IsOptional()
   fecha?: string
 
   @IsString()

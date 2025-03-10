@@ -1,27 +1,27 @@
 import { IsInt, IsOptional, IsString, IsDateString } from 'class-validator'
 
 export class UpdateDto {
-  @IsOptional()
   @IsString()
+  @IsOptional()
   numeroExpediente?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   numeroResolucion?: string
 
-  @IsOptional()
   @IsDateString()
-  fecha?: Date
-
   @IsOptional()
+  fecha?: string
+
   @IsString()
+  @IsOptional()
   observaciones?: string
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   obraId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   tipoRescisionId?: number
 }

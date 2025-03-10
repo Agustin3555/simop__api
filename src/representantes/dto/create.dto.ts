@@ -7,27 +7,27 @@ export class CreateDto {
   @IsString()
   apellido: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   nombre?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   direccion?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   numeroMatricula?: string
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   paisId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   provinciaId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   localidadId?: number
 }

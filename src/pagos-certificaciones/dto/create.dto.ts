@@ -11,20 +11,20 @@ export class CreateDto {
   @IsNumber()
   numero: number
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   ordenPago?: string
 
-  @IsOptional()
   @IsDateString()
+  @IsOptional()
   fecha?: string
 
-  @IsOptional()
   @IsDecimal()
+  @IsOptional()
   monto?: number
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   observaciones?: string
 
   @IsInt()

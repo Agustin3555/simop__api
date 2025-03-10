@@ -1,8 +1,13 @@
-import { IsInt, IsBoolean } from 'class-validator'
+import { IsInt, IsBoolean, IsDateString, IsOptional } from 'class-validator'
 
 export class CreateDto {
   @IsBoolean()
-  vigencia: boolean
+  @IsOptional()
+  vigencia?: boolean
+
+  @IsDateString()
+  @IsOptional()
+  fecha?: string
 
   @IsInt()
   empresaId: number

@@ -10,16 +10,16 @@ export class CreateDto {
   @IsString()
   numeroExpediente: string
 
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   monto?: number
 
-  @IsOptional()
   @IsDateString()
+  @IsOptional()
   fecha?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   observaciones?: string
 
   @IsInt()

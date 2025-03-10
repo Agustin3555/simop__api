@@ -5,5 +5,5 @@ export class DeleteManyDto {
   @IsInt({ each: true })
   @Min(1, { each: true })
   @IsOptional()
-  ids: number[]
+  ids?: number[]
 }

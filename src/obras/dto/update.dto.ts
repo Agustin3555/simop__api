@@ -24,119 +24,119 @@ export class UpdateDto {
   @IsString()
   numeroResolucion?: string
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   anioResolucion?: number
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   numeroContratacion?: string
 
-  @IsOptional()
   @IsDateString()
+  @IsOptional()
   fechaContratacion?: string
 
   @IsString()
   @IsOptional()
   montoContratacion?: string
 
-  @IsOptional()
   @IsDateString()
+  @IsOptional()
   fechaInicio?: string
 
-  @IsOptional()
   @IsDateString()
+  @IsOptional()
   fechaFin?: string
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   plazoMeses?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   plazoDias?: number
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   direccion?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   lugar?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   nomenclaturaCatastral?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   observaciones?: string
 
   @IsBoolean()
   @IsOptional()
   obraNueva?: boolean
 
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   porcentajeObraNueva?: number
 
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   metrosCuadradosObraNueva?: number
 
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   metrosLinealesObraNueva?: number
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   observacionesObraNueva?: string
 
   @IsBoolean()
   @IsOptional()
   obraRefaccionada?: boolean
 
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   porcentajeObraRefaccionada?: number
 
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   metrosCuadradosObraRefaccionada?: number
 
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   metrosLinealesObraRefaccionada?: number
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   observacionesObraRefaccionada?: string
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   empresaId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   tipoContratacionObraId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   tipoFinanciamientoObraId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   tipoProgramaObraId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   tipoTematicaObraId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   tipoEstadoObraId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   localidadId?: number
 }

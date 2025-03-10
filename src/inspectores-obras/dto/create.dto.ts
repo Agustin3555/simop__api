@@ -1,11 +1,13 @@
-import { IsBoolean, IsDateString, IsInt } from 'class-validator'
+import { IsBoolean, IsDateString, IsInt, IsOptional } from 'class-validator'
 
 export class CreateDto {
   @IsBoolean()
+  @IsOptional()
   vigencia?: boolean
 
   @IsDateString()
-  fecha?: Date
+  @IsOptional()
+  fecha?: string
 
   @IsInt()
   obraId: number

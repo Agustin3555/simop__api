@@ -5,11 +5,11 @@ export class CreateDto {
   cuil: string
 
   @IsString()
-  @IsOptional()
   apellido: string
 
   @IsString()
-  nombre: string
+  @IsOptional()
+  nombre?: string
 
   @IsArray()
   @IsInt({ each: true })

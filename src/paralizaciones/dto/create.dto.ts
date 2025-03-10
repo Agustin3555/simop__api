@@ -7,27 +7,27 @@ export class CreateDto {
   @IsString()
   numeroExpediente: string
 
-  @IsOptional()
   @IsDateString()
-  fechaReinicio?: Date
-
   @IsOptional()
+  fechaReinicio?: string
+
   @IsDateString()
-  nuevaFechaFinObra?: Date
-
   @IsOptional()
+  nuevaFechaFinObra?: string
+
   @IsDateString()
-  fecha?: Date
-
   @IsOptional()
+  fecha?: string
+
   @IsString()
+  @IsOptional()
   observaciones?: string
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   obraId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   tipoParalizacionId?: number
 }

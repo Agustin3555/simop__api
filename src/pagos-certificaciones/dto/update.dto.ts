@@ -8,27 +8,27 @@ import {
 } from 'class-validator'
 
 export class UpdateDto {
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   numero?: number
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   ordenPago?: string
 
-  @IsOptional()
   @IsDateString()
+  @IsOptional()
   fecha?: string
 
-  @IsOptional()
   @IsDecimal()
+  @IsOptional()
   monto?: number
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   observaciones?: string
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   certificacionId?: number
 }

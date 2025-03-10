@@ -10,31 +10,31 @@ export class CreateDto {
   @IsString()
   numeroExpediente: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   numeroResolucion?: string
 
-  @IsOptional()
   @IsDecimal()
+  @IsOptional()
   monto?: number
 
-  @IsOptional()
   @IsDecimal()
+  @IsOptional()
   nuevoMontoObra?: number
 
-  @IsOptional()
   @IsDateString()
+  @IsOptional()
   fecha?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   observaciones?: string
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   obraId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   tipoModificacionId?: number
 }

@@ -4,19 +4,19 @@ export class CreateDto {
   @IsInt()
   numeroActa: number
 
-  @IsOptional()
   @IsDateString()
+  @IsOptional()
   fecha?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   observaciones?: string
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   obraId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   tipoRecepcionId?: number
 }

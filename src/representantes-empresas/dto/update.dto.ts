@@ -1,19 +1,23 @@
-import { IsInt, IsBoolean, IsOptional } from 'class-validator'
+import { IsInt, IsBoolean, IsOptional, IsDateString } from 'class-validator'
 
 export class UpdateDto {
-  @IsOptional()
   @IsBoolean()
+  @IsOptional()
   vigencia?: boolean
 
+  @IsDateString()
   @IsOptional()
+  fecha?: string
+
   @IsInt()
+  @IsOptional()
   empresaId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   representanteId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   tipoRepresentanteId?: number
 }

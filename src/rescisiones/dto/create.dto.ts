@@ -4,23 +4,23 @@ export class CreateDto {
   @IsString()
   numeroExpediente: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   numeroResolucion?: string
 
-  @IsOptional()
   @IsDateString()
-  fecha?: Date
-
   @IsOptional()
+  fecha?: string
+
   @IsString()
+  @IsOptional()
   observaciones?: string
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   obraId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   tipoRescisionId?: number
 }

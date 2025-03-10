@@ -6,5 +6,5 @@ export class CreateDto {
 
   @IsInt()
   @IsOptional()
-  provinciaId: number
+  provinciaId?: number
 }

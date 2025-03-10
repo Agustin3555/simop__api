@@ -1,35 +1,35 @@
 import { IsInt, IsOptional, IsString } from 'class-validator'
 
 export class UpdateDto {
-  @IsOptional()
   @IsString()
+  @IsOptional()
   cuil?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   apellido?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   nombre?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   direccion?: string
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   numeroMatricula?: string
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   paisId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   provinciaId?: number
 
-  @IsOptional()
   @IsInt()
+  @IsOptional()
   localidadId?: number
 }
