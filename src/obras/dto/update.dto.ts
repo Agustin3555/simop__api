@@ -112,6 +112,10 @@ export class UpdateDto {
   @IsOptional()
   observacionesObraRefaccionada?: string
 
+  @IsNumber()
+  @IsOptional()
+  avanceTotal?: number
+
   @IsInt()
   @IsOptional()
   empresaId?: number

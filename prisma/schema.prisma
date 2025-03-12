@@ -419,6 +419,7 @@ model Obra {
   metrosCuadradosObraRefaccionada Int?
   metrosLinealesObraRefaccionada  Int?
   observacionesObraRefaccionada   String?   @db.Text
+  avanceTotal                     Float?
 
   empresaId                       Int?
   tipoContratacionObraId          Int?

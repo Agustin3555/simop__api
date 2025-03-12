@@ -34,7 +34,8 @@ export class CreateDto {
   fechaContratacion?: string
 
   @IsString()
-  montoContratacion: string
+  @IsOptional()
+  montoContratacion?: string
 
   @IsDateString()
   @IsOptional()
@@ -105,6 +106,10 @@ export class CreateDto {
   @IsString()
   @IsOptional()
   observacionesObraRefaccionada?: string
+
+  @IsNumber()
+  @IsOptional()
+  avanceTotal?: number
 
   @IsInt()
   @IsOptional()
