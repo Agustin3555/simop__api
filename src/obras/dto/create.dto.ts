@@ -15,6 +15,7 @@ export class CreateDto {
   nombre: string
 
   @IsString()
+  @IsOptional()
   numeroExpediente: string
 
   @IsString()

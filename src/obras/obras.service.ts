@@ -54,7 +54,8 @@ export class ObrasService {
     })
 
     return obras.map(({ montoContratacion, ...rest }) => ({
-      montoContratacion: montoContratacion.toString(),
+      // TODO: todos los montos necesitan esto?
+      montoContratacion: montoContratacion && String(montoContratacion),
       ...rest,
     }))
   }

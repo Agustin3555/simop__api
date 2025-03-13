@@ -45,11 +45,13 @@ export class InspectoresService {
 
     return await prisma.inspector.create({
       data: {
-        profesiones: {
-          createMany: {
-            data: profesiones.map(id => ({ tipoProfesionId: id })),
+        ...(profesiones && {
+          profesiones: {
+            createMany: {
+              data: profesiones.map(id => ({ tipoProfesionId: id })),
+            },
           },
-        },
+        }),
         ...rest,
       },
     })
@@ -61,11 +63,14 @@ export class InspectoresService {
     return await prisma.inspector.update({
       where: { id },
       data: {
-        profesiones: {
-          createMany: {
-            data: profesiones.map(id => ({ tipoProfesionId: id })),
-          },
-        },
+        profesiones:
+          profesiones === null
+            ? { deleteMany: { inspectorId: id } }
+            : {
+                createMany: {
+                  data: profesiones.map(id => ({ tipoProfesionId: id })),
+                },
+              },
         ...rest,
       },
     })
