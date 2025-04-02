@@ -43,7 +43,15 @@ model Direccion {
   // Relations --------------------------------------------------------------------------------------------------
   subSecretaria SubSecretaria?  @relation(fields: [subSecretariaId], references: [id], onDelete: SetNull)
 
-  departamentos Departamento[]
+  departamentos           Departamento[]
+  fojasMedicion           FojaMedicion[]
+  redeterminaciones       Redeterminacion[]
+  pagosCertificacion      PagoCertificacion[]
+  ampliaciones            Ampliacion[]
+  modificaciones          Modificacion[]
+  paralizaciones          Paralizacion[]
+  rescisiones             Rescision[]
+  recepciones             Recepcion[]
 }
 
 model Departamento {
@@ -58,6 +66,15 @@ model Departamento {
 
   // Relations --------------------------------------------------------------------------------------------------
   direccion Direccion?  @relation(fields: [direccionId], references: [id], onDelete: SetNull)
+
+  fojasMedicion           FojaMedicion[]
+  redeterminaciones       Redeterminacion[]
+  pagosCertificacion      PagoCertificacion[]
+  ampliaciones            Ampliacion[]
+  modificaciones          Modificacion[]
+  paralizaciones          Paralizacion[]
+  rescisiones             Rescision[]
+  recepciones             Recepcion[]
 }
 
 
@@ -398,12 +415,12 @@ model Obra {
   numeroExpediente                String?   @unique
   numeroResolucion                String?   @unique
   anioResolucion                  Int?
-  numeroContratacion              String?   @unique
+  numeroContratacion              String?
   fechaContratacion               DateTime? @db.Date
   montoContratacion               Decimal?
   fechaInicio                     DateTime? @db.Date
   fechaFin                        DateTime? @db.Date
-  plazoMeses                      Int?
+  plazoMeses                      Float?
   plazoDias                       Int?
   direccion                       String?
   lugar                           String?   @db.Text
@@ -498,45 +515,65 @@ model RepresentanteObra {
 
 model FojaMedicion {
   // Fields -----------------------------------------------------------------------------------------------------
-  id                Int       @id @default(autoincrement())
-  numero            Int
-  numeroExpediente  String    @unique
-  avance            Float?
-  fecha             DateTime? @db.Date
-  observaciones     String?   @db.Text
+  id                  Int       @id @default(autoincrement())
+  numero              Int
+  numeroExpediente    String    @unique
+  avance              Float?
+  fechaFoja           DateTime? @db.Date
+  fechaCertificacion  DateTime? @db.Date
+  montoTotal          Decimal?
+  observaciones       String?   @db.Text
 
-  obraId            Int?
-  inspectorId       Int?
+  obraId              Int?
+  inspectorId         Int?
+  direccionId         Int?
+  departamentoId      Int?
 
-  creado            DateTime  @default(now())
-  modificado        DateTime  @updatedAt
+  creado              DateTime  @default(now())
+  modificado          DateTime  @updatedAt
 
   @@unique([obraId, numero])
 
   // Relations --------------------------------------------------------------------------------------------------
-  obra      Obra?       @relation(fields: [obraId], references: [id], onDelete: SetNull)
-  inspector Inspector?  @relation(fields: [inspectorId], references: [id], onDelete: SetNull)
-
-  certificacion Certificacion?
-}
-
-model Certificacion {
-  // Fields -----------------------------------------------------------------------------------------------------
-  id                Int       @id @default(autoincrement())
-  numeroExpediente  String    @unique
-  monto             Decimal?
-  fecha             DateTime? @db.Date
-  observaciones     String?   @db.Text
-
-  fojaMedicionId    Int?      @unique
-
-  creado            DateTime  @default(now())
-  modificado        DateTime  @updatedAt
-
-  // Relations --------------------------------------------------------------------------------------------------
-  fojaMedicion  FojaMedicion? @relation(fields: [fojaMedicionId], references: [id], onDelete: SetNull)
+  obra          Obra?         @relation(fields: [obraId], references: [id], onDelete: SetNull)
+  inspector     Inspector?    @relation(fields: [inspectorId], references: [id], onDelete: SetNull)
+  direccion     Direccion?    @relation(fields: [direccionId], references: [id], onDelete: SetNull)
+  departamento  Departamento? @relation(fields: [departamentoId], references: [id], onDelete: SetNull)
 
   pagosCertificacion  PagoCertificacion[]
+}
+
+model Redeterminacion {
+  // Fields -----------------------------------------------------------------------------------------------------
+  id                        Int       @id @default(autoincrement())
+  numeroExpedienteSolicitud String    @unique
+  numeroExpediente          String?   @unique
+  numeroResolucion          String?   @unique
+  montoTotal                Decimal?
+  nuevoMontoObra            Decimal?
+  fechaRedeterminacion      DateTime? @db.Date
+  fechaCertificacion        DateTime? @db.Date
+  tieneHijas                Boolean   @default(false)
+  observaciones             String?   @db.Text
+
+  obraId                    Int?
+  tipoRedeterminacionId     Int?
+  redeterminacionId         Int?
+  direccionId               Int?
+  departamentoId            Int?
+
+  creado                    DateTime  @default(now())
+  modificado                DateTime  @updatedAt
+
+  // Relations --------------------------------------------------------------------------------------------------
+  obra                  Obra?                 @relation(fields: [obraId], references: [id], onDelete: SetNull)
+  tipoRedeterminacion   TipoRedeterminacion?  @relation(fields: [tipoRedeterminacionId], references: [id], onDelete: SetNull)
+  redeterminacionMadre  Redeterminacion?      @relation("madreHijas", fields: [redeterminacionId], references: [id], onDelete: SetNull)
+  direccion             Direccion?            @relation(fields: [direccionId], references: [id], onDelete: SetNull)
+  departamento          Departamento?         @relation(fields: [departamentoId], references: [id], onDelete: SetNull)
+
+  pagosCertificacion      PagoCertificacion[]
+  redeterminacionesHijas  Redeterminacion[]   @relation("madreHijas")
 }
 
 model PagoCertificacion {
@@ -548,37 +585,22 @@ model PagoCertificacion {
   fecha             DateTime? @db.Date
   observaciones     String?   @db.Text
 
-  certificacionId   Int?
+  fojaMedicionId    Int?
+  redeterminacionId Int?
+  direccionId       Int?
+  departamentoId    Int?
 
   creado            DateTime  @default(now())
   modificado        DateTime  @updatedAt
 
-  @@unique([certificacionId, numero])
+  @@unique([fojaMedicionId, numero])
+  @@unique([redeterminacionId, numero])
 
   // Relations --------------------------------------------------------------------------------------------------
-  certificacion Certificacion?  @relation(fields: [certificacionId], references: [id], onDelete: SetNull)
-}
-
-model Redeterminacion {
-  // Fields -----------------------------------------------------------------------------------------------------
-  id                        Int       @id @default(autoincrement())
-  numeroExpediente          String    @unique
-  numeroResolucion          String?   @unique
-  numeroExpedienteSolicitud String?   @unique
-  monto                     Decimal?
-  nuevoMontoObra            Decimal?
-  fecha                     DateTime? @db.Date
-  observaciones             String?   @db.Text
-
-  obraId                    Int?
-  tipoRedeterminacionId     Int?
-
-  creado                    DateTime  @default(now())
-  modificado                DateTime  @updatedAt
-
-  // Relations --------------------------------------------------------------------------------------------------
-  obra                Obra?                 @relation(fields: [obraId], references: [id], onDelete: SetNull)
-  tipoRedeterminacion TipoRedeterminacion?  @relation(fields: [tipoRedeterminacionId], references: [id], onDelete: SetNull)
+  fojaMedicion    FojaMedicion?     @relation(fields: [fojaMedicionId], references: [id], onDelete: SetNull)
+  redeterminacion Redeterminacion?  @relation(fields: [redeterminacionId], references: [id], onDelete: SetNull)
+  direccion       Direccion?        @relation(fields: [direccionId], references: [id], onDelete: SetNull)
+  departamento    Departamento?     @relation(fields: [departamentoId], references: [id], onDelete: SetNull)
 }
 
 model Ampliacion {
@@ -594,6 +616,8 @@ model Ampliacion {
   observaciones             String?   @db.Text
 
   obraId                    Int?
+  direccionId               Int?
+  departamentoId            Int?
 
   creado                    DateTime  @default(now())
   modificado                DateTime  @updatedAt
@@ -601,7 +625,9 @@ model Ampliacion {
   @@unique([obraId, numero])
 
   // Relations --------------------------------------------------------------------------------------------------
-  obra  Obra? @relation(fields: [obraId], references: [id], onDelete: SetNull)
+  obra          Obra?         @relation(fields: [obraId], references: [id], onDelete: SetNull)
+  direccion     Direccion?    @relation(fields: [direccionId], references: [id], onDelete: SetNull)
+  departamento  Departamento? @relation(fields: [departamentoId], references: [id], onDelete: SetNull)
 }
 
 model Modificacion {
@@ -616,6 +642,8 @@ model Modificacion {
 
   obraId              Int?
   tipoModificacionId  Int?
+  direccionId         Int?
+  departamentoId      Int?
 
   creado              DateTime  @default(now())
   modificado          DateTime  @updatedAt
@@ -623,6 +651,8 @@ model Modificacion {
   // Relations --------------------------------------------------------------------------------------------------
   obra              Obra?             @relation(fields: [obraId], references: [id], onDelete: SetNull)
   tipoModificacion  TipoModificacion? @relation(fields: [tipoModificacionId], references: [id], onDelete: SetNull)
+  direccion         Direccion?        @relation(fields: [direccionId], references: [id], onDelete: SetNull)
+  departamento      Departamento?     @relation(fields: [departamentoId], references: [id], onDelete: SetNull)
 }
 
 model Paralizacion {
@@ -637,6 +667,8 @@ model Paralizacion {
 
   obraId              Int?
   tipoParalizacionId  Int?
+  direccionId         Int?
+  departamentoId      Int?
 
   creado              DateTime  @default(now())
   modificado          DateTime  @updatedAt
@@ -646,6 +678,8 @@ model Paralizacion {
   // Relations --------------------------------------------------------------------------------------------------
   obra              Obra?             @relation(fields: [obraId], references: [id], onDelete: SetNull)
   tipoParalizacion  TipoParalizacion? @relation(fields: [tipoParalizacionId], references: [id], onDelete: SetNull)
+  direccion         Direccion?        @relation(fields: [direccionId], references: [id], onDelete: SetNull)
+  departamento      Departamento?     @relation(fields: [departamentoId], references: [id], onDelete: SetNull)
 }
 
 model Rescision {
@@ -658,6 +692,8 @@ model Rescision {
 
   obraId            Int?
   tipoRescisionId   Int?
+  direccionId       Int?
+  departamentoId    Int?
 
   creado            DateTime  @default(now())
   modificado        DateTime  @updatedAt
@@ -665,6 +701,8 @@ model Rescision {
   // Relations --------------------------------------------------------------------------------------------------
   obra          Obra?           @relation(fields: [obraId], references: [id], onDelete: SetNull)
   tipoRescision TipoRescision?  @relation(fields: [tipoRescisionId], references: [id], onDelete: SetNull)
+  direccion     Direccion?      @relation(fields: [direccionId], references: [id], onDelete: SetNull)
+  departamento  Departamento?   @relation(fields: [departamentoId], references: [id], onDelete: SetNull)
 }
 
 model Recepcion {
@@ -676,6 +714,8 @@ model Recepcion {
 
   obraId          Int?
   tipoRecepcionId Int?
+  direccionId     Int?
+  departamentoId  Int?
 
   creado          DateTime  @default(now())
   modificado      DateTime  @updatedAt
@@ -683,4 +723,6 @@ model Recepcion {
   // Relations --------------------------------------------------------------------------------------------------
   obra          Obra?           @relation(fields: [obraId], references: [id], onDelete: SetNull)
   tipoRecepcion TipoRecepcion?  @relation(fields: [tipoRecepcionId], references: [id], onDelete: SetNull)
+  direccion     Direccion?      @relation(fields: [direccionId], references: [id], onDelete: SetNull)
+  departamento  Departamento?   @relation(fields: [departamentoId], references: [id], onDelete: SetNull)
 }
