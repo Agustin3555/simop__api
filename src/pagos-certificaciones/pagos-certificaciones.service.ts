@@ -5,8 +5,11 @@ import { DeleteManyDto } from '@/common/dto'
 import { pagoCertificacionSelectRef } from './dto/ref.dto'
 import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
-import { certificacionSelectRef } from '@/certificaciones/dto/ref.dto'
 import { UpdateDto } from './dto/update.dto'
+import { direccionSelectRef } from '@/direcciones/dto/ref.dto'
+import { departamentoSelectRef } from '@/departamentos/dto/ref.dto'
+import { fojaMedicionSelectRef } from '@/fojas-mediciones/dto/ref.dto'
+import { redeterminacionesSelectRef } from '@/redeterminaciones/dto/ref.dto'
 
 @Injectable()
 export class PagosCertificacionesService {
@@ -19,9 +22,23 @@ export class PagosCertificacionesService {
       select: {
         ...omitFields(
           Prisma.PagoCertificacionScalarFieldEnum,
-          'certificacionId',
+          'fojaMedicionId',
+          'direccionId',
+          'departamentoId',
+          'redeterminacionId',
         ),
-        certificacion: { ...certificacionSelectRef },
+        fojaMedicion: {
+          ...fojaMedicionSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
+        },
+        redeterminacion: {
+          ...redeterminacionesSelectRef,
+        },
       },
     })
   }

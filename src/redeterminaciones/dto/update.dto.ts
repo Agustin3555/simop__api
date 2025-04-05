@@ -4,6 +4,7 @@ import {
   IsString,
   IsDecimal,
   IsDateString,
+  IsBoolean,
 } from 'class-validator'
 
 export class UpdateDto {
@@ -42,4 +43,24 @@ export class UpdateDto {
   @IsInt()
   @IsOptional()
   tipoRedeterminacionId?: number
+
+  @IsDateString()
+  @IsOptional()
+  fechaCertificacion?: string
+
+  @IsBoolean()
+  @IsOptional()
+  tieneHijas?: boolean
+
+  @IsInt()
+  @IsOptional()
+  redeterminacionId?: number
+
+  @IsInt()
+  @IsOptional()
+  direccionId?: number
+
+  @IsInt()
+  @IsOptional()
+  departamentoId?: number
 }

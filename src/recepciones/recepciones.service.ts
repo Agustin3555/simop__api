@@ -8,6 +8,8 @@ import { recepcionSelectRef } from './dto/ref.dto'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
 import { UpdateDto } from './dto/update.dto'
+import { direccionSelectRef } from '@/direcciones/dto/ref.dto'
+import { departamentoSelectRef } from '@/departamentos/dto/ref.dto'
 
 @Injectable()
 export class RecepcionesService {
@@ -22,12 +24,20 @@ export class RecepcionesService {
           Prisma.RecepcionScalarFieldEnum,
           'tipoRecepcionId',
           'obraId',
+          'direccionId',
+          'departamentoId',
         ),
         tipoRecepcion: {
           ...tipoSelectRef,
         },
         obra: {
           ...obraSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
         },
       },
     })

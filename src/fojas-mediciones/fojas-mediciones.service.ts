@@ -8,6 +8,8 @@ import { fojaMedicionSelectRef } from './dto/ref.dto'
 import { obraSelectRef } from '@/obras/dto/ref.dto'
 import { inspectorSelectRef } from '@/inspectores/dto/ref.dto'
 import { UpdateDto } from './dto/update.dto'
+import { direccionSelectRef } from '@/direcciones/dto/ref.dto'
+import { departamentoSelectRef } from '@/departamentos/dto/ref.dto'
 
 @Injectable()
 export class FojasMedicionesService {
@@ -22,12 +24,20 @@ export class FojasMedicionesService {
           Prisma.FojaMedicionScalarFieldEnum,
           'obraId',
           'inspectorId',
+          'direccionId',
+          'departamentoId',
         ),
         obra: {
           ...obraSelectRef,
         },
         inspector: {
           ...inspectorSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
         },
       },
     })

@@ -38,4 +38,16 @@ export class UpdateDto {
   @IsInt()
   @IsOptional()
   tipoModificacionId?: number
+
+  @IsInt()
+  @IsOptional()
+  redeterminacionId?: number
+
+  @IsInt()
+  @IsOptional()
+  direccionId?: number
+
+  @IsInt()
+  @IsOptional()
+  departamentoId?: number
 }

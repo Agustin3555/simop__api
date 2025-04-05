@@ -46,7 +46,7 @@ export class CreateDto {
   @IsOptional()
   fechaFin?: string
 
-  @IsInt()
+  @IsNumber()
   @IsOptional()
   plazoMeses?: number
 
@@ -71,7 +71,8 @@ export class CreateDto {
   observaciones?: string
 
   @IsBoolean()
-  obraNueva: boolean
+  @IsOptional()
+  obraNueva?: boolean
 
   @IsNumber()
   @IsOptional()
@@ -90,7 +91,8 @@ export class CreateDto {
   observacionesObraNueva?: string
 
   @IsBoolean()
-  obraRefaccionada: boolean
+  @IsOptional()
+  obraRefaccionada?: boolean
 
   @IsNumber()
   @IsOptional()

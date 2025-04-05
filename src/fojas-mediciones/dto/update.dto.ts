@@ -23,7 +23,7 @@ export class UpdateDto {
 
   @IsDateString()
   @IsOptional()
-  fecha?: string
+  fechaFoja?: string
 
   @IsString()
   @IsOptional()
@@ -38,4 +38,20 @@ export class UpdateDto {
   @Min(1)
   @IsOptional()
   inspectorId?: number
+
+  @IsNumber()
+  @IsOptional()
+  montoTotal?: number
+
+  @IsString()
+  @IsOptional()
+  fechaCertificacion?: string
+
+  @IsInt()
+  @IsOptional()
+  direccionId?: number
+
+  @IsInt()
+  @IsOptional()
+  departamentoId?: number
 }

@@ -8,6 +8,8 @@ import { tipoSelectRef } from '@/common/dto'
 import { redeterminacionesSelectRef } from './dto/ref.dto'
 import { obraSelectRef } from '@/obras/dto/ref.dto'
 import { UpdateDto } from './dto/update.dto'
+import { direccionSelectRef } from '@/direcciones/dto/ref.dto'
+import { departamentoSelectRef } from '@/departamentos/dto/ref.dto'
 
 @Injectable()
 export class RedeterminacionesService {
@@ -22,12 +24,24 @@ export class RedeterminacionesService {
           Prisma.RedeterminacionScalarFieldEnum,
           'obraId',
           'tipoRedeterminacionId',
+          'direccionId',
+          'departamentoId',
+          'redeterminacionId',
         ),
         obra: {
           ...obraSelectRef,
         },
         tipoRedeterminacion: {
           ...tipoSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
+        },
+        redeterminacion: {
+          ...redeterminacionesSelectRef,
         },
       },
     })

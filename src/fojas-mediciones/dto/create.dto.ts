@@ -21,7 +21,7 @@ export class CreateDto {
 
   @IsDateString()
   @IsOptional()
-  fecha?: string
+  fechaFoja?: string
 
   @IsString()
   @IsOptional()
@@ -34,4 +34,20 @@ export class CreateDto {
   @IsInt()
   @Min(1)
   inspectorId: number
+
+  @IsDateString()
+  @IsOptional()
+  fechaCertificacion?: string
+
+  @IsNumber()
+  @IsOptional()
+  montoTotal?: number
+
+  @IsInt()
+  @IsOptional()
+  direccionId?: number
+
+  @IsInt()
+  @IsOptional()
+  departamentoId?: number
 }

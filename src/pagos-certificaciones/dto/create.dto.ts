@@ -29,4 +29,16 @@ export class CreateDto {
 
   @IsInt()
   certificacionId: number
+
+  @IsInt()
+  @IsOptional()
+  redeterminacionId?: number
+
+  @IsInt()
+  @IsOptional()
+  direccionId?: number
+
+  @IsInt()
+  @IsOptional()
+  departamentoId?: number
 }

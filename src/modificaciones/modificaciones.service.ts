@@ -8,6 +8,8 @@ import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
 import { modificacionesSelectRef } from './dto/ref.dto'
 import { UpdateDto } from './dto/update.dto'
+import { direccionSelectRef } from '@/direcciones/dto/ref.dto'
+import { departamentoSelectRef } from '@/departamentos/dto/ref.dto'
 
 @Injectable()
 export class ModificacionesService {
@@ -22,12 +24,20 @@ export class ModificacionesService {
           Prisma.ModificacionScalarFieldEnum,
           'obraId',
           'tipoModificacionId',
+          'direccionId',
+          'departamentoId',
         ),
         obra: {
           ...obraSelectRef,
         },
         tipoModificacion: {
           ...tipoSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
         },
       },
     })

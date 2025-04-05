@@ -48,7 +48,7 @@ export class UpdateDto {
   @IsOptional()
   fechaFin?: string
 
-  @IsInt()
+  @IsNumber()
   @IsOptional()
   plazoMeses?: number
 
