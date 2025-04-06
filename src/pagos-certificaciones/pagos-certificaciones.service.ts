@@ -18,7 +18,7 @@ export class PagosCertificacionesService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.pagoCertificacion.findMany({
+    const pagosCertificacion = await prisma.pagoCertificacion.findMany({
       select: {
         ...omitFields(
           Prisma.PagoCertificacionScalarFieldEnum,
@@ -41,6 +41,11 @@ export class PagosCertificacionesService {
         },
       },
     })
+
+    return pagosCertificacion.map(({ monto, ...rest }) => ({
+      monto: monto && String(monto),
+      ...rest,
+    }))
   }
 
   async getForConnect() {

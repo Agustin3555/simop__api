@@ -18,7 +18,7 @@ export class RedeterminacionesService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.redeterminacion.findMany({
+    const redeterminaciones = await prisma.redeterminacion.findMany({
       select: {
         ...omitFields(
           Prisma.RedeterminacionScalarFieldEnum,
@@ -45,6 +45,12 @@ export class RedeterminacionesService {
         },
       },
     })
+
+    return redeterminaciones.map(({ montoTotal, nuevoMontoObra, ...rest }) => ({
+      montoTotal: montoTotal && String(montoTotal),
+      nuevoMontoObra: nuevoMontoObra && String(nuevoMontoObra),
+      ...rest,
+    }))
   }
 
   async getForConnect() {

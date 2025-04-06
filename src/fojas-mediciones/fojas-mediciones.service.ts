@@ -18,7 +18,7 @@ export class FojasMedicionesService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.fojaMedicion.findMany({
+    const fojasMedicion = await prisma.fojaMedicion.findMany({
       select: {
         ...omitFields(
           Prisma.FojaMedicionScalarFieldEnum,
@@ -41,6 +41,11 @@ export class FojasMedicionesService {
         },
       },
     })
+
+    return fojasMedicion.map(({ montoTotal, ...rest }) => ({
+      montoTotal: montoTotal && String(montoTotal),
+      ...rest,
+    }))
   }
 
   async getForConnect() {

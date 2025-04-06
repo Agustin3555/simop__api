@@ -18,7 +18,7 @@ export class ModificacionesService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.modificacion.findMany({
+    const modificaciones = await prisma.modificacion.findMany({
       select: {
         ...omitFields(
           Prisma.ModificacionScalarFieldEnum,
@@ -41,6 +41,12 @@ export class ModificacionesService {
         },
       },
     })
+
+    return modificaciones.map(({ monto, nuevoMontoObra, ...rest }) => ({
+      monto: monto && String(monto),
+      nuevoMontoObra: nuevoMontoObra && String(nuevoMontoObra),
+      ...rest,
+    }))
   }
 
   async getForConnect() {
