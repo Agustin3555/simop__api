@@ -40,7 +40,7 @@ export class RedeterminacionesService {
         departamento: {
           ...departamentoSelectRef,
         },
-        redeterminacion: {
+        redeterminacionesHijas: {
           ...redeterminacionesSelectRef,
         },
       },
