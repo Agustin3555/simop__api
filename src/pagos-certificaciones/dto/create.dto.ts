@@ -28,9 +28,6 @@ export class CreateDto {
   observaciones?: string
 
   @IsInt()
-  certificacionId: number
-
-  @IsInt()
   @IsOptional()
   redeterminacionId?: number
 
