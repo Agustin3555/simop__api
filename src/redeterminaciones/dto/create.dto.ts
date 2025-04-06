@@ -20,9 +20,9 @@ export class CreateDto {
   @IsOptional()
   numeroResolucion?: string
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
-  montoTotal?: number
+  montoTotal?: string
 
   @IsDecimal()
   @IsOptional()

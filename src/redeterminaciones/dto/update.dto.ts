@@ -20,9 +20,9 @@ export class UpdateDto {
   @IsOptional()
   numeroExpedienteSolicitud?: string
 
-  @IsDecimal()
+  @IsString()
   @IsOptional()
-  monto?: number
+  montoTotal?: string
 
   @IsDecimal()
   @IsOptional()
@@ -30,7 +30,7 @@ export class UpdateDto {
 
   @IsDateString()
   @IsOptional()
-  fecha?: string
+  fechaRedeterminacion?: string
 
   @IsString()
   @IsOptional()

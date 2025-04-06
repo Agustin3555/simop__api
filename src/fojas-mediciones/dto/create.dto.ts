@@ -39,9 +39,9 @@ export class CreateDto {
   @IsOptional()
   fechaCertificacion?: string
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
-  montoTotal?: number
+  montoTotal?: string
 
   @IsInt()
   @IsOptional()
