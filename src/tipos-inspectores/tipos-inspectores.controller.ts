@@ -24,10 +24,12 @@ export class TiposInspectoresController {
   async create(@Body() createDto: CreateDto) {
     return await this.tiposInspectoresService.create(createDto)
   }
+
   @Put(':id')
   async updateOne(@Param() params: SearchByIdDto, @Body() data: UpdateDto) {
     return await this.tiposInspectoresService.updateOne(params.id, data)
   }
+
   @Post('delete-many')
   async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
     return await this.tiposInspectoresService.deleteMany(deleteManyDto)

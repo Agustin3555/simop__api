@@ -28,6 +28,7 @@ export class SubSecretariasService {
       data: createDto,
     })
   }
+
   async updateOne(id: number, data: UpdateDto) {
     const { prisma } = this
 

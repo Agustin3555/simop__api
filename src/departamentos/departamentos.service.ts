@@ -38,11 +38,13 @@ export class DepartamentosService {
       data: createDto,
     })
   }
+
   async updateOne(id: number, data: UpdateDto) {
     const { prisma } = this
 
     return await prisma.departamento.update({ where: { id }, data })
   }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this
 

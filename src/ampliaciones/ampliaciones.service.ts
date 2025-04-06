@@ -44,6 +44,31 @@ export class AmpliacionesService {
     return await prisma.ampliacion.findMany(ampliacionesSelectRef)
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.ampliacion.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.AmpliacionScalarFieldEnum,
+          'obraId',
+          'direccionId',
+          'departamentoId',
+        ),
+        obra: {
+          ...obraSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
+        },
+      },
+    })
+  }
+
   async create(createDto: CreateDto) {
     const { prisma } = this
 
@@ -51,6 +76,7 @@ export class AmpliacionesService {
       data: createDto,
     })
   }
+
   async updateOne(id: number, data: UpdateDto) {
     const { prisma } = this
 

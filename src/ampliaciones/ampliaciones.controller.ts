@@ -18,14 +18,21 @@ export class AmpliacionesController {
     return await this.ampliacionesService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.ampliacionesService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.ampliacionesService.create(createDto)
   }
+
   @Put(':id')
   async updateOne(@Param() params: SearchByIdDto, @Body() data: UpdateDto) {
     return await this.ampliacionesService.updateOne(params.id, data)
   }
+
   @Post('delete-many')
   async deleteMany(@Body() deleteManyDto: DeleteManyDto) {
     return await this.ampliacionesService.deleteMany(deleteManyDto)

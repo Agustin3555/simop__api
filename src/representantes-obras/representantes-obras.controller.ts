@@ -20,6 +20,7 @@ export class RepresentantesObrasController {
   async create(@Body() createDto: CreateDto) {
     return await this.representantesObrasServices.create(createDto)
   }
+
   @Put(':id')
   async updateOne(@Param() params: SearchByIdDto, @Body() data: UpdateDto) {
     return await this.representantesObrasServices.updateOne(params.id, data)

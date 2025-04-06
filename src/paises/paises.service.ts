@@ -34,6 +34,7 @@ export class PaisesService {
 
     return await prisma.pais.update({ where: { id }, data })
   }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this
 

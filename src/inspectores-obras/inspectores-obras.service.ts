@@ -54,6 +54,7 @@ export class InspectoresObrasService {
 
     return await prisma.inspectorObra.update({ where: { id }, data })
   }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this
 

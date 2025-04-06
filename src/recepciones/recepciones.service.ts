@@ -62,6 +62,7 @@ export class RecepcionesService {
 
     return await prisma.recepcion.update({ where: { id }, data })
   }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this
 

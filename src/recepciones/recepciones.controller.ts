@@ -22,6 +22,7 @@ export class RecepcionesController {
   async create(@Body() createDto: CreateDto) {
     return await this.recepcionesService.create(createDto)
   }
+
   @Put(':id')
   async updateOne(@Param() params: SearchByIdDto, @Body() data: UpdateDto) {
     return await this.recepcionesService.updateOne(params.id, data)
