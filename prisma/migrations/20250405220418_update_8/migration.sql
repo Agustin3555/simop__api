@@ -298,7 +298,7 @@ CREATE TABLE `Obra` (
     `montoContratacion` DECIMAL(65, 30) NULL,
     `fechaInicio` DATE NULL,
     `fechaFin` DATE NULL,
-    `plazoMeses` INTEGER NULL,
+    `plazoMeses` DOUBLE NULL,
     `plazoDias` INTEGER NULL,
     `direccion` VARCHAR(191) NULL,
     `lugar` TEXT NULL,
@@ -314,6 +314,7 @@ CREATE TABLE `Obra` (
     `metrosCuadradosObraRefaccionada` INTEGER NULL,
     `metrosLinealesObraRefaccionada` INTEGER NULL,
     `observacionesObraRefaccionada` TEXT NULL,
+    `avanceTotal` DOUBLE NULL,
     `empresaId` INTEGER NULL,
     `tipoContratacionObraId` INTEGER NULL,
     `tipoFinanciamientoObraId` INTEGER NULL,
@@ -328,7 +329,6 @@ CREATE TABLE `Obra` (
     UNIQUE INDEX `Obra_nombre_key`(`nombre`),
     UNIQUE INDEX `Obra_numeroExpediente_key`(`numeroExpediente`),
     UNIQUE INDEX `Obra_numeroResolucion_key`(`numeroResolucion`),
-    UNIQUE INDEX `Obra_numeroContratacion_key`(`numeroContratacion`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -369,10 +369,14 @@ CREATE TABLE `FojaMedicion` (
     `numero` INTEGER NOT NULL,
     `numeroExpediente` VARCHAR(191) NOT NULL,
     `avance` DOUBLE NULL,
-    `fecha` DATE NULL,
+    `fechaFoja` DATE NULL,
+    `fechaCertificacion` DATE NULL,
+    `montoTotal` DECIMAL(65, 30) NULL,
     `observaciones` TEXT NULL,
     `obraId` INTEGER NULL,
     `inspectorId` INTEGER NULL,
+    `direccionId` INTEGER NULL,
+    `departamentoId` INTEGER NULL,
     `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `modificado` DATETIME(3) NOT NULL,
 
@@ -382,18 +386,28 @@ CREATE TABLE `FojaMedicion` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Certificacion` (
+CREATE TABLE `Redeterminacion` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `numeroExpediente` VARCHAR(191) NOT NULL,
-    `monto` DECIMAL(65, 30) NULL,
-    `fecha` DATE NULL,
+    `numeroExpedienteSolicitud` VARCHAR(191) NOT NULL,
+    `numeroExpediente` VARCHAR(191) NULL,
+    `numeroResolucion` VARCHAR(191) NULL,
+    `montoTotal` DECIMAL(65, 30) NULL,
+    `nuevoMontoObra` DECIMAL(65, 30) NULL,
+    `fechaRedeterminacion` DATE NULL,
+    `fechaCertificacion` DATE NULL,
+    `tieneHijas` BOOLEAN NOT NULL DEFAULT false,
     `observaciones` TEXT NULL,
-    `fojaMedicionId` INTEGER NULL,
+    `obraId` INTEGER NULL,
+    `tipoRedeterminacionId` INTEGER NULL,
+    `redeterminacionId` INTEGER NULL,
+    `direccionId` INTEGER NULL,
+    `departamentoId` INTEGER NULL,
     `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `modificado` DATETIME(3) NOT NULL,
 
-    UNIQUE INDEX `Certificacion_numeroExpediente_key`(`numeroExpediente`),
-    UNIQUE INDEX `Certificacion_fojaMedicionId_key`(`fojaMedicionId`),
+    UNIQUE INDEX `Redeterminacion_numeroExpedienteSolicitud_key`(`numeroExpedienteSolicitud`),
+    UNIQUE INDEX `Redeterminacion_numeroExpediente_key`(`numeroExpediente`),
+    UNIQUE INDEX `Redeterminacion_numeroResolucion_key`(`numeroResolucion`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -405,33 +419,16 @@ CREATE TABLE `PagoCertificacion` (
     `monto` DECIMAL(65, 30) NULL,
     `fecha` DATE NULL,
     `observaciones` TEXT NULL,
-    `certificacionId` INTEGER NULL,
+    `fojaMedicionId` INTEGER NULL,
+    `redeterminacionId` INTEGER NULL,
+    `direccionId` INTEGER NULL,
+    `departamentoId` INTEGER NULL,
     `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `modificado` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `PagoCertificacion_ordenPago_key`(`ordenPago`),
-    UNIQUE INDEX `PagoCertificacion_certificacionId_numero_key`(`certificacionId`, `numero`),
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
-CREATE TABLE `Redeterminacion` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `numeroExpediente` VARCHAR(191) NOT NULL,
-    `numeroResolucion` VARCHAR(191) NULL,
-    `numeroExpedienteSolicitud` VARCHAR(191) NULL,
-    `monto` DECIMAL(65, 30) NULL,
-    `nuevoMontoObra` DECIMAL(65, 30) NULL,
-    `fecha` DATE NULL,
-    `observaciones` TEXT NULL,
-    `obraId` INTEGER NULL,
-    `tipoRedeterminacionId` INTEGER NULL,
-    `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `modificado` DATETIME(3) NOT NULL,
-
-    UNIQUE INDEX `Redeterminacion_numeroExpediente_key`(`numeroExpediente`),
-    UNIQUE INDEX `Redeterminacion_numeroResolucion_key`(`numeroResolucion`),
-    UNIQUE INDEX `Redeterminacion_numeroExpedienteSolicitud_key`(`numeroExpedienteSolicitud`),
+    UNIQUE INDEX `PagoCertificacion_fojaMedicionId_numero_key`(`fojaMedicionId`, `numero`),
+    UNIQUE INDEX `PagoCertificacion_redeterminacionId_numero_key`(`redeterminacionId`, `numero`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -447,6 +444,8 @@ CREATE TABLE `Ampliacion` (
     `fecha` DATE NULL,
     `observaciones` TEXT NULL,
     `obraId` INTEGER NULL,
+    `direccionId` INTEGER NULL,
+    `departamentoId` INTEGER NULL,
     `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `modificado` DATETIME(3) NOT NULL,
 
@@ -467,6 +466,8 @@ CREATE TABLE `Modificacion` (
     `observaciones` TEXT NULL,
     `obraId` INTEGER NULL,
     `tipoModificacionId` INTEGER NULL,
+    `direccionId` INTEGER NULL,
+    `departamentoId` INTEGER NULL,
     `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `modificado` DATETIME(3) NOT NULL,
 
@@ -486,6 +487,8 @@ CREATE TABLE `Paralizacion` (
     `observaciones` TEXT NULL,
     `obraId` INTEGER NULL,
     `tipoParalizacionId` INTEGER NULL,
+    `direccionId` INTEGER NULL,
+    `departamentoId` INTEGER NULL,
     `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `modificado` DATETIME(3) NOT NULL,
 
@@ -503,6 +506,8 @@ CREATE TABLE `Rescision` (
     `observaciones` TEXT NULL,
     `obraId` INTEGER NULL,
     `tipoRescisionId` INTEGER NULL,
+    `direccionId` INTEGER NULL,
+    `departamentoId` INTEGER NULL,
     `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `modificado` DATETIME(3) NOT NULL,
 
@@ -519,6 +524,8 @@ CREATE TABLE `Recepcion` (
     `observaciones` TEXT NULL,
     `obraId` INTEGER NULL,
     `tipoRecepcionId` INTEGER NULL,
+    `direccionId` INTEGER NULL,
+    `departamentoId` INTEGER NULL,
     `creado` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `modificado` DATETIME(3) NOT NULL,
 
@@ -620,10 +627,10 @@ ALTER TABLE `FojaMedicion` ADD CONSTRAINT `FojaMedicion_obraId_fkey` FOREIGN KEY
 ALTER TABLE `FojaMedicion` ADD CONSTRAINT `FojaMedicion_inspectorId_fkey` FOREIGN KEY (`inspectorId`) REFERENCES `Inspector`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Certificacion` ADD CONSTRAINT `Certificacion_fojaMedicionId_fkey` FOREIGN KEY (`fojaMedicionId`) REFERENCES `FojaMedicion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `FojaMedicion` ADD CONSTRAINT `FojaMedicion_direccionId_fkey` FOREIGN KEY (`direccionId`) REFERENCES `Direccion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `PagoCertificacion` ADD CONSTRAINT `PagoCertificacion_certificacionId_fkey` FOREIGN KEY (`certificacionId`) REFERENCES `Certificacion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `FojaMedicion` ADD CONSTRAINT `FojaMedicion_departamentoId_fkey` FOREIGN KEY (`departamentoId`) REFERENCES `Departamento`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Redeterminacion` ADD CONSTRAINT `Redeterminacion_obraId_fkey` FOREIGN KEY (`obraId`) REFERENCES `Obra`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
@@ -632,7 +639,34 @@ ALTER TABLE `Redeterminacion` ADD CONSTRAINT `Redeterminacion_obraId_fkey` FOREI
 ALTER TABLE `Redeterminacion` ADD CONSTRAINT `Redeterminacion_tipoRedeterminacionId_fkey` FOREIGN KEY (`tipoRedeterminacionId`) REFERENCES `TipoRedeterminacion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE `Redeterminacion` ADD CONSTRAINT `Redeterminacion_redeterminacionId_fkey` FOREIGN KEY (`redeterminacionId`) REFERENCES `Redeterminacion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Redeterminacion` ADD CONSTRAINT `Redeterminacion_direccionId_fkey` FOREIGN KEY (`direccionId`) REFERENCES `Direccion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Redeterminacion` ADD CONSTRAINT `Redeterminacion_departamentoId_fkey` FOREIGN KEY (`departamentoId`) REFERENCES `Departamento`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `PagoCertificacion` ADD CONSTRAINT `PagoCertificacion_fojaMedicionId_fkey` FOREIGN KEY (`fojaMedicionId`) REFERENCES `FojaMedicion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `PagoCertificacion` ADD CONSTRAINT `PagoCertificacion_redeterminacionId_fkey` FOREIGN KEY (`redeterminacionId`) REFERENCES `Redeterminacion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `PagoCertificacion` ADD CONSTRAINT `PagoCertificacion_direccionId_fkey` FOREIGN KEY (`direccionId`) REFERENCES `Direccion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `PagoCertificacion` ADD CONSTRAINT `PagoCertificacion_departamentoId_fkey` FOREIGN KEY (`departamentoId`) REFERENCES `Departamento`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE `Ampliacion` ADD CONSTRAINT `Ampliacion_obraId_fkey` FOREIGN KEY (`obraId`) REFERENCES `Obra`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Ampliacion` ADD CONSTRAINT `Ampliacion_direccionId_fkey` FOREIGN KEY (`direccionId`) REFERENCES `Direccion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Ampliacion` ADD CONSTRAINT `Ampliacion_departamentoId_fkey` FOREIGN KEY (`departamentoId`) REFERENCES `Departamento`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Modificacion` ADD CONSTRAINT `Modificacion_obraId_fkey` FOREIGN KEY (`obraId`) REFERENCES `Obra`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
@@ -641,10 +675,22 @@ ALTER TABLE `Modificacion` ADD CONSTRAINT `Modificacion_obraId_fkey` FOREIGN KEY
 ALTER TABLE `Modificacion` ADD CONSTRAINT `Modificacion_tipoModificacionId_fkey` FOREIGN KEY (`tipoModificacionId`) REFERENCES `TipoModificacion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE `Modificacion` ADD CONSTRAINT `Modificacion_direccionId_fkey` FOREIGN KEY (`direccionId`) REFERENCES `Direccion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Modificacion` ADD CONSTRAINT `Modificacion_departamentoId_fkey` FOREIGN KEY (`departamentoId`) REFERENCES `Departamento`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE `Paralizacion` ADD CONSTRAINT `Paralizacion_obraId_fkey` FOREIGN KEY (`obraId`) REFERENCES `Obra`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Paralizacion` ADD CONSTRAINT `Paralizacion_tipoParalizacionId_fkey` FOREIGN KEY (`tipoParalizacionId`) REFERENCES `TipoParalizacion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Paralizacion` ADD CONSTRAINT `Paralizacion_direccionId_fkey` FOREIGN KEY (`direccionId`) REFERENCES `Direccion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Paralizacion` ADD CONSTRAINT `Paralizacion_departamentoId_fkey` FOREIGN KEY (`departamentoId`) REFERENCES `Departamento`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Rescision` ADD CONSTRAINT `Rescision_obraId_fkey` FOREIGN KEY (`obraId`) REFERENCES `Obra`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
@@ -653,7 +699,19 @@ ALTER TABLE `Rescision` ADD CONSTRAINT `Rescision_obraId_fkey` FOREIGN KEY (`obr
 ALTER TABLE `Rescision` ADD CONSTRAINT `Rescision_tipoRescisionId_fkey` FOREIGN KEY (`tipoRescisionId`) REFERENCES `TipoRescision`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE `Rescision` ADD CONSTRAINT `Rescision_direccionId_fkey` FOREIGN KEY (`direccionId`) REFERENCES `Direccion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Rescision` ADD CONSTRAINT `Rescision_departamentoId_fkey` FOREIGN KEY (`departamentoId`) REFERENCES `Departamento`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE `Recepcion` ADD CONSTRAINT `Recepcion_obraId_fkey` FOREIGN KEY (`obraId`) REFERENCES `Obra`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Recepcion` ADD CONSTRAINT `Recepcion_tipoRecepcionId_fkey` FOREIGN KEY (`tipoRecepcionId`) REFERENCES `TipoRecepcion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Recepcion` ADD CONSTRAINT `Recepcion_direccionId_fkey` FOREIGN KEY (`direccionId`) REFERENCES `Direccion`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Recepcion` ADD CONSTRAINT `Recepcion_departamentoId_fkey` FOREIGN KEY (`departamentoId`) REFERENCES `Departamento`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
