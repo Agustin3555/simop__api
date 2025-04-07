@@ -39,7 +39,7 @@ export class UpdateDto {
   @IsOptional()
   inspectorId?: number
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
   montoTotal?: number
 

@@ -30,10 +30,6 @@ export class UpdateDto {
 
   @IsInt()
   @IsOptional()
-  certificacionId?: number
-
-  @IsInt()
-  @IsOptional()
   redeterminacionId?: number
 
   @IsInt()
