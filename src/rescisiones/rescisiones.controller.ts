@@ -22,6 +22,7 @@ export class RescisionesController {
   async create(@Body() createDto: CreateDto) {
     return await this.rescisionesService.create(createDto)
   }
+
   @Put(':id')
   async updateOne(@Param() params: SearchByIdDto, @Body() data: UpdateDto) {
     return await this.rescisionesService.updateOne(params.id, data)

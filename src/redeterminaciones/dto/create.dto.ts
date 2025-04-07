@@ -4,11 +4,17 @@ import {
   IsString,
   IsDecimal,
   IsDateString,
+  IsBoolean,
+  IsNumber,
 } from 'class-validator'
 
 export class CreateDto {
   @IsString()
-  numeroExpediente: string
+  numeroExpedienteSolicitud: string
+
+  @IsString()
+  @IsOptional()
+  numeroExpediente?: string
 
   @IsString()
   @IsOptional()
@@ -16,11 +22,7 @@ export class CreateDto {
 
   @IsString()
   @IsOptional()
-  numeroExpedienteSolicitud?: string
-
-  @IsDecimal()
-  @IsOptional()
-  monto?: number
+  montoTotal?: string
 
   @IsDecimal()
   @IsOptional()
@@ -28,7 +30,7 @@ export class CreateDto {
 
   @IsDateString()
   @IsOptional()
-  fecha?: string
+  fechaRedeterminacion?: string
 
   @IsString()
   @IsOptional()
@@ -41,4 +43,24 @@ export class CreateDto {
   @IsInt()
   @IsOptional()
   tipoRedeterminacionId?: number
+
+  @IsDateString()
+  @IsOptional()
+  fechaCertificacion?: string
+
+  @IsBoolean()
+  @IsOptional()
+  tieneHijas?: boolean
+
+  @IsInt()
+  @IsOptional()
+  redeterminacionId?: number
+
+  @IsInt()
+  @IsOptional()
+  direccionId?: number
+
+  @IsInt()
+  @IsOptional()
+  departamentoId?: number
 }

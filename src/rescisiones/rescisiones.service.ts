@@ -8,6 +8,8 @@ import { rescisionSelectRef } from './dto/ref.dto'
 import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
 import { UpdateDto } from './dto/update.dto'
+import { direccionSelectRef } from '@/direcciones/dto/ref.dto'
+import { departamentoSelectRef } from '@/departamentos/dto/ref.dto'
 
 @Injectable()
 export class RescisionesService {
@@ -22,12 +24,20 @@ export class RescisionesService {
           Prisma.RescisionScalarFieldEnum,
           'tipoRescisionId',
           'obraId',
+          'direccionId',
+          'departamentoId',
         ),
         tipoRescision: {
           ...tipoSelectRef,
         },
         obra: {
           ...obraSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
         },
       },
     })

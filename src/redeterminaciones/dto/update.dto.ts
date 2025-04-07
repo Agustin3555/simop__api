@@ -4,6 +4,7 @@ import {
   IsString,
   IsDecimal,
   IsDateString,
+  IsBoolean,
 } from 'class-validator'
 
 export class UpdateDto {
@@ -19,9 +20,9 @@ export class UpdateDto {
   @IsOptional()
   numeroExpedienteSolicitud?: string
 
-  @IsDecimal()
+  @IsString()
   @IsOptional()
-  monto?: number
+  montoTotal?: string
 
   @IsDecimal()
   @IsOptional()
@@ -29,7 +30,7 @@ export class UpdateDto {
 
   @IsDateString()
   @IsOptional()
-  fecha?: string
+  fechaRedeterminacion?: string
 
   @IsString()
   @IsOptional()
@@ -42,4 +43,24 @@ export class UpdateDto {
   @IsInt()
   @IsOptional()
   tipoRedeterminacionId?: number
+
+  @IsDateString()
+  @IsOptional()
+  fechaCertificacion?: string
+
+  @IsBoolean()
+  @IsOptional()
+  tieneHijas?: boolean
+
+  @IsInt()
+  @IsOptional()
+  redeterminacionId?: number
+
+  @IsInt()
+  @IsOptional()
+  direccionId?: number
+
+  @IsInt()
+  @IsOptional()
+  departamentoId?: number
 }

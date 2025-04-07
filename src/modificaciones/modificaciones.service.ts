@@ -8,6 +8,8 @@ import { CreateDto } from './dto/create.dto'
 import { DeleteManyDto } from '@/common/dto'
 import { modificacionesSelectRef } from './dto/ref.dto'
 import { UpdateDto } from './dto/update.dto'
+import { direccionSelectRef } from '@/direcciones/dto/ref.dto'
+import { departamentoSelectRef } from '@/departamentos/dto/ref.dto'
 
 @Injectable()
 export class ModificacionesService {
@@ -16,12 +18,14 @@ export class ModificacionesService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.modificacion.findMany({
+    const modificaciones = await prisma.modificacion.findMany({
       select: {
         ...omitFields(
           Prisma.ModificacionScalarFieldEnum,
           'obraId',
           'tipoModificacionId',
+          'direccionId',
+          'departamentoId',
         ),
         obra: {
           ...obraSelectRef,
@@ -29,8 +33,20 @@ export class ModificacionesService {
         tipoModificacion: {
           ...tipoSelectRef,
         },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
+        },
       },
     })
+
+    return modificaciones.map(({ monto, nuevoMontoObra, ...rest }) => ({
+      monto: monto && String(monto),
+      nuevoMontoObra: nuevoMontoObra && String(nuevoMontoObra),
+      ...rest,
+    }))
   }
 
   async getForConnect() {

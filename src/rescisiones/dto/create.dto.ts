@@ -23,4 +23,16 @@ export class CreateDto {
   @IsInt()
   @IsOptional()
   tipoRescisionId?: number
+
+  @IsInt()
+  @IsOptional()
+  redeterminacionId?: number
+
+  @IsInt()
+  @IsOptional()
+  direccionId?: number
+
+  @IsInt()
+  @IsOptional()
+  departamentoId?: number
 }

@@ -22,6 +22,7 @@ export class ModificacionesController {
   async create(@Body() createDto: CreateDto) {
     return await this.modificacionesService.create(createDto)
   }
+
   @Put(':id')
   async updateOne(@Param() params: SearchByIdDto, @Body() data: UpdateDto) {
     return await this.modificacionesService.updateOne(params.id, data)

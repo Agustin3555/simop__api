@@ -18,6 +18,11 @@ export class DireccionesController {
     return await this.direccionesService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.direccionesService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.direccionesService.create(createDto)

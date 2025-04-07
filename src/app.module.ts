@@ -32,7 +32,6 @@ import { ObrasModule } from './obras/obras.module'
 import { RepresentantesObrasModule } from './representantes-obras/representantes-obras.module'
 import { InspectoresObrasModule } from './inspectores-obras/inspectores-obras.module'
 import { FojasMedicionesModule } from './fojas-mediciones/fojas-mediciones.module'
-import { CertificacionesModule } from './certificaciones/certificaciones.module'
 import { PagosCertificacionesModule } from './pagos-certificaciones/pagos-certificaciones.module'
 import { RedeterminacionesModule } from './redeterminaciones/redeterminaciones.module'
 import { AmpliacionesModule } from './ampliaciones/ampliaciones.module'
@@ -71,7 +70,6 @@ import { RecepcionesModule } from './recepciones/recepciones.module'
     RepresentantesObrasModule,
     InspectoresObrasModule,
     FojasMedicionesModule,
-    CertificacionesModule,
     PagosCertificacionesModule,
     RedeterminacionesModule,
     AmpliacionesModule,

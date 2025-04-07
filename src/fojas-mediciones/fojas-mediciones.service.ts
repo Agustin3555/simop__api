@@ -8,6 +8,8 @@ import { fojaMedicionSelectRef } from './dto/ref.dto'
 import { obraSelectRef } from '@/obras/dto/ref.dto'
 import { inspectorSelectRef } from '@/inspectores/dto/ref.dto'
 import { UpdateDto } from './dto/update.dto'
+import { direccionSelectRef } from '@/direcciones/dto/ref.dto'
+import { departamentoSelectRef } from '@/departamentos/dto/ref.dto'
 
 @Injectable()
 export class FojasMedicionesService {
@@ -16,12 +18,14 @@ export class FojasMedicionesService {
   async getAll() {
     const { prisma } = this
 
-    return await prisma.fojaMedicion.findMany({
+    const fojasMedicion = await prisma.fojaMedicion.findMany({
       select: {
         ...omitFields(
           Prisma.FojaMedicionScalarFieldEnum,
           'obraId',
           'inspectorId',
+          'direccionId',
+          'departamentoId',
         ),
         obra: {
           ...obraSelectRef,
@@ -29,8 +33,19 @@ export class FojasMedicionesService {
         inspector: {
           ...inspectorSelectRef,
         },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
+        },
       },
     })
+
+    return fojasMedicion.map(({ montoTotal, ...rest }) => ({
+      montoTotal: montoTotal && String(montoTotal),
+      ...rest,
+    }))
   }
 
   async getForConnect() {
@@ -46,6 +61,7 @@ export class FojasMedicionesService {
       data: createDto,
     })
   }
+
   async updateOne(id: number, data: UpdateDto) {
     const { prisma } = this
 

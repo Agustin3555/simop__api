@@ -28,5 +28,14 @@ export class CreateDto {
   observaciones?: string
 
   @IsInt()
-  certificacionId: number
+  @IsOptional()
+  redeterminacionId?: number
+
+  @IsInt()
+  @IsOptional()
+  direccionId?: number
+
+  @IsInt()
+  @IsOptional()
+  departamentoId?: number
 }

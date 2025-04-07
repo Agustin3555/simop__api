@@ -28,6 +28,7 @@ export class TipoEstadosObrasService {
       data: createDto,
     })
   }
+
   async updateOne(id: number, data: UpdateDto) {
     const { prisma } = this
 

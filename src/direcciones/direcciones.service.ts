@@ -31,6 +31,20 @@ export class DireccionesService {
     return await prisma.direccion.findMany(direccionSelectRef)
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.ampliacion.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(Prisma.DireccionScalarFieldEnum, 'subSecretariaId'),
+        subSecretaria: {
+          ...subSecretariaSelectRef,
+        },
+      },
+    })
+  }
+
   async create(createDto: CreateDto) {
     const { prisma } = this
 
@@ -38,11 +52,13 @@ export class DireccionesService {
       data: createDto,
     })
   }
+
   async updateOne(id: number, data: UpdateDto) {
     const { prisma } = this
 
     return await prisma.direccion.update({ where: { id }, data })
   }
+
   async deleteMany(deleteManyDto: DeleteManyDto) {
     const { prisma } = this
 

@@ -22,6 +22,7 @@ export class DepartamentosController {
   async create(@Body() createDto: CreateDto) {
     return await this.departamentosServices.create(createDto)
   }
+
   @Put(':id')
   async updateOne(@Param() params: SearchByIdDto, @Body() data: UpdateDto) {
     return await this.departamentosServices.updateOne(params.id, data)
