@@ -9,7 +9,6 @@ import {
 
 export class UpdateDto {
   @IsInt()
-  @Min(1)
   @IsOptional()
   numero?: number
 

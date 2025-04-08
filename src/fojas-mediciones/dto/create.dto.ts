@@ -9,7 +9,6 @@ import {
 
 export class CreateDto {
   @IsInt()
-  @Min(1)
   numero: number
 
   @IsString()
