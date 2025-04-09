@@ -1,14 +1,14 @@
-import { PrismaService } from '@/prisma.service'
 import { Injectable } from '@nestjs/common'
-import { CreateDto } from './dto/create.dto'
+import { PrismaService } from '@/prisma.service'
 import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
-import { DeleteManyDto } from '@/common/dto'
-import { provinciaSelectRef } from '@/provincias/dto/ref.dto'
-import { paisSelectRef } from '@/paises/dto/ref.dto'
-import { localidadSelectRef } from '@/localidades/dto/ref.dto'
-import { representanteSelectRef } from './dto/ref.dto'
+import { CreateDto } from './dto/create.dto'
 import { UpdateDto } from './dto/update.dto'
+import { DeleteManyDto } from '@/common/dto'
+import { representanteSelectRef } from './dto/ref.dto'
+import { paisSelectRef } from '@/paises/dto/ref.dto'
+import { provinciaSelectRef } from '@/provincias/dto/ref.dto'
+import { localidadSelectRef } from '@/localidades/dto/ref.dto'
 
 @Injectable()
 export class RepresentantesService {

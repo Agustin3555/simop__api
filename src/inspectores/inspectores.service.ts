@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '@/prisma.service'
-import { CreateDto } from './dto/create.dto'
 import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
-import { DeleteManyDto } from '@/common/dto'
+import { CreateDto } from './dto/create.dto'
 import { UpdateDto } from './dto/update.dto'
+import { DeleteManyDto, tipoSelectRef } from '@/common/dto'
+import { inspectorSelectRef } from './dto/ref.dto'
 
 @Injectable()
 export class InspectoresService {
@@ -17,11 +18,7 @@ export class InspectoresService {
       select: {
         ...omitFields(Prisma.InspectorScalarFieldEnum),
         profesiones: {
-          select: {
-            tipoProfesion: {
-              select: { id: true, nombre: true },
-            },
-          },
+          ...tipoSelectRef,
         },
       },
     })
@@ -35,9 +32,7 @@ export class InspectoresService {
   async getForConnect() {
     const { prisma } = this
 
-    return await prisma.inspector.findMany({
-      select: { id: true, apellido: true },
-    })
+    return await prisma.inspector.findMany(inspectorSelectRef)
   }
 
   async create({ profesiones, ...rest }: CreateDto) {
