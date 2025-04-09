@@ -24,7 +24,19 @@ export class ProvinciasService {
       },
     })
   }
+  async getOne(id: number) {
+    const { prisma } = this
 
+    return await prisma.provincia.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(Prisma.ProvinciaScalarFieldEnum, 'paisId'),
+        pais: {
+          ...paisSelectRef,
+        },
+      },
+    })
+  }
   async getForConnect() {
     const { prisma } = this
 

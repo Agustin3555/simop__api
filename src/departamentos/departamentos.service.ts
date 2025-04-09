@@ -25,6 +25,20 @@ export class DepartamentosService {
     })
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.departamento.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(Prisma.AmpliacionScalarFieldEnum, 'direccionId'),
+        direccion: {
+          ...direccionSelectRef,
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

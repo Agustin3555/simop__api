@@ -43,6 +43,35 @@ export class RecepcionesService {
     })
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.recepcion.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.RecepcionScalarFieldEnum,
+          'tipoRecepcionId',
+          'obraId',
+          'direccionId',
+          'departamentoId',
+        ),
+        tipoRecepcion: {
+          ...tipoSelectRef,
+        },
+        obra: {
+          ...obraSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

@@ -20,6 +20,11 @@ export class TiposParalizacionesController {
     return await this.tiposParalizacionesService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.tiposParalizacionesService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.tiposParalizacionesService.create(createDto)

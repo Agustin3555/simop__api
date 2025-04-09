@@ -43,6 +43,35 @@ export class ParalizacionesService {
     })
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.paralizacion.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.ParalizacionScalarFieldEnum,
+          'tipoParalizacionId',
+          'obraId',
+          'direccionId',
+          'departamentoId',
+        ),
+        tipoParalizacion: {
+          ...tipoSelectRef,
+        },
+        obra: {
+          ...obraSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

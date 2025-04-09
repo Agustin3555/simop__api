@@ -15,6 +15,14 @@ export class SubSecretariasService {
     return await prisma.subSecretaria.findMany()
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.subSecretaria.findUnique({
+      where: { id },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

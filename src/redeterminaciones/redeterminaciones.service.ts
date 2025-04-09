@@ -53,6 +53,39 @@ export class RedeterminacionesService {
     }))
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.redeterminacion.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.RedeterminacionScalarFieldEnum,
+          'obraId',
+          'tipoRedeterminacionId',
+          'direccionId',
+          'departamentoId',
+          'redeterminacionId',
+        ),
+        obra: {
+          ...obraSelectRef,
+        },
+        tipoRedeterminacion: {
+          ...tipoSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
+        },
+        redeterminacionesHijas: {
+          ...redeterminacionesSelectRef,
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

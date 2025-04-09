@@ -49,6 +49,35 @@ export class ModificacionesService {
     }))
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.modificacion.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.ModificacionScalarFieldEnum,
+          'obraId',
+          'tipoModificacionId',
+          'direccionId',
+          'departamentoId',
+        ),
+        obra: {
+          ...obraSelectRef,
+        },
+        tipoModificacion: {
+          ...tipoSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

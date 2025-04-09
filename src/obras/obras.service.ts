@@ -59,6 +59,47 @@ export class ObrasService {
     }))
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.obra.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.ObraScalarFieldEnum,
+          'empresaId',
+          'tipoContratacionObraId',
+          'tipoFinanciamientoObraId',
+          'tipoProgramaObraId',
+          'tipoTematicaObraId',
+          'tipoEstadoObraId',
+          'localidadId',
+        ),
+        empresa: {
+          ...empresaSelectRef,
+        },
+        tipoContratacionObra: {
+          ...tipoSelectRef,
+        },
+        tipoFinanciamientoObra: {
+          ...tipoSelectRef,
+        },
+        tipoProgramaObra: {
+          ...tipoSelectRef,
+        },
+        tipoTematicaObra: {
+          ...tipoSelectRef,
+        },
+        tipoEstadoObra: {
+          ...tipoSelectRef,
+        },
+        localidad: {
+          ...localidadSelectRef,
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

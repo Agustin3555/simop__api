@@ -15,6 +15,14 @@ export class TiposProfesionesService {
     return await prisma.tipoProfesion.findMany()
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.tipoProfesion.findUnique({
+      where: { id },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

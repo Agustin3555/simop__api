@@ -16,6 +16,11 @@ export class RepresentantesObrasController {
     return await this.representantesObrasServices.getAll()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.representantesObrasServices.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.representantesObrasServices.create(createDto)

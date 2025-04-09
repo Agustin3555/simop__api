@@ -48,6 +48,35 @@ export class FojasMedicionesService {
     }))
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.fojaMedicion.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.FojaMedicionScalarFieldEnum,
+          'obraId',
+          'inspectorId',
+          'direccionId',
+          'departamentoId',
+        ),
+        obra: {
+          ...obraSelectRef,
+        },
+        inspector: {
+          ...inspectorSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

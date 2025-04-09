@@ -15,6 +15,13 @@ export class TipoEstadosObrasService {
     return await prisma.tipoEstadoObra.findMany()
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.tipoEstadoObra.findUnique({
+      where: { id },
+    })
+  }
   async getForConnect() {
     const { prisma } = this
 

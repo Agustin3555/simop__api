@@ -15,6 +15,14 @@ export class TiposModificacionesService {
     return await prisma.tipoModificacion.findMany()
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.tipoModificacion.findUnique({
+      where: { id },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

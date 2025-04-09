@@ -34,7 +34,7 @@ export class DireccionesService {
   async getOne(id: number) {
     const { prisma } = this
 
-    return await prisma.ampliacion.findUnique({
+    return await prisma.direccion.findUnique({
       where: { id },
       select: {
         ...omitFields(Prisma.DireccionScalarFieldEnum, 'subSecretariaId'),

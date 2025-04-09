@@ -15,6 +15,14 @@ export class TipoTematicasObrasService {
     return await prisma.tipoTematicaObra.findMany()
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.tipoTematicaObra.findUnique({
+      where: { id },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

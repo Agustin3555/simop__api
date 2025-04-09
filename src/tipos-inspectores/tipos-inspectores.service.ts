@@ -15,6 +15,14 @@ export class TiposInspectoresService {
     return await prisma.tipoInspector.findMany()
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.tipoInspector.findUnique({
+      where: { id },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

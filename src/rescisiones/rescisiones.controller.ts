@@ -18,6 +18,11 @@ export class RescisionesController {
     return await this.rescisionesService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.rescisionesService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.rescisionesService.create(createDto)

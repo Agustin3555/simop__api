@@ -43,6 +43,35 @@ export class RescisionesService {
     })
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.rescision.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.RescisionScalarFieldEnum,
+          'tipoRescisionId',
+          'obraId',
+          'direccionId',
+          'departamentoId',
+        ),
+        tipoRescision: {
+          ...tipoSelectRef,
+        },
+        obra: {
+          ...obraSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

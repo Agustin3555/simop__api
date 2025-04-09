@@ -18,6 +18,11 @@ export class DepartamentosController {
     return await this.departamentosServices.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.departamentosServices.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.departamentosServices.create(createDto)

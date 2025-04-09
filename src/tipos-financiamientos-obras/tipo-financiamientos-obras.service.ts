@@ -15,6 +15,14 @@ export class TipoFinanciamientosObrasService {
     return await prisma.tipoFinanciamientoObra.findMany()
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.tipoFinanciamientoObra.findUnique({
+      where: { id },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

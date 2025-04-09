@@ -37,6 +37,31 @@ export class RepresentantesEmpresasService {
     })
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.representanteEmpresa.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.RepresentanteEmpresaScalarFieldEnum,
+          'empresaId',
+          'representanteId',
+          'tipoRepresentanteId',
+        ),
+        empresa: {
+          ...empresaSelectRef,
+        },
+        representante: {
+          ...representanteSelectRef,
+        },
+        tipoRepresentante: {
+          ...tipoSelectRef,
+        },
+      },
+    })
+  }
+
   async create(createDto: CreateDto) {
     const { prisma } = this
 

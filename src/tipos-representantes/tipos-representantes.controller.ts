@@ -20,6 +20,11 @@ export class TiposRepresentantesController {
     return await this.tiposRepresentantes.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.tiposRepresentantes.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.tiposRepresentantes.create(createDto)

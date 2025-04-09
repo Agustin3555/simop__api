@@ -18,6 +18,11 @@ export class SubSecretariasController {
     return await this.subSecretariasService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.subSecretariasService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.subSecretariasService.create(createDto)

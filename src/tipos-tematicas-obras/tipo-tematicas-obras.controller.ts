@@ -20,6 +20,11 @@ export class TipoTematicasObrasController {
     return await this.tipoTematicasObrasService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.tipoTematicasObrasService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.tipoTematicasObrasService.create(createDto)

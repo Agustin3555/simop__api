@@ -48,6 +48,35 @@ export class PagosCertificacionesService {
     }))
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.pagoCertificacion.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.PagoCertificacionScalarFieldEnum,
+          'fojaMedicionId',
+          'direccionId',
+          'departamentoId',
+          'redeterminacionId',
+        ),
+        fojaMedicion: {
+          ...fojaMedicionSelectRef,
+        },
+        direccion: {
+          ...direccionSelectRef,
+        },
+        departamento: {
+          ...departamentoSelectRef,
+        },
+        redeterminacion: {
+          ...redeterminacionesSelectRef,
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

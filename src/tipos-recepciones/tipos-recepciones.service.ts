@@ -15,6 +15,14 @@ export class TiposRecepcionesService {
     return await prisma.tipoRecepcion.findMany()
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.tipoRecepcion.findUnique({
+      where: { id },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

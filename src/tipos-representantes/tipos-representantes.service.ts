@@ -15,6 +15,14 @@ export class TiposRepresentantesService {
     return await prisma.tipoRepresentante.findMany()
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.tipoRepresentante.findUnique({
+      where: { id },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

@@ -18,6 +18,11 @@ export class InspectoresController {
     return await this.inspectoresService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.inspectoresService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.inspectoresService.create(createDto)

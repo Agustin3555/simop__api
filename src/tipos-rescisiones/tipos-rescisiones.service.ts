@@ -15,6 +15,14 @@ export class TiposRescisionesService {
     return await prisma.tipoRescision.findMany()
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.tipoRescision.findUnique({
+      where: { id },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

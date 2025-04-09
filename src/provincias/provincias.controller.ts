@@ -18,6 +18,11 @@ export class ProvinciasController {
     return await this.provinciasService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.provinciasService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.provinciasService.create(createDto)

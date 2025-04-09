@@ -25,6 +25,20 @@ export class LocalidadesService {
     })
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.localidad.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(Prisma.LocalidadScalarFieldEnum, 'provinciaId'),
+        provincia: {
+          ...provinciaSelectRef,
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

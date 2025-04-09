@@ -38,6 +38,31 @@ export class EmpresasService {
     })
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.empresa.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.EmpresaScalarFieldEnum,
+          'paisId',
+          'provinciaId',
+          'localidadId',
+        ),
+        pais: {
+          ...paisSelectRef,
+        },
+        provincia: {
+          ...provinciaSelectRef,
+        },
+        localidad: {
+          ...localidadSelectRef,
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

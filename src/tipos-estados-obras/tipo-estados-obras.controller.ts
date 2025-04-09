@@ -20,6 +20,11 @@ export class TipoEstadosObrasController {
     return await this.tipoEstadosObrasService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.tipoEstadosObrasService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.tipoEstadosObrasService.create(createDto)

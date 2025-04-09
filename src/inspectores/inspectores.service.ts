@@ -32,6 +32,24 @@ export class InspectoresService {
     }))
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.inspector.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(Prisma.InspectorScalarFieldEnum),
+        profesiones: {
+          select: {
+            tipoProfesion: {
+              select: { id: true, nombre: true },
+            },
+          },
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

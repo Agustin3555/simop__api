@@ -21,6 +21,11 @@ export class PagosCertificacionesController {
     return await this.pagoCertificacionesService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.pagoCertificacionesService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.pagoCertificacionesService.create(createDto)

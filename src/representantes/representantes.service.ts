@@ -38,6 +38,31 @@ export class RepresentantesService {
     })
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.representante.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.RepresentanteScalarFieldEnum,
+          'paisId',
+          'provinciaId',
+          'localidadId',
+        ),
+        pais: {
+          ...paisSelectRef,
+        },
+        provincia: {
+          ...provinciaSelectRef,
+        },
+        localidad: {
+          ...localidadSelectRef,
+        },
+      },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

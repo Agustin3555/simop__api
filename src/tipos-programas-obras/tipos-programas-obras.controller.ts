@@ -21,6 +21,11 @@ export class TiposProgramasObrasController {
     return await this.tipoProgramasObras.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.tipoProgramasObras.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.tipoProgramasObras.create(createDto)

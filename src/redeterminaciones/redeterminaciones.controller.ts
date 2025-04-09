@@ -20,6 +20,11 @@ export class RedeterminacionesController {
     return await this.redeterminacionesService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.redeterminacionesService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.redeterminacionesService.create(createDto)

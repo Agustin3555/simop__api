@@ -20,6 +20,11 @@ export class TiposRescisionesController {
     return await this.tiposRescisionesService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.tiposRescisionesService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.tiposRescisionesService.create(createDto)

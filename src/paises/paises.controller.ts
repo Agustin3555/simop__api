@@ -18,6 +18,11 @@ export class PaisesController {
     return await this.paisService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.paisService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.paisService.create(createDto)

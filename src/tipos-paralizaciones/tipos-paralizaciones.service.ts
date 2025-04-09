@@ -15,6 +15,14 @@ export class TiposParalizacionesService {
     return await prisma.tipoParalizacion.findMany()
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.tipoParalizacion.findUnique({
+      where: { id },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

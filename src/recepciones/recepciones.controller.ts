@@ -18,6 +18,11 @@ export class RecepcionesController {
     return await this.recepcionesService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.recepcionesService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.recepcionesService.create(createDto)

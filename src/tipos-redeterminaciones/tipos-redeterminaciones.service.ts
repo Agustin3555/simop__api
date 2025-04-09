@@ -15,6 +15,14 @@ export class TiposRedeterminacionesService {
     return await prisma.tipoRedeterminacion.findMany()
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.tipoRedeterminacion.findUnique({
+      where: { id },
+    })
+  }
+
   async getForConnect() {
     const { prisma } = this
 

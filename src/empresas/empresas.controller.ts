@@ -19,6 +19,11 @@ export class EmpresasController {
     return await this.empresasService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.empresasService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.empresasService.create(createDto)

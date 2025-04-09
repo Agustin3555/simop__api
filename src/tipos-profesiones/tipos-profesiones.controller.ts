@@ -20,6 +20,11 @@ export class TiposProfesionesController {
     return await this.tiposProfesionesService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.tiposProfesionesService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.tiposProfesionesService.create(createDto)

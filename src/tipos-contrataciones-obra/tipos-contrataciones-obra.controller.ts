@@ -15,6 +15,11 @@ export class TiposContratacionesObraController {
     return await this.tiposContratacionesObraService.getAll()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.tiposContratacionesObraService.getOne(params.id)
+  }
+
   @Get('for-connect')
   async getForConnect() {
     return await this.tiposContratacionesObraService.getForConnect()

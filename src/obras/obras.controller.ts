@@ -19,6 +19,11 @@ export class ObrasController {
     return await this.obrasService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.obrasService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.obrasService.create(createDto)

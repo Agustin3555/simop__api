@@ -20,6 +20,11 @@ export class TiposRecepcionesController {
     return await this.tiposRecepcionesService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.tiposRecepcionesService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.tiposRecepcionesService.create(createDto)

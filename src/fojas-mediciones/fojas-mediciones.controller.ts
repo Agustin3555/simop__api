@@ -19,6 +19,11 @@ export class FojasMedicionesController {
     return await this.service.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.service.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.service.create(createDto)

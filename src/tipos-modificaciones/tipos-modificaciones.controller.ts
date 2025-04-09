@@ -20,6 +20,11 @@ export class TiposModificacionesController {
     return await this.tiposModificacionesService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.tiposModificacionesService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.tiposModificacionesService.create(createDto)

@@ -41,6 +41,35 @@ export class InspectoresObrasService {
     })
   }
 
+  async getOne(id: number) {
+    const { prisma } = this
+
+    return await prisma.inspectorObra.findUnique({
+      where: { id },
+      select: {
+        ...omitFields(
+          Prisma.InspectorObraScalarFieldEnum,
+          'obraId',
+          'inspectorId',
+          'tipoInspectorId',
+          'tipoProfesionId',
+        ),
+        obra: {
+          ...obraSelectRef,
+        },
+        inspector: {
+          ...inspectorSelectRef,
+        },
+        tipoInspector: {
+          ...tipoSelectRef,
+        },
+        tipoProfesion: {
+          ...tipoSelectRef,
+        },
+      },
+    })
+  }
+
   async create(createDto: CreateDto) {
     const { prisma } = this
 

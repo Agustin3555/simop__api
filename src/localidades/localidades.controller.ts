@@ -19,6 +19,11 @@ export class LocalidadesController {
     return await this.localidadesService.getForConnect()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.localidadesService.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.localidadesService.create(createDto)

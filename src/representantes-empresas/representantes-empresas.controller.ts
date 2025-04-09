@@ -16,6 +16,11 @@ export class RepresentantesEmpresasController {
     return await this.representantesEmpresas.getAll()
   }
 
+  @Get(':id')
+  async getOne(@Param() params: SearchByIdDto) {
+    return await this.representantesEmpresas.getOne(params.id)
+  }
+
   @Post()
   async create(@Body() createDto: CreateDto) {
     return await this.representantesEmpresas.create(createDto)
