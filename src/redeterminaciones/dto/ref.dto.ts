@@ -2,6 +2,4 @@ import { selectFields } from '@/common/helpers/selectFields'
 import { Prisma } from '@prisma/client'
 
 export const redeterminacionesSelectRef =
-  selectFields<Prisma.RedeterminacionScalarFieldEnum>(
-    'numeroExpedienteSolicitud',
-  )
+  selectFields<Prisma.RedeterminacionScalarFieldEnum>('numeroExpediente')
