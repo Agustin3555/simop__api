@@ -4,11 +4,10 @@ import {
   IsString,
   IsDecimal,
   IsDateString,
-  IsNumber,
 } from 'class-validator'
 
 export class UpdateDto {
-  @IsNumber()
+  @IsInt()
   @IsOptional()
   numero?: number
 
@@ -27,10 +26,6 @@ export class UpdateDto {
   @IsString()
   @IsOptional()
   observaciones?: string
-
-  @IsInt()
-  @IsOptional()
-  certificacionId?: number
 
   @IsInt()
   @IsOptional()

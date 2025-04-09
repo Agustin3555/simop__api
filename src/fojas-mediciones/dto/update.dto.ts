@@ -9,7 +9,6 @@ import {
 
 export class UpdateDto {
   @IsInt()
-  @Min(1)
   @IsOptional()
   numero?: number
 
@@ -39,7 +38,7 @@ export class UpdateDto {
   @IsOptional()
   inspectorId?: number
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
   montoTotal?: number
 

@@ -5,7 +5,6 @@ import {
   IsDecimal,
   IsDateString,
   IsBoolean,
-  IsNumber,
 } from 'class-validator'
 
 export class CreateDto {
