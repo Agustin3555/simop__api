@@ -37,11 +37,7 @@ export class InspectoresService {
       select: {
         ...omitFields(Prisma.InspectorScalarFieldEnum),
         profesiones: {
-          select: {
-            tipoProfesion: {
-              select: { id: true, nombre: true },
-            },
-          },
+          ...tipoSelectRef,
         },
       },
     })
