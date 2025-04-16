@@ -19,6 +19,11 @@ export class ObrasController {
     return await this.obrasService.getForConnect()
   }
 
+  @Get('totales')
+  async getTotales() {
+    return await this.obrasService.getTotales()
+  }
+
   @Get(':id')
   async getOne(@Param() params: SearchByIdDto) {
     return await this.obrasService.getOne(params.id)
