@@ -18,13 +18,17 @@ export class InspectoresService {
       select: {
         ...omitFields(Prisma.InspectorScalarFieldEnum),
         profesiones: {
-          ...tipoSelectRef,
+          select: {
+            tipoProfesion: {
+              ...tipoSelectRef,
+            },
+          },
         },
       },
     })
 
     return inspectores.map(({ profesiones, ...rest }) => ({
-      profesiones: profesiones.map(({ tipoProfesion }: any) => tipoProfesion),
+      profesiones: profesiones?.map(({ tipoProfesion }: any) => tipoProfesion),
       ...rest,
     }))
   }
