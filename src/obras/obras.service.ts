@@ -212,6 +212,7 @@ export class ObrasService {
         return {
           ...rest,
           montoContratacion: montoContratacion && String(montoContratacion),
+          avanceTotal,
           nuevoMonto: undefined,
 
           totalCertificadoFojaMedicion: String(totalCertificadoFojaMedicion),
