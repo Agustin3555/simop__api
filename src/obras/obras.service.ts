@@ -76,6 +76,9 @@ export class ObrasService {
         localidad: {
           ...localidadSelectRef,
         },
+        tipoEstadoObra: {
+          ...tipoSelectRef,
+        },
 
         fojasMedicion: {
           select: {
