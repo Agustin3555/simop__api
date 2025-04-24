@@ -96,12 +96,29 @@ export class ObrasService {
         redeterminaciones: {
           select: {
             montoTotal: true,
+            nuevoMontoObra: true,
+            fechaRedeterminacion: true,
+            tipoRedeterminacion: {
+              select: {
+                nombre: true,
+              },
+            },
             pagosCertificacion: {
               select: {
                 numero: true,
                 ordenPago: true,
                 fecha: true,
                 monto: true,
+              },
+            },
+          },
+        },
+        modificaciones: {
+          select: {
+            monto: true,
+            tipoModificacion: {
+              select: {
+                nombre: true,
               },
             },
           },
@@ -115,6 +132,7 @@ export class ObrasService {
         avanceTotal,
         fojasMedicion,
         redeterminaciones,
+        modificaciones,
         ...rest
       }) => {
         const totalCertificadoFojaMedicion = fojasMedicion.reduce(
@@ -205,15 +223,43 @@ export class ObrasService {
 
         const porcentajePendienteCertificar = 100 - avanceTotal
 
+        const balanceEconomico = modificaciones.reduce(
+          (acc, { monto, tipoModificacion }) => {
+            const negative = tipoModificacion.nombre === 'Economía'
+
+            return acc + Number(monto) * (negative ? -1 : 1)
+          },
+          0,
+        )
+
+        const redeterminacionMasReciente = redeterminaciones
+          .filter(
+            ({ tipoRedeterminacion }) =>
+              tipoRedeterminacion.nombre ===
+              'Redeterminación Definitiva Parcial',
+          )
+          .reduce((másReciente, actual) => {
+            return !másReciente ||
+              new Date(actual.fechaRedeterminacion) >
+                new Date(másReciente.fechaRedeterminacion)
+              ? actual
+              : másReciente
+          }, null)
+
+        const { nuevoMontoObra } = redeterminacionMasReciente ?? {}
+
+        const nuevoMonto =
+          Number(
+            nuevoMontoObra === undefined ? montoContratacion : nuevoMontoObra,
+          ) + balanceEconomico
+
         const montoPendienteCertificar =
-          Number(montoContratacion) -
-          Number(montoContratacion) * porcentajePendienteCertificar
+          (porcentajePendienteCertificar * nuevoMonto) / 100
 
         return {
           ...rest,
           montoContratacion: montoContratacion && String(montoContratacion),
           avanceTotal,
-          nuevoMonto: undefined,
 
           totalCertificadoFojaMedicion: String(totalCertificadoFojaMedicion),
           totalOrdenPagoFojaMedicion: String(totalOrdenPagoFojaMedicion),
@@ -233,6 +279,8 @@ export class ObrasService {
 
           porcentajePendienteCertificar,
           montoPendienteCertificar: String(montoPendienteCertificar),
+          balanceEconomico: String(balanceEconomico),
+          nuevoMonto: String(nuevoMonto),
         }
       },
     )
