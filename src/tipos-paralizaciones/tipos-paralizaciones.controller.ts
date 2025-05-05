@@ -15,9 +15,9 @@ export class TiposParalizacionesController {
     return await this.tiposParalizacionesService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tiposParalizacionesService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tiposParalizacionesService.getRefs()
   }
 
   @Get(':id')

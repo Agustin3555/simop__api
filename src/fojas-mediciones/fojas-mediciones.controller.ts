@@ -14,9 +14,9 @@ export class FojasMedicionesController {
     return await this.service.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.service.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.service.getRefs()
   }
 
   @Get(':id')

@@ -25,7 +25,7 @@ export class DireccionesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.direccion.findMany(direccionSelectRef)

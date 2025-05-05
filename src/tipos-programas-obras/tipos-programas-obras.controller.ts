@@ -16,9 +16,9 @@ export class TiposProgramasObrasController {
     return await this.tipoProgramasObras.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tipoProgramasObras.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tipoProgramasObras.getRefs()
   }
 
   @Get(':id')

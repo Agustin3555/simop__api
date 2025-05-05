@@ -13,9 +13,9 @@ export class SubSecretariasController {
     return await this.subSecretariasService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.subSecretariasService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.subSecretariasService.getRefs()
   }
 
   @Get(':id')

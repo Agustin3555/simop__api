@@ -15,9 +15,9 @@ export class TipoTematicasObrasController {
     return await this.tipoTematicasObrasService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tipoTematicasObrasService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tipoTematicasObrasService.getRefs()
   }
 
   @Get(':id')

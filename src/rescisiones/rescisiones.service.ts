@@ -72,7 +72,7 @@ export class RescisionesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.rescision.findMany(rescisionSelectRef)

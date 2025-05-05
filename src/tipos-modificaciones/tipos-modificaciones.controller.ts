@@ -15,9 +15,9 @@ export class TiposModificacionesController {
     return await this.tiposModificacionesService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tiposModificacionesService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tiposModificacionesService.getRefs()
   }
 
   @Get(':id')

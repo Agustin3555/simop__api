@@ -23,7 +23,7 @@ export class TipoFinanciamientosObrasService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.tipoFinanciamientoObra.findMany(tipoSelectRef)

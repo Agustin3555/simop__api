@@ -37,7 +37,7 @@ export class ProvinciasService {
       },
     })
   }
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.provincia.findMany(provinciaSelectRef)

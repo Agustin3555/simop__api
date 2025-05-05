@@ -86,7 +86,7 @@ export class RedeterminacionesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.redeterminacion.findMany(redeterminacionesSelectRef)

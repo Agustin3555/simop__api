@@ -14,9 +14,9 @@ export class RepresentantesController {
     return await this.relEmpresasServices.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.relEmpresasServices.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.relEmpresasServices.getRefs()
   }
 
   @Get(':id')

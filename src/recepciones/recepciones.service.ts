@@ -72,7 +72,7 @@ export class RecepcionesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.recepcion.findMany(recepcionSelectRef)

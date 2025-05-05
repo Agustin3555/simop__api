@@ -15,9 +15,9 @@ export class TipoFinanciamientosObrasController {
     return await this.tipoFinanciamientosObrasService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tipoFinanciamientosObrasService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tipoFinanciamientosObrasService.getRefs()
   }
 
   @Get(':id')

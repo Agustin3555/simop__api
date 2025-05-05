@@ -13,9 +13,9 @@ export class InspectoresController {
     return await this.inspectoresService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.inspectoresService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.inspectoresService.getRefs()
   }
 
   @Get(':id')

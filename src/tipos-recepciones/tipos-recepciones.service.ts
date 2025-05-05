@@ -23,7 +23,7 @@ export class TiposRecepcionesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.tipoRecepcion.findMany(tipoSelectRef)

@@ -77,7 +77,7 @@ export class FojasMedicionesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.fojaMedicion.findMany(fojaMedicionSelectRef)

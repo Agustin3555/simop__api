@@ -15,9 +15,9 @@ export class TiposRepresentantesController {
     return await this.tiposRepresentantes.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tiposRepresentantes.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tiposRepresentantes.getRefs()
   }
 
   @Get(':id')

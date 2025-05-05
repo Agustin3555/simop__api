@@ -77,7 +77,7 @@ export class PagosCertificacionesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.pagoCertificacion.findMany(pagoCertificacionSelectRef)

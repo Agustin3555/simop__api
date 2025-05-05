@@ -13,9 +13,9 @@ export class DireccionesController {
     return await this.direccionesService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.direccionesService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.direccionesService.getRefs()
   }
 
   @Get(':id')

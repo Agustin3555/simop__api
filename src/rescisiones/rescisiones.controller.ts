@@ -13,9 +13,9 @@ export class RescisionesController {
     return await this.rescisionesService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.rescisionesService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.rescisionesService.getRefs()
   }
 
   @Get(':id')

@@ -15,9 +15,9 @@ export class TiposInspectoresController {
     return await this.tiposInspectoresService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tiposInspectoresService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tiposInspectoresService.getRefs()
   }
 
   @Get(':id')

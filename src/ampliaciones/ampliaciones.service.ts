@@ -38,7 +38,7 @@ export class AmpliacionesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.ampliacion.findMany(ampliacionesSelectRef)

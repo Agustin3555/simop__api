@@ -72,7 +72,7 @@ export class ParalizacionesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.paralizacion.findMany(paralizacionSelectRef)

@@ -16,9 +16,9 @@ export class PagosCertificacionesController {
     return await this.pagoCertificacionesService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.pagoCertificacionesService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.pagoCertificacionesService.getRefs()
   }
 
   @Get(':id')

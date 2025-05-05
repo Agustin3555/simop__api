@@ -15,9 +15,9 @@ export class TiposRedeterminacionesController {
     return await this.tipoRedeterminaciones.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tipoRedeterminaciones.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tipoRedeterminaciones.getRefs()
   }
 
   @Get(':id')

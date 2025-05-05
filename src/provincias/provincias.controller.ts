@@ -13,9 +13,9 @@ export class ProvinciasController {
     return await this.provinciasService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.provinciasService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.provinciasService.getRefs()
   }
 
   @Get(':id')

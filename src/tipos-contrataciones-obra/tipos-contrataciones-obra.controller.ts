@@ -15,9 +15,9 @@ export class TiposContratacionesObraController {
     return await this.tiposContratacionesObraService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tiposContratacionesObraService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tiposContratacionesObraService.getRefs()
   }
 
   @Get(':id')

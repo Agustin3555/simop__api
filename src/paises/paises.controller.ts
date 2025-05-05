@@ -13,9 +13,9 @@ export class PaisesController {
     return await this.paisService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.paisService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.paisService.getRefs()
   }
 
   @Get(':id')

@@ -14,9 +14,9 @@ export class EmpresasController {
     return await this.empresasService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.empresasService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.empresasService.getRefs()
   }
 
   @Get(':id')

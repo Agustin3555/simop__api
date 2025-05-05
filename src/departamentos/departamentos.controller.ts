@@ -13,9 +13,9 @@ export class DepartamentosController {
     return await this.departamentosServices.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.departamentosServices.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.departamentosServices.getRefs()
   }
 
   @Get(':id')

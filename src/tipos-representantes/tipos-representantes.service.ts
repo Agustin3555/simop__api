@@ -23,7 +23,7 @@ export class TiposRepresentantesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.tipoRepresentante.findMany(tipoSelectRef)

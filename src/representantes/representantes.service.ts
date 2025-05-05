@@ -63,7 +63,7 @@ export class RepresentantesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.representante.findMany(representanteSelectRef)

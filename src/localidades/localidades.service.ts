@@ -39,7 +39,7 @@ export class LocalidadesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.localidad.findMany(localidadSelectRef)

@@ -15,9 +15,9 @@ export class TipoEstadosObrasController {
     return await this.tipoEstadosObrasService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tipoEstadosObrasService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tipoEstadosObrasService.getRefs()
   }
 
   @Get(':id')

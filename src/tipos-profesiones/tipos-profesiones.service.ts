@@ -23,7 +23,7 @@ export class TiposProfesionesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.tipoProfesion.findMany(tipoSelectRef)

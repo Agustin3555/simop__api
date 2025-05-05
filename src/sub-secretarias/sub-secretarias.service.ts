@@ -23,7 +23,7 @@ export class SubSecretariasService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.subSecretaria.findMany(subSecretariaSelectRef)

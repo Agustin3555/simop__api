@@ -47,7 +47,7 @@ export class InspectoresService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.inspector.findMany(inspectorSelectRef)

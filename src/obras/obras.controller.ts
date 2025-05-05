@@ -14,9 +14,9 @@ export class ObrasController {
     return await this.obrasService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.obrasService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.obrasService.getRefs()
   }
 
   @Get('totales')
@@ -27,6 +27,11 @@ export class ObrasController {
   @Get(':id')
   async getOne(@Param() params: SearchByIdDto) {
     return await this.obrasService.getOne(params.id)
+  }
+
+  @Get(':id/detail')
+  async getOneDetail(@Param() params: SearchByIdDto) {
+    return await this.obrasService.getOneDetail(params.id)
   }
 
   @Post()

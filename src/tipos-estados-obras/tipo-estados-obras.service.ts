@@ -22,7 +22,7 @@ export class TipoEstadosObrasService {
       where: { id },
     })
   }
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.tipoEstadoObra.findMany(tipoSelectRef)

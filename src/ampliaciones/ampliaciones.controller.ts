@@ -13,9 +13,9 @@ export class AmpliacionesController {
     return await this.ampliacionesService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.ampliacionesService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.ampliacionesService.getRefs()
   }
 
   @Get(':id')

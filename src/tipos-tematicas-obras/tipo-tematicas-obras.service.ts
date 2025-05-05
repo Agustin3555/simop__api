@@ -23,7 +23,7 @@ export class TipoTematicasObrasService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.tipoTematicaObra.findMany(tipoSelectRef)

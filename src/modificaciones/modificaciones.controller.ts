@@ -13,9 +13,9 @@ export class ModificacionesController {
     return await this.modificacionesService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.modificacionesService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.modificacionesService.getRefs()
   }
 
   @Get(':id')

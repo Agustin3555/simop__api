@@ -14,9 +14,9 @@ export class LocalidadesController {
     return await this.localidadesService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.localidadesService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.localidadesService.getRefs()
   }
 
   @Get(':id')

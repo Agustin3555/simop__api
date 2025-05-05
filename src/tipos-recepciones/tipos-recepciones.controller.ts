@@ -15,9 +15,9 @@ export class TiposRecepcionesController {
     return await this.tiposRecepcionesService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tiposRecepcionesService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tiposRecepcionesService.getRefs()
   }
 
   @Get(':id')

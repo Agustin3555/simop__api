@@ -15,9 +15,9 @@ export class TiposRescisionesController {
     return await this.tiposRescisionesService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tiposRescisionesService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tiposRescisionesService.getRefs()
   }
 
   @Get(':id')

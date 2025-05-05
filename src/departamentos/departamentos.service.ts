@@ -39,7 +39,7 @@ export class DepartamentosService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.departamento.findMany(departamentoSelectRef)

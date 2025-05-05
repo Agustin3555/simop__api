@@ -23,7 +23,7 @@ export class PaisesService {
     })
   }
 
-  async getForConnect() {
+  async getRefs() {
     const { prisma } = this
 
     return await prisma.pais.findMany(paisSelectRef)

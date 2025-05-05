@@ -15,9 +15,9 @@ export class RedeterminacionesController {
     return await this.redeterminacionesService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.redeterminacionesService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.redeterminacionesService.getRefs()
   }
 
   @Get(':id')

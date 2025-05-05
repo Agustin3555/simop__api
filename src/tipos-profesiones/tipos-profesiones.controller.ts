@@ -15,9 +15,9 @@ export class TiposProfesionesController {
     return await this.tiposProfesionesService.getAll()
   }
 
-  @Get('for-connect')
-  async getForConnect() {
-    return await this.tiposProfesionesService.getForConnect()
+  @Get('refs')
+  async getRefs() {
+    return await this.tiposProfesionesService.getRefs()
   }
 
   @Get(':id')
