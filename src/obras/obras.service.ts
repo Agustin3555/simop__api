@@ -10,6 +10,52 @@ import { localidadSelectRef } from '@/localidades/dto/ref.dto'
 import { obraSelectRef } from './dto/ref.dto'
 import { UpdateDto } from './dto/update.dto'
 
+const obraSelectForTotales = {
+  fojasMedicion: {
+    select: {
+      montoTotal: true,
+      pagosCertificacion: {
+        select: {
+          numero: true,
+          ordenPago: true,
+          fecha: true,
+          monto: true,
+        },
+      },
+    },
+  },
+  redeterminaciones: {
+    select: {
+      montoTotal: true,
+      nuevoMontoObra: true,
+      fechaRedeterminacion: true,
+      tipoRedeterminacion: {
+        select: {
+          nombre: true,
+        },
+      },
+      pagosCertificacion: {
+        select: {
+          numero: true,
+          ordenPago: true,
+          fecha: true,
+          monto: true,
+        },
+      },
+    },
+  },
+  modificaciones: {
+    select: {
+      monto: true,
+      tipoModificacion: {
+        select: {
+          nombre: true,
+        },
+      },
+    },
+  },
+}
+
 @Injectable()
 export class ObrasService {
   constructor(private readonly prisma: PrismaService) {}
@@ -79,50 +125,7 @@ export class ObrasService {
         tipoEstadoObra: {
           ...tipoSelectRef,
         },
-
-        fojasMedicion: {
-          select: {
-            montoTotal: true,
-            pagosCertificacion: {
-              select: {
-                numero: true,
-                ordenPago: true,
-                fecha: true,
-                monto: true,
-              },
-            },
-          },
-        },
-        redeterminaciones: {
-          select: {
-            montoTotal: true,
-            nuevoMontoObra: true,
-            fechaRedeterminacion: true,
-            tipoRedeterminacion: {
-              select: {
-                nombre: true,
-              },
-            },
-            pagosCertificacion: {
-              select: {
-                numero: true,
-                ordenPago: true,
-                fecha: true,
-                monto: true,
-              },
-            },
-          },
-        },
-        modificaciones: {
-          select: {
-            monto: true,
-            tipoModificacion: {
-              select: {
-                nombre: true,
-              },
-            },
-          },
-        },
+        ...obraSelectForTotales,
       },
     })
 
@@ -336,62 +339,45 @@ export class ObrasService {
         id: true,
         numero: true,
         nombre: true,
+        numeroExpediente: true,
+        numeroResolucion: true,
+        anioResolucion: true,
+        numeroContratacion: true,
+        fechaContratacion: true,
         montoContratacion: true,
         fechaInicio: true,
+        fechaFin: true,
+        plazoMeses: true,
+        plazoDias: true,
+        direccion: true,
+        lugar: true,
+        nomenclaturaCatastral: true,
+        observaciones: true,
         avanceTotal: true,
+
         empresa: {
           ...empresaSelectRef,
         },
-        localidad: {
-          ...localidadSelectRef,
+        tipoContratacionObra: {
+          ...tipoSelectRef,
+        },
+        tipoFinanciamientoObra: {
+          ...tipoSelectRef,
+        },
+        tipoProgramaObra: {
+          ...tipoSelectRef,
+        },
+        tipoTematicaObra: {
+          ...tipoSelectRef,
         },
         tipoEstadoObra: {
           ...tipoSelectRef,
         },
+        localidad: {
+          ...localidadSelectRef,
+        },
 
-        fojasMedicion: {
-          select: {
-            montoTotal: true,
-            pagosCertificacion: {
-              select: {
-                numero: true,
-                ordenPago: true,
-                fecha: true,
-                monto: true,
-              },
-            },
-          },
-        },
-        redeterminaciones: {
-          select: {
-            montoTotal: true,
-            nuevoMontoObra: true,
-            fechaRedeterminacion: true,
-            tipoRedeterminacion: {
-              select: {
-                nombre: true,
-              },
-            },
-            pagosCertificacion: {
-              select: {
-                numero: true,
-                ordenPago: true,
-                fecha: true,
-                monto: true,
-              },
-            },
-          },
-        },
-        modificaciones: {
-          select: {
-            monto: true,
-            tipoModificacion: {
-              select: {
-                nombre: true,
-              },
-            },
-          },
-        },
+        ...obraSelectForTotales,
       },
     })
 
