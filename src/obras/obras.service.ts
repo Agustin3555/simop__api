@@ -236,11 +236,14 @@ export class ObrasService {
         )
 
         const redeterminacionMasReciente = redeterminaciones
-          .filter(
-            ({ tipoRedeterminacion }) =>
+          .filter(({ tipoRedeterminacion }) => {
+            if (!tipoRedeterminacion) return
+
+            return (
               tipoRedeterminacion.nombre ===
-              'Redeterminación Definitiva Parcial',
-          )
+              'Redeterminación Definitiva Parcial'
+            )
+          })
           .reduce((másReciente, actual) => {
             return !másReciente ||
               new Date(actual.fechaRedeterminacion) >
@@ -488,10 +491,13 @@ export class ObrasService {
     )
 
     const redeterminacionMasReciente = redeterminaciones
-      .filter(
-        ({ tipoRedeterminacion }) =>
-          tipoRedeterminacion.nombre === 'Redeterminación Definitiva Parcial',
-      )
+      .filter(({ tipoRedeterminacion }) => {
+        if (!tipoRedeterminacion) return
+
+        return (
+          tipoRedeterminacion.nombre === 'Redeterminación Definitiva Parcial'
+        )
+      })
       .reduce((másReciente, actual) => {
         return !másReciente ||
           new Date(actual.fechaRedeterminacion) >
