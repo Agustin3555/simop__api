@@ -4,15 +4,25 @@ import { CreateDto } from './dto/create.dto'
 import { omitFields } from '@/common/helpers'
 import { Prisma } from '@prisma/client'
 import { DeleteManyDto } from '@/common/dto'
+import { UpdateDto } from './dto/update.dto'
 import { empresaSelectRef } from '@/empresas/dto/ref.dto'
 import { tipoSelectRef } from '@/common/dto'
 import { localidadSelectRef } from '@/localidades/dto/ref.dto'
 import { obraSelectRef } from './dto/ref.dto'
-import { UpdateDto } from './dto/update.dto'
+import { ampliacionesSelectRef } from '@/ampliaciones/dto/ref.dto'
+import { representanteSelectRef } from '@/representantes/dto/ref.dto'
+import { inspectorSelectRef } from '@/inspectores/dto/ref.dto'
+import { paralizacionSelectRef } from '@/paralizaciones/dto/ref.dto'
+import { rescisionSelectRef } from '@/rescisiones/dto/ref.dto'
+import { recepcionSelectRef } from '@/recepciones/dto/ref.dto'
+import { fojaMedicionSelectRef } from '@/fojas-mediciones/dto/ref.dto'
+import { redeterminacionesSelectRef } from '@/redeterminaciones/dto/ref.dto'
+import { modificacionesSelectRef } from '@/modificaciones/dto/ref.dto'
 
 const obraSelectForTotales = {
   fojasMedicion: {
     select: {
+      ...fojaMedicionSelectRef.select,
       montoTotal: true,
       pagosCertificacion: {
         select: {
@@ -26,6 +36,7 @@ const obraSelectForTotales = {
   },
   redeterminaciones: {
     select: {
+      ...redeterminacionesSelectRef.select,
       montoTotal: true,
       nuevoMontoObra: true,
       fechaRedeterminacion: true,
@@ -46,6 +57,7 @@ const obraSelectForTotales = {
   },
   modificaciones: {
     select: {
+      ...modificacionesSelectRef.select,
       monto: true,
       tipoModificacion: {
         select: {
@@ -105,7 +117,7 @@ export class ObrasService {
     }))
   }
 
-  async getTotales() {
+  async getAllTotales() {
     const { prisma } = this
 
     const obras = await prisma.obra.findMany({
@@ -333,7 +345,7 @@ export class ObrasService {
     })
   }
 
-  async getOneDetail(id: number) {
+  async getOneDetalle(id: number) {
     const { prisma } = this
 
     const obra = await prisma.obra.findUnique({
@@ -358,38 +370,47 @@ export class ObrasService {
         observaciones: true,
         avanceTotal: true,
 
-        empresa: {
-          ...empresaSelectRef,
-        },
-        tipoContratacionObra: {
-          ...tipoSelectRef,
-        },
-        tipoFinanciamientoObra: {
-          ...tipoSelectRef,
-        },
-        tipoProgramaObra: {
-          ...tipoSelectRef,
-        },
-        tipoTematicaObra: {
-          ...tipoSelectRef,
-        },
-        tipoEstadoObra: {
-          ...tipoSelectRef,
-        },
-        localidad: {
-          ...localidadSelectRef,
-        },
+        empresa: empresaSelectRef,
+        tipoContratacionObra: tipoSelectRef,
+        tipoFinanciamientoObra: tipoSelectRef,
+        tipoProgramaObra: tipoSelectRef,
+        tipoTematicaObra: tipoSelectRef,
+        tipoEstadoObra: tipoSelectRef,
+        localidad: localidadSelectRef,
 
         ...obraSelectForTotales,
+
+        representantes: {
+          select: {
+            representante: representanteSelectRef,
+          },
+        },
+        inspectores: {
+          select: {
+            inspector: inspectorSelectRef,
+          },
+        },
+        ampliaciones: ampliacionesSelectRef,
+        paralizaciones: paralizacionSelectRef,
+        rescisiones: rescisionSelectRef,
+        recepciones: recepcionSelectRef,
       },
     })
 
     const {
       montoContratacion,
       avanceTotal,
+
+      representantes,
+      inspectores,
       fojasMedicion,
       redeterminaciones,
+      ampliaciones,
       modificaciones,
+      paralizaciones,
+      rescisiones,
+      recepciones,
+
       ...rest
     } = obra
 
@@ -537,6 +558,16 @@ export class ObrasService {
       montoPendienteCertificar: String(montoPendienteCertificar),
       balanceEconomico: String(balanceEconomico),
       nuevoMonto: String(nuevoMonto),
+
+      representantes: representantes.map(({ representante }) => representante),
+      inspectores: inspectores.map(({ inspector }) => inspector),
+      fojasMedicion,
+      redeterminaciones,
+      ampliaciones,
+      modificaciones,
+      paralizaciones,
+      rescisiones,
+      recepciones,
     }
   }
 
