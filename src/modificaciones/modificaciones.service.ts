@@ -15,10 +15,12 @@ import { departamentoSelectRef } from '@/departamentos/dto/ref.dto'
 export class ModificacionesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getAll() {
+  async getAll(filters?: { obraId?: number }) {
     const { prisma } = this
+    const { obraId } = filters ?? {}
 
     const modificaciones = await prisma.modificacion.findMany({
+      where: { obraId },
       select: {
         ...omitFields(
           Prisma.ModificacionScalarFieldEnum,
