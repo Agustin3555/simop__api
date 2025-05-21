@@ -6,5 +6,6 @@ import { PrismaService } from '@/prisma.service'
 @Module({
   controllers: [RescisionesController],
   providers: [RescisionesService, PrismaService],
+  exports: [RescisionesService],
 })
 export class RescisionesModule {}

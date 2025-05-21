@@ -6,5 +6,6 @@ import { PrismaService } from '@/prisma.service'
 @Module({
   controllers: [AmpliacionesController],
   providers: [AmpliacionesService, PrismaService],
+  exports: [AmpliacionesService],
 })
 export class AmpliacionesModule {}

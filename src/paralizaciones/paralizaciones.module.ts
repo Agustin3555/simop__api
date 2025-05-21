@@ -6,5 +6,6 @@ import { PrismaService } from '@/prisma.service'
 @Module({
   controllers: [ParalizacionesController],
   providers: [ParalizacionesService, PrismaService],
+  exports: [ParalizacionesService],
 })
 export class ParalizacionesModule {}

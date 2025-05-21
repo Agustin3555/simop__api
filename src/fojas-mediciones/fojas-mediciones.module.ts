@@ -6,5 +6,6 @@ import { PrismaService } from '@/prisma.service'
 @Module({
   providers: [FojasMedicionesService, PrismaService],
   controllers: [FojasMedicionesController],
+  exports: [FojasMedicionesService],
 })
 export class FojasMedicionesModule {}
