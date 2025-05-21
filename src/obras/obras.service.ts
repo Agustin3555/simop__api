@@ -236,7 +236,9 @@ export class ObrasService {
         const totalPendientePagoRedeterminacion =
           totalOrdenPagoRedeterminacion - totalPagadoRedeterminacion
 
-        const porcentajePendienteCertificar = 100 - avanceTotal
+        const porcentajePendienteCertificar = parseFloat(
+          (100 - avanceTotal).toFixed(4),
+        )
 
         const balanceEconomico = modificaciones.reduce(
           (acc, { monto, tipoModificacion }) => {
@@ -271,8 +273,9 @@ export class ObrasService {
             nuevoMontoObra === undefined ? montoContratacion : nuevoMontoObra,
           ) + balanceEconomico
 
-        const montoPendienteCertificar =
-          (porcentajePendienteCertificar * nuevoMonto) / 100
+        const montoPendienteCertificar = parseFloat(
+          ((porcentajePendienteCertificar * nuevoMonto) / 100).toFixed(4),
+        )
 
         return {
           ...rest,
